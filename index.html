@@ -62,10 +62,9 @@
             align-items: center;
             display: flex;
             gap: 34px;
-            justify-content: center;
             margin: 0 auto;
-            max-width: 820px;
-            padding: 34px 22px 38px;
+            max-width: 1120px;
+            padding: 34px 28px 38px;
         }
 
         .portrait {
@@ -133,16 +132,12 @@
             transform: translateY(-1px);
         }
 
-        .top-rule {
-            border: 0;
-            border-top: 1px solid var(--rule);
-            margin: 0;
-        }
-
+        .top-rule,
         .section-rule {
             border: 0;
             border-top: 1px solid var(--rule);
-            margin: 0;
+            margin: 0 auto;
+            max-width: 1064px;
         }
 
         .section-heading {
@@ -420,8 +415,14 @@
                 align-items: center;
                 flex-direction: column;
                 gap: 18px;
-                padding: 28px 20px 30px;
+                padding: 28px 16px 30px;
                 text-align: center;
+            }
+
+            .top-rule,
+            .section-rule {
+                margin: 0 16px;
+                max-width: none;
             }
 
             .portrait {
@@ -618,7 +619,7 @@
                 <a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">The Chatbot That Wasn't Allowed to Guess <span class="arrow" aria-hidden="true">&rarr;</span></a>
             </p>
             <p class="featured-blurb">
-                How I built and shipped a public AI agent for a college website &mdash; live to ~250,000 visitors a month &mdash; by making &ldquo;don't make things up&rdquo; a system constraint instead of a prompt.
+                How I built and shipped a public AI agent for a college website &mdash; live to ~250,000 visitors a month &mdash; by making &ldquo;don&rsquo;t make things up&rdquo; a system constraint instead of a prompt.
             </p>
         </section>
 
