@@ -145,10 +145,30 @@
             margin: 0;
         }
 
+        .section-heading {
+            color: #333333;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.1;
+            margin: 0 0 18px;
+        }
+
+        .section-heading a {
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .section-heading a:hover,
+        .section-heading a:focus-visible {
+            text-decoration: underline;
+            text-decoration-color: var(--rail);
+            text-underline-offset: 6px;
+        }
+
         .featured-post {
             margin: 0 auto;
             max-width: 1120px;
-            padding: 26px 28px 28px;
+            padding: 34px 28px 32px;
         }
 
         .featured-label {
@@ -156,18 +176,6 @@
             font-size: 17px;
             font-weight: 700;
             margin: 0 0 9px;
-        }
-
-        .featured-label a {
-            color: #b8b8b8;
-            text-decoration: none;
-        }
-
-        .featured-label a:hover,
-        .featured-label a:focus-visible {
-            color: #333333;
-            text-decoration: underline;
-            text-underline-offset: 3px;
         }
 
         .featured-title {
@@ -209,7 +217,7 @@
         }
 
         .timeline {
-            margin: 26px auto 0;
+            margin: 34px auto 0;
             max-width: 1120px;
             padding: 0 28px;
         }
@@ -435,8 +443,13 @@
                 justify-content: center;
             }
 
+            .section-heading {
+                font-size: 38px;
+                margin-bottom: 14px;
+            }
+
             .featured-post {
-                padding: 20px 16px 22px;
+                padding: 26px 16px 26px;
             }
 
             .featured-label {
@@ -597,8 +610,9 @@
 
     <main>
         <section class="featured-post" aria-label="Latest writing">
+            <h2 class="section-heading"><a href="/blog/">writing</a></h2>
             <p class="featured-label">
-                <a href="/blog/">writing</a> · <time datetime="2026-06-23">23 Jun, 2026</time>
+                <time datetime="2026-06-23">23 Jun, 2026</time>
             </p>
             <p class="featured-title">
                 <a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">The Chatbot That Wasn't Allowed to Guess <span class="arrow" aria-hidden="true">&rarr;</span></a>
@@ -611,6 +625,8 @@
         <hr class="section-rule" />
 
         <section class="timeline" aria-label="Selected work timeline">
+            <h2 class="section-heading">work</h2>
+
             <article class="timeline-item">
                 <div class="date">2025 - </div>
                 <div class="rail" aria-hidden="true"></div>
