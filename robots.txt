@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://joelcook.github.io/sitemap.xml
