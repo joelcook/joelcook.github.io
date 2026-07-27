@@ -10,7 +10,7 @@
             <title>The Patch That Came Too Late</title>
             <link>https://joelcook.github.io/blog/the-patch-that-came-too-late/</link>
             <guid isPermaLink="true">https://joelcook.github.io/blog/the-patch-that-came-too-late/</guid>
-            <description>How a critical WordPress core vulnerability defaced a college Foundation website—and how I used Codex to contain the attacker, rebuild the site, and verify the recovery.</description>
+            <description>How a patched WordPress site stayed compromised—and how a second incident exposed the cPanel token and ownership paths the first cleanup missed.</description>
             <pubDate>Thu, 23 Jul 2026 21:15:00 -0400</pubDate>
         </item>
         <item>

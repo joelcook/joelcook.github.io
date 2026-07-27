@@ -8,7 +8,7 @@
     <title>The Patch That Came Too Late — Joel Cook</title>
     <meta name="title" content="The Patch That Came Too Late" />
     <meta name="description"
-        content="How a critical WordPress core vulnerability defaced a college Foundation website—and how I used Codex to contain the attacker, rebuild the site, and verify the recovery." />
+        content="How a patched WordPress site stayed compromised—and how a second incident exposed the cPanel token and ownership paths the first cleanup missed." />
     <meta name="author" content="Joel Cook" />
     <link rel="canonical" href="https://joelcook.github.io/blog/the-patch-that-came-too-late/" />
     <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
@@ -18,16 +18,17 @@
     <meta property="og:url" content="https://joelcook.github.io/blog/the-patch-that-came-too-late/" />
     <meta property="og:title" content="The Patch That Came Too Late" />
     <meta property="og:description"
-        content="How a critical WordPress core vulnerability defaced a college Foundation website—and how I used Codex to contain the attacker, rebuild the site, and verify the recovery." />
+        content="How a patched WordPress site stayed compromised—and how a second incident exposed the cPanel token and ownership paths the first cleanup missed." />
     <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
     <meta property="article:published_time" content="2026-07-23" />
+    <meta property="article:modified_time" content="2026-07-27" />
     <meta property="article:author" content="Joel Cook" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://joelcook.github.io/blog/the-patch-that-came-too-late/" />
     <meta property="twitter:title" content="The Patch That Came Too Late" />
     <meta property="twitter:description"
-        content="How a critical WordPress core vulnerability defaced a college Foundation website—and how I used Codex to contain the attacker, rebuild the site, and verify the recovery." />
+        content="How a patched WordPress site stayed compromised—and how a second incident exposed the cPanel token and ownership paths the first cleanup missed." />
     <meta property="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
 
     <script type="application/ld+json">
@@ -35,9 +36,10 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": "The Patch That Came Too Late",
-        "description": "How a critical WordPress core vulnerability defaced a college Foundation website—and how I used Codex to contain the attacker, rebuild the site, and verify the recovery.",
+        "description": "How a patched WordPress site stayed compromised—and how a second incident exposed the cPanel token and ownership paths the first cleanup missed.",
         "url": "https://joelcook.github.io/blog/the-patch-that-came-too-late/",
         "datePublished": "2026-07-23",
+        "dateModified": "2026-07-27",
         "image": "https://joelcook.github.io/images/me.jpeg",
         "author": {
             "@type": "Person",
@@ -147,18 +149,6 @@
             margin: 6px 0;
         }
 
-        blockquote {
-            border-left: 3px solid var(--rule);
-            color: #555555;
-            font-style: italic;
-            margin: 0 0 18px;
-            padding: 2px 0 2px 20px;
-        }
-
-        blockquote p:last-child {
-            margin-bottom: 0;
-        }
-
         code {
             background: #f2f2f2;
             border-radius: 3px;
@@ -242,260 +232,104 @@
 
         <article>
             <h1>The Patch That Came Too Late</h1>
-            <p class="standfirst">How a critical WordPress core vulnerability defaced a college Foundation website—and
-                how I used Codex to contain the attacker, rebuild the site, and verify the recovery.</p>
-            <p class="byline"><time datetime="2026-07-23">23 Jul, 2026</time></p>
+            <p class="standfirst">A WordPress patch closed the original hole. The attacker had already copied the keys.</p>
+            <p class="byline"><time datetime="2026-07-23">23 Jul, 2026</time> · updated 27 Jul, 2026</p>
 
-            <p>At about 8:46 on a Thursday morning, I opened the website for the Indian River State College Foundation
-                and found a casino.</p>
-            <p>Not metaphorically. The homepage had been replaced by a large Indonesian gaming page. The WordPress login
-                still looked normal, but the public site—the place where the Foundation tells its story and accepts
-                donations—was gone.</p>
-            <p>The main college website was unaffected. This was the separate Foundation site at
-                <a href="https://giving.irsc.edu/" target="_blank" rel="noopener noreferrer">giving.irsc.edu</a>. But the
-                distinction did not make the morning feel less urgent.</p>
-            <p>I opened Codex and typed:</p>
-            <blockquote>
-                <p>critical my website was hacked. its a wp site on inmotion hosting. where do i start?</p>
-            </blockquote>
-            <p>I expected a checklist. What followed was closer to running an incident-response room with a very fast
-                technical partner living inside my terminal.</p>
-            <p>By the end of the day, we had preserved the evidence, contained an active attacker, removed multiple
-                persistence mechanisms, rotated the credentials, rebuilt production and staging, and verified the
-                recovery through several independent tests.</p>
-            <p>The interesting part is not that an AI “fixed a website.” That framing is too magical and also wrong.</p>
-            <p>The interesting part is that security incident response turns out to be unusually compatible with an
-                agent—if the human keeps control of scope, permissions, judgment, and the definition of done.</p>
+            <p>At 8:46 on Thursday morning I opened the Indian River State College Foundation website and found a casino.</p>
+            <p>Not a clever redirect. A 416 KB Indonesian gambling page, served from the production origin with HTTP
+                200. WordPress login still looked normal. The main college website was fine. The separate giving site
+                had been replaced.</p>
+            <p>By then the server was already running the patched version of WordPress.</p>
+            <p>This is the part worth understanding.</p>
 
-            <h2 id="the-homepage-was-not-the-incident">The homepage was not the incident</h2>
-            <p>The first surprise was that not every observer saw the same page. One external check returned the
-                legitimate Foundation homepage. A direct request to the hosting origin returned a 416 KB gaming page
-                with HTTP 200. The login page was still real. Normal WordPress routes were broken.</p>
-            <p>That pattern matters. It suggested that the visible defacement might involve caching, conditional
-                behavior, or code executing below the page layer. Simply opening WordPress Admin and changing the
-                homepage would have been theater.</p>
-            <p>So we adopted a small incident-response loop:</p>
+            <h2 id="the-patch-worked">The patch worked</h2>
+            <p>WordPress released
+                <a href="https://wordpress.org/news/2026/07/wordpress-7-0-2-release/" target="_blank"
+                    rel="noopener noreferrer">7.0.2 on July 17</a> for a critical vulnerability chain. The logs matched
+                the public exploit path:
+                <a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-ff9f-jf42-662q"
+                    target="_blank" rel="noopener noreferrer">REST batch-route confusion leading to SQL injection</a>,
+                followed by
+                <a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-fpp7-x2x2-2mjf"
+                    target="_blank" rel="noopener noreferrer">a facilitated SQL injection in
+                    <code>WP_Query</code></a>. Together, the chain led to remote code execution.
+            </p>
+            <p>The first malicious database record appeared July 19. The site updated July 21. The public defacement
+                appeared July 23.</p>
+            <p>The patch did its job. It closed the original door. It did not remove the people who had entered two days
+                earlier, installed their own doors, and started making keys.</p>
+
+            <h2 id="the-domain-was-the-wrong-boundary">The domain was the wrong boundary</h2>
+            <p>I opened Codex, gave it a temporary SSH key, and started read-only. Map every document root. Inventory
+                users, processes, keys, FTP accounts, cron jobs, plugins, database rows, and recently modified PHP. Hash
+                suspicious files before touching them.</p>
+            <p>The casino page was almost the least interesting artifact.</p>
+            <p>We found webshells, counterfeit plugins, a reverse-shell kit, attacker-created WordPress administrators,
+                an unauthorized SSH key, an FTP account, and live processes under the hosting user. Production, staging,
+                development, and old installations all shared that Unix account.</p>
+            <p>So I stopped treating this as a hacked homepage. Four websites can look separate in a browser and still be
+                one machine to an attacker.</p>
             <pre><code>preserve
+map
 contain
-identify
 evict
 rotate
 rebuild
 verify</code></pre>
-            <p>The ordering is the whole thing. If you delete first, you destroy evidence. If you patch first, you may
-                close the original door while leaving the attacker inside. If you reopen before verification, you are
-                testing your assumptions on real visitors.</p>
-            <p>I reset the hosting control-plane credentials, then gave Codex temporary SSH access using a dedicated
-                public key. No password went into the conversation. The key could be revoked when the response was
-                complete.</p>
-            <p>The first pass was intentionally read-only: map the domains, identify the document roots, inspect file
-                metadata, compare WordPress core against official checksums, and preserve anything suspicious before
-                changing it.</p>
-            <p>At first, a giant <code>.htaccess</code> file looked like the obvious culprit. It had been modified that
-                morning and was roughly 27 KB. On inspection, most of it was a legitimate security plugin’s accumulated
-                block list. Plausible hypothesis, wrong answer.</p>
-            <p>Then the actual artifacts started appearing.</p>
+            <p>We blocked the webroots, terminated only confirmed attacker processes, and moved implants into a locked
+                quarantine instead of deleting them. Then we removed unauthorized users and keys, rotated hosting,
+                database, WordPress, FTP, and mailbox credentials, rebuilt from known-good code, verified official
+                checksums, blocked PHP execution in uploads, and tested the origin and public site independently.</p>
+            <p>The scans were useful. The hashes were useful. The clean homepage was useful. None was a verdict by
+                itself. Recovery came from agreement between different checks.</p>
 
-            <h2 id="the-site-was-not-the-boundary">The site was not the boundary</h2>
-            <p>The production root contained webshells, counterfeit plugins, hidden plugin directories, a reverse-shell
-                deployment kit, malicious verification files, and attacker-modified configuration. An unauthorized SSH
-                key sat next to our temporary response key.</p>
-            <p>More importantly, there was a live attacker shell and a monitoring process already running under the
-                hosting account.</p>
-            <p>This changed the unit of analysis. We were no longer cleaning a WordPress site. We were evicting an
-                intruder from a shared Unix account.</p>
-            <p>The account also hosted staging, development, and legacy roots. The attacker had created a new FTP
-                account, uploaded additional webshells, and planted two WordPress administrators in staging. Shell
-                history showed account-level commands and an attempted privilege escalation.</p>
-            <p>So every webroot under that account became untrusted. We temporarily blocked them at the origin, killed
-                only the confirmed attacker processes, removed only the unauthorized key, and preserved the relevant
-                logs, databases, files, and command history.</p>
-            <p>This is a general security lesson disguised as a WordPress story:</p>
-            <blockquote>
-                <p>Your blast radius is defined by the credential and execution boundary, not by the domain name in the
-                    browser.</p>
-            </blockquote>
-            <p>Four websites that look separate to a visitor may be one security object if they share a hosting account,
-                filesystem permissions, credentials, and process space.</p>
+            <h2 id="then-it-came-back">Then it came back</h2>
+            <p>On July 27 the site failed again with the same 403. The real <code>index.php</code> had been renamed. A
+                fresh casino payload and the same webshell family were back. The attacker had revisited the account on
+                July 25.</p>
+            <p>The first cleanup had missed one capability: a full-access cPanel API token created during the original
+                compromise. It had no expiration and no IP restriction. Changing the cPanel password did not revoke it.
+                The attacker no longer needed WordPress, SSH, or FTP. They still had the hosting control plane.</p>
+            <p>That distinction is small in the interface and enormous in reality. We rotated the secret. We had not
+                revoked the capability.</p>
+            <p>We revoked the token, confirmed the token inventory was empty, quarantined the new files, and restored the
+                front controller from its known-good hash. A full scan covered 82,728 files with zero detections. Core
+                matched 7.0.2. The known database markers, application passwords, attacker users, and active processes
+                were gone.</p>
+            <p>Then another control plane surfaced: Google Search Console. During the first incident, an unknown account
+                became an owner while verification files were being placed on the site. Removing a user from Search
+                Console is not enough if their HTML file, meta tag, or DNS proof remains; they can simply prove ownership
+                again.</p>
+            <p>We removed the malicious files, cleared a stale verification tag from Yoast, and purged InMotion's Nginx
+                cache so Google could no longer see the old proof. DNS-hosted proofs required a separate review in Azure
+                DNS. Website ownership had outlived the website compromise.</p>
 
-            <h2 id="the-patch-came-too-late">The patch came too late</h2>
-            <p>Once we correlated the HTTP logs, database rows, plugin artifacts, and timestamps, the entry path became
-                clear.</p>
-            <p>On July 17, WordPress disclosed a critical vulnerability chain involving REST API batch-route confusion
-                and SQL injection leading to remote code execution. The affected versions included WordPress 6.9.0
-                through 6.9.4 and 7.0.0 through 7.0.1. The patched releases were 6.9.5 and 7.0.2. WordPress considered the
-                issue severe enough to enable forced automatic updates for affected sites.
-                <a href="https://wordpress.org/news/2026/07/wordpress-7-0-2-release/" target="_blank"
-                    rel="noopener noreferrer">The release notice is unusually direct: update immediately.</a></p>
-            <p>Our first confirmed malicious record appeared on July 19. The attacker then installed several ways to
-                return: plugins, webshells, an FTP account, an SSH key, and WordPress administrators.</p>
-            <p>The site updated to WordPress 7.0.2 on July 21.</p>
-            <p>The public defacement appeared on July 23.</p>
-            <p>So the site was patched when I found it. It was also thoroughly compromised.</p>
-            <p>This sounds paradoxical only if you think a patch is a cleanup tool. It is not.</p>
-            <blockquote>
-                <p>A security update closes the door. It does not evict someone who already moved in.</p>
-            </blockquote>
-            <p>The attacker no longer needed the original WordPress vulnerability. They had independent SSH, FTP,
-                database, plugin, and webshell access. Updating core was necessary, but by itself it could never make the
-                system trustworthy again.</p>
-            <p>The official advisories track the two linked issues as
-                <a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-ff9f-jf42-662q"
-                    target="_blank" rel="noopener noreferrer">CVE-2026-63030</a> and
-                <a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-fpp7-x2x2-2mjf"
-                    target="_blank" rel="noopener noreferrer">CVE-2026-60137</a>. The incident evidence included the
-                same batch API paths, successful multi-status responses, and <code>wp2shell</code> markers associated
-                with the public exploit chain.</p>
+            <h2 id="what-the-agent-was-good-at">What the agent was good at</h2>
+            <p>Codex did not magically know which contractor accounts were legitimate or when the institution should
+                accept residual risk. Those remained human decisions.</p>
+            <p>It was very good at turning each observation into the next smallest test. Compare public DNS with the
+                origin. Compare core with official checksums. Compare every credential inventory before and after
+                revocation. Request the page as a browser and as Googlebot. Purge the cache, then prove both the cache
+                miss and the next cache hit are clean.</p>
+            <p>It also got things wrong. A giant <code>.htaccess</code> file looked malicious at first and was mostly a
+                security plugin's block list. The useful unit was never “the AI answer.” It was an operation with a
+                rollback and an independent check.</p>
+            <p>Security response happens to fit this model well because so much of the work leaves evidence: a hash, a
+                process, a row, a response code, a permission bit, a token inventory. Codex made the loop fast. The
+                evidence kept the loop honest.</p>
 
-            <h2 id="what-codex-was-actually-doing">What Codex was actually doing</h2>
-            <p>It is tempting to summarize the day as “Codex removed the malware.” That misses most of the useful part.
-            </p>
-            <p>Codex was continuously turning observations into the next smallest test:</p>
-            <ul>
-                <li>compare the public hostname with the origin</li>
-                <li>distinguish a cached page from executable persistence</li>
-                <li>hash evidence before moving it</li>
-                <li>check official WordPress and plugin checksums</li>
-                <li>enumerate users, keys, processes, cron jobs, FTP accounts, and database records</li>
-                <li>scan for both known indicators and unfamiliar executable structure</li>
-                <li>make changes reversible by quarantining instead of deleting</li>
-                <li>test the recovered site from multiple paths before reopening it</li>
-            </ul>
-            <p>In other words, the agent had sensors and actuators.</p>
-            <p>The sensors were SSH, HTTP responses, logs, hashes, filesystem metadata, WordPress CLI, database queries,
-                checksum services, and antivirus scans.</p>
-            <p>The actuators were tightly scoped: block one webroot, terminate one confirmed process, quarantine a known
-                artifact, rotate one credential, replace one configuration, run one fail-closed cutover.</p>
-            <p>I remained responsible for the policy layer. Which systems were in scope? When was evidence sufficient?
-                Which accounts were legitimate? Which action was destructive? When could the public site reopen? Codex
-                could accelerate the investigation, but it could not own those decisions.</p>
-            <p>This division of labor felt natural:</p>
-            <pre><code>human
-  intent, authorization, judgment, risk
-        |
-        v
-Codex
-  inspect, correlate, operate, verify
-        |
-        v
-environment
-  logs, files, processes, databases, HTTP</code></pre>
-            <p>The conversation was not separate from the work. It became the control plane for the work.</p>
-
-            <h2 id="the-agent-was-wrong-sometimes">The agent was wrong sometimes</h2>
-            <p>This is important because a sanitized success story teaches the wrong lesson.</p>
-            <p>The large <code>.htaccess</code> file was initially treated as a primary indicator. It was mostly
-                legitimate. Later, a configuration-hardening command damaged the final bootstrap lines of
-                <code>wp-config.php</code>. The site was still blocked, a protected copy existed, and the mistake was
-                repaired before traffic returned. The repair then had to pass PHP linting, a hash comparison, a
-                WordPress bootstrap, and a live database query.</p>
-            <p>During staging recovery, an initial authenticated test appeared successful. A later sequence revealed
-                that the hosting provider’s Nginx layer had cached an authenticated response and briefly served it
-                without the outer password.</p>
-            <p>That was a real security failure in the first solution.</p>
-            <p>We disabled caching for the entire staging domain, purged the cache, and ran repeated
-                unauthenticated/authenticated/unauthenticated cycles. Only after five consecutive
-                <code>401 / 200 / 401</code> sequences—with the proxy explicitly reporting caching disabled—did we call
-                the protection correct.</p>
-            <p>This is what people miss when they treat a capable model like an oracle. The model is not reliable because
-                it sounds confident. The system becomes reliable when a wrong hypothesis or bad action is cheap to
-                detect, reversible, and surrounded by independent checks.</p>
-            <p>Codex was useful partly because it generated and executed work quickly. It was safe enough to use because
-                we made it prove the work.</p>
-
-            <h2 id="recovery-is-a-proof">Recovery is a proof, not a feeling</h2>
-            <p>“The homepage looks right” is not a recovery criterion.</p>
-            <p>Before cleanup, we preserved a complete production filesystem image, database exports, logs, shell
-                evidence, suspicious files, access inventories, and hashes. Confirmed malicious artifacts were moved
-                outside the webroots and locked down, not erased.</p>
-            <p>We rotated the database credentials, WordPress salts, administrator passwords, application passwords,
-                FTP accounts, hosting credentials, and the hosted mailbox. The temporary incident SSH key was revoked
-                after the final verification.</p>
-            <p>Then we looked for agreement across different kinds of evidence:</p>
-            <ul>
-                <li>WordPress core matched the official 7.0.2 checksums.</li>
-                <li>Every repository plugin in the trusted runtime matched WordPress.org.</li>
-                <li>Commercial components were compared, scanned, and reviewed by modification time.</li>
-                <li>Two antivirus passes scanned 76,167 files with zero detections.</li>
-                <li>Database searches found zero executable-content indicators.</li>
-                <li>Attacker users, FTP accounts, SSH keys, processes, cron entries, and known implant names were absent.
-                </li>
-                <li>Known malicious URLs returned 403 or 404.</li>
-                <li>Uploads could not execute PHP.</li>
-                <li>The homepage, login, and internal pages returned the expected content through both the origin and
-                    public DNS.</li>
-            </ul>
-            <p>No single check proves a system clean. Antivirus can miss custom payloads. Checksums do not cover custom
-                plugins. A correct homepage says very little about an SSH key. The confidence came from the intersection
-                of all the checks.</p>
-            <p>Only then did we reopen production.</p>
-
-            <h2 id="staging-was-a-second-incident">Staging was a second incident</h2>
-            <p>The contractor’s staging work was behind a temporary 403 wall, but it was not lost. The preserved database
-                still contained 40 published pages, four drafts, and 281 media records.</p>
-            <p>We backed up the full 2.2 GB site and its database, verified WordPress and plugin integrity offline,
-                removed the attacker-created administrators, upgraded staging to 7.0.2, normalized permissions, removed
-                risky file-management components, blocked executable uploads, and placed the site behind a separate
-                browser password.</p>
-            <p>The cache isolation bug made this take longer than expected. It also made the final result much stronger.
-                The contractor got the work back in a clean, protected environment, and production remained untouched
-                during the rebuild.</p>
-
-            <h2 id="what-changed">What changed afterward</h2>
-            <p>The incident ended, but returning to the old operating model would have been a slow-motion repeat.</p>
-            <p>Production and staging now automatically install WordPress maintenance and security releases while major
-                upgrades remain manual. File execution is blocked in uploads. Dangerous file-management and
-                remote-control components remain removed. Non-production access is constrained. Credentials are
-                separated and rotated.</p>
-            <p>The larger follow-up is architectural:</p>
-            <ul>
-                <li>separate production and non-production into different hosting and credential boundaries</li>
-                <li>retire legacy installations instead of leaving them reachable</li>
-                <li>maintain off-host, immutable backups and practice restoring them</li>
-                <li>alert on new administrators, plugins, SSH keys, FTP accounts, and suspicious REST traffic</li>
-                <li>treat a shared hosting account as one security boundary</li>
-                <li>keep evidence and incident documentation outside the compromised system</li>
-            </ul>
-            <p>There was no evidence in the material we could inspect that donor or payment data had been exported. That
-                is not the same as proving no data was accessed. Because the attacker achieved account-level shell
-                access, the formal data-impact decision belongs with the institution’s security and privacy teams.</p>
-
-            <h2 id="the-larger-lesson">The larger lesson</h2>
-            <p>Security response is a good example of professional agentic work because much of it is verifiable.</p>
-            <p>A file has a hash. A process exists or does not. A core file matches the official release or it does not.
-                A user is in the database or absent. A URL returns 200, 401, 403, or 404. A cache leaks authenticated
-                content or survives a repeated isolation test.</p>
-            <p>The ambiguous parts remain human: deciding what matters, recognizing organizational consequences,
-                knowing when an account name belongs to a contractor, determining whether residual risk is acceptable,
-                and taking responsibility for reopening a public system.</p>
-            <p>Codex compressed a large amount of technical coordination into one day. It moved between networking,
-                Linux, Apache, Nginx, PHP, WordPress, SQL, cPanel, logs, malware analysis, backup verification, and
-                documentation without waiting for a different specialist at every boundary.</p>
-            <p>But the thing that neutralized the incident was not intelligence in the abstract. It was the loop:</p>
-            <pre><code>observe
-hypothesize
-act narrowly
-verify independently
-record the evidence
-repeat</code></pre>
-            <p>The agent made that loop dramatically faster. The loop made the agent trustworthy enough to use.</p>
-            <p>The Foundation website is live again. The casino page is gone. The staging work survived. The attacker’s
-                access did not.</p>
-            <p>And I no longer think of Codex as a tool that writes code.</p>
-            <p>In the right environment, with the right boundaries, it is a general technical operator. That is a much
-                bigger idea—and a much more demanding responsibility.</p>
-
-            <h2 id="references">References</h2>
-            <ul>
-                <li><a href="https://wordpress.org/news/2026/07/wordpress-7-0-2-release/" target="_blank"
-                        rel="noopener noreferrer">WordPress 7.0.2 security release</a></li>
-                <li><a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-ff9f-jf42-662q"
-                        target="_blank" rel="noopener noreferrer">CVE-2026-63030: REST API batch-route confusion and SQL
-                        injection leading to remote code execution</a></li>
-                <li><a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-fpp7-x2x2-2mjf"
-                        target="_blank" rel="noopener noreferrer">CVE-2026-60137: facilitated SQL injection in
-                        <code>WP_Query</code></a></li>
-            </ul>
+            <h2 id="the-fix">The fix</h2>
+            <pre><code>patch       stops the exploit
+eviction    removes persistence
+revocation  kills capabilities
+verification proves the change</code></pre>
+            <p>We found no evidence in the material available to us that donor or payment data had been exported. Shell
+                access means absence of evidence is not proof of absence, so the formal data-impact decision still
+                belongs with the institution's security and privacy teams.</p>
+            <p>The casino page was the loudest part of the incident and the least important. The incident ended only
+                when the attacker could no longer write a file, authenticate to the account, mint another user, or prove
+                to Google that the site belonged to them.</p>
+            <p>The page is gone. More importantly, the known attacker paths back are gone.</p>
         </article>
 
         <hr class="end-rule" />
