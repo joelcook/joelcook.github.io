@@ -10,7 +10,7 @@
             <title>The Patch That Came Too Late</title>
             <link>https://joelcook.github.io/blog/the-patch-that-came-too-late/</link>
             <guid isPermaLink="true">https://joelcook.github.io/blog/the-patch-that-came-too-late/</guid>
-            <description>How a patched WordPress site stayed compromised—and how a second incident exposed the cPanel token and ownership paths the first cleanup missed.</description>
+            <description>A technical incident report on a WordPress RCE, account-level persistence, a surviving cPanel token, and the verification steps that finally closed the paths back.</description>
             <pubDate>Thu, 23 Jul 2026 21:15:00 -0400</pubDate>
         </item>
         <item>
