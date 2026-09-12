@@ -11,8 +11,16 @@ From this directory, run `python3 -m http.server 8080`, then visit
 
 ## Writing
 
-Lead with the result. Explain the few engineering decisions that made it
-possible. Include the limits of the evidence. End when the story is done.
+Start with something that happened: a surprising result, a broken page, a
+decision, or a small detail with large consequences. Make the financial win
+easy to find when there is one. Explain the engineering through the story.
+End when the story is done.
+
+Write in Joel's own voice: curious, direct, technically specific, and willing
+to say what he thinks. Use connected paragraphs, varied sentence lengths,
+and concrete examples. Keep uncertainty beside the claim it qualifies.
+Avoid invented scenes, dialogue, timelines, outrage, and financial figures.
+An incident recovery can stand on its own without a dollar estimate.
 
 The site documents work; it does not sell consulting packages. Keep the
 homepage wins to one sentence each. Articles should usually fit in 300–600

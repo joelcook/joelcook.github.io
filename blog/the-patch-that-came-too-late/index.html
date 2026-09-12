@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>The Patch That Came Too Late — Joel Cook</title>
-    <meta name="title" content="The Patch That Came Too Late" />
+    <title>The morning our giving site became a casino — Joel Cook</title>
+    <meta name="title" content="The morning our giving site became a casino" />
     <meta name="description"
-        content="A technical incident report on a WordPress RCE, account-level persistence, a surviving cPanel token, and the verification steps that finally closed the paths back." />
+        content="A phone call, a hijacked giving site, and an attacker who could still get in after the patch." />
     <meta name="author" content="Joel Cook" />
     <link rel="canonical" href="https://joelcook.github.io/blog/the-patch-that-came-too-late/" />
     <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
@@ -16,38 +16,22 @@
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Joel Cook" />
     <meta property="og:url" content="https://joelcook.github.io/blog/the-patch-that-came-too-late/" />
-    <meta property="og:title" content="The Patch That Came Too Late" />
+    <meta property="og:title" content="The morning our giving site became a casino" />
     <meta property="og:description"
-        content="A technical incident report on a WordPress RCE, account-level persistence, a surviving cPanel token, and the verification steps that finally closed the paths back." />
+        content="A phone call, a hijacked giving site, and an attacker who could still get in after the patch." />
     <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
     <meta property="article:published_time" content="2026-07-23" />
-    <meta property="article:modified_time" content="2026-07-27" />
+    <meta property="article:modified_time" content="2026-09-12" />
     <meta property="article:author" content="Joel Cook" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://joelcook.github.io/blog/the-patch-that-came-too-late/" />
-    <meta property="twitter:title" content="The Patch That Came Too Late" />
+    <meta property="twitter:title" content="The morning our giving site became a casino" />
     <meta property="twitter:description"
-        content="A technical incident report on a WordPress RCE, account-level persistence, a surviving cPanel token, and the verification steps that finally closed the paths back." />
+        content="A phone call, a hijacked giving site, and an attacker who could still get in after the patch." />
     <meta property="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "The Patch That Came Too Late",
-        "description": "A technical incident report on a WordPress RCE, account-level persistence, a surviving cPanel token, and the verification steps that finally closed the paths back.",
-        "url": "https://joelcook.github.io/blog/the-patch-that-came-too-late/",
-        "datePublished": "2026-07-23",
-        "dateModified": "2026-07-27",
-        "image": "https://joelcook.github.io/images/me.jpeg",
-        "author": {
-            "@type": "Person",
-            "name": "Joel Cook",
-            "url": "https://joelcook.github.io/"
-        }
-    }
-    </script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The morning our giving site became a casino", "description": "A phone call, a hijacked giving site, and an attacker who could still get in after the patch.", "url": "https://joelcook.github.io/blog/the-patch-that-came-too-late/", "datePublished": "2026-07-23", "dateModified": "2026-09-12", "image": "https://joelcook.github.io/images/me.jpeg", "author": {"@type": "Person", "name": "Joel Cook", "url": "https://joelcook.github.io/"}}</script>
 
     <style>
         :root {
@@ -114,14 +98,14 @@
         .standfirst {
             color: #6f6f6f;
             font-size: 21px;
-            font-style: italic;
+            font-style: normal;
             font-weight: 400;
             line-height: 1.35;
             margin: 0 0 16px;
         }
 
         .byline {
-            color: #b8b8b8;
+            color: #707070;
             font-size: 17px;
             font-weight: 700;
             margin: 0 0 34px;
@@ -231,181 +215,29 @@
         <hr class="top-rule" />
 
         <article>
-            <h1>The Patch That Came Too Late</h1>
-            <p class="standfirst">A technical incident report on a WordPress RCE, account-level persistence, and the
-                control-plane token that survived the first cleanup.</p>
-            <p class="byline"><time datetime="2026-07-23">23 Jul, 2026</time> · updated 27 Jul, 2026</p>
+            <h1>The morning our giving site became a casino</h1>
+            <p class="standfirst">A phone call, a hijacked giving site, and an attacker who could still get in after the patch.</p>
+            <p class="byline"><time datetime="2026-07-23">23 Jul, 2026</time> · updated <time datetime="2026-09-12">12 Sep, 2026</time></p>
 
-            <p>At 8:46 on Thursday morning I opened the Indian River State College Foundation website and found a casino.</p>
-            <p>It was not a browser redirect or an ad-network problem. The production origin returned a 416 KB
-                Indonesian gambling page with HTTP 200. <code>wp-login.php</code> still looked normal. The main college
-                site was healthy. Only the giving site appeared broken.</p>
-            <p>The visible symptom suggested a replaced homepage. The evidence described a much larger system:
-                WordPress had been exploited, the shared hosting account had been occupied, and new authentication
-                paths had been created above WordPress. By the time the casino page appeared, the server was already
-                patched.</p>
-
-            <h2 id="reconstructing-entry">Reconstructing entry</h2>
-            <p>WordPress released
-                <a href="https://wordpress.org/news/2026/07/wordpress-7-0-2-release/" target="_blank"
-                    rel="noopener noreferrer">7.0.2 on July 17</a> for a critical vulnerability chain. The relevant
-                advisories describe
-                <a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-ff9f-jf42-662q"
-                    target="_blank" rel="noopener noreferrer">REST batch-route confusion leading to SQL injection</a>
-                followed by
-                <a href="https://github.com/WordPress/wordpress-develop/security/advisories/GHSA-fpp7-x2x2-2mjf"
-                    target="_blank" rel="noopener noreferrer">facilitated SQL injection in
-                    <code>WP_Query</code></a>. In sequence, the bugs enabled remote code execution. The request logs
-                matched that public exploit path.
-            </p>
-            <pre><code>Jul 17  WordPress 7.0.2 released
-Jul 19  first malicious database artifact
-Jul 21  site patched; hosting API token created
-Jul 23  public defacement detected
-Jul 25  attacker writes new artifacts
-Jul 27  second failure exposes surviving token</code></pre>
-            <p>The order matters. The attacker entered before the update. Patching removed the vulnerable code path,
-                but a patch does not enumerate files, kill processes, delete accounts, revoke keys, or invalidate
-                tokens created after exploitation. Exploit prevention and attacker eviction are different jobs.</p>
-
-            <h2 id="finding-the-real-boundary">Finding the real boundary</h2>
-            <p>The domain was the wrong security boundary. Production, staging, development, and legacy WordPress
-                installations lived under one Unix/cPanel account. To a browser they were separate sites. To a process
-                running as the hosting user they were one filesystem.</p>
-            <p>We inventoried every document root and every mechanism that could write into one: Unix processes, SSH
-                keys, FTP accounts, cron jobs, WordPress users, application passwords, plugins, database rows, and
-                recently modified PHP. That produced webshells, counterfeit plugins, a reverse-shell kit,
-                attacker-created WordPress administrators, an unauthorized SSH key, an FTP account, and live processes
-                under the shared user.</p>
-            <p>The initial commands were deliberately boring:</p>
-            <pre><code>wp core verify-checksums
-wp user list --fields=ID,user_login,user_email,roles
-wp plugin list
-find &lt;account-root&gt; -type f -mtime -14
-find &lt;account-root&gt; -type f \( -name '*.php' -o -name '.htaccess' \)
-sha256sum &lt;suspicious-file&gt;</code></pre>
-            <p>File size and modification time find candidates; they do not establish guilt. One unusually large
-                <code>.htaccess</code> looked like an implant and turned out to be mostly a security plugin's block
-                list. We hashed suspicious files, preserved copies, and correlated them with request logs, process
-                state, known-good packages, and database records before changing anything.</p>
-
-            <h2 id="containment-and-recovery">Containment is an ordering problem</h2>
-            <p>Deleting the casino page first would have improved the screenshot and damaged the investigation. The
-                response instead followed a fixed sequence:</p>
-            <pre><code>preserve  hash and quarantine evidence
-contain   block webroots and stop confirmed attacker processes
-evict     remove shells, users, keys, jobs, plugins, and database persistence
-rotate    replace passwords, salts, database, FTP, and mailbox credentials
-restore   rebuild code from known-good sources
-verify    test each layer independently</code></pre>
-            <p>Suspicious files moved into a locked quarantine rather than disappearing. Only processes tied to the
-                intrusion were terminated. Unauthorized WordPress users, SSH keys, and FTP accounts were removed.
-                WordPress salts and account credentials were rotated. Core was restored from official code, plugin
-                provenance was reviewed, and PHP execution was disabled in upload directories.</p>
-            <p>This order reduces two risks: destroying evidence before scope is known and restoring a clean site while
-                an attacker still has a valid write path. The homepage came back, core verified against official
-                checksums, and the obvious persistence was gone.</p>
-            <p>Then the site failed again.</p>
-
-            <h2 id="the-token-that-survived">The token that survived</h2>
-            <p>On July 27 the site returned the same 403. The canonical <code>index.php</code> was missing from its
-                expected location. A clean copy had been renamed to <code>index_old.php</code>; its SHA-256 matched the
-                previously preserved WordPress front controller. In its place were a new 855,237-byte casino payload,
-                crawler content, altered discovery files, and the same webshell family found during the first response.
-                Access logs showed the new payload had been requested on July 25.</p>
-            <p>WordPress was patched. The WordPress administrators were clean. The unauthorized SSH key and FTP account
-                were gone. The attacker still had a higher-level capability: a full-access cPanel API token created on
-                July 21, during the original compromise.</p>
-            <p>The token had no expiration and no IP restriction. It was also the only token in the account. Rotating
-                the cPanel password had no effect on it.</p>
-            <pre><code>password rotation != token revocation
-patching          != eviction
-clean homepage    != clean account</code></pre>
-            <p>This was the recurrence mechanism. A control-plane token could modify files without using the WordPress
-                vulnerability, an SSH key, or an FTP password. We had rotated a secret. We had not revoked the
-                capability minted with that secret.</p>
-            <p>The fix was to revoke the token through the cPanel token interface, query the inventory again, and require
-                an empty result before restoring the site:</p>
-            <pre><code>uapi Tokens list
-uapi Tokens revoke name=&lt;compromised-token&gt;
-uapi Tokens list</code></pre>
-            <p>The new artifacts went into quarantine. The known-good front controller was restored only after its hash
-                matched the preserved copy. The site returned normally, but a working homepage was still not enough to
-                call the incident closed.</p>
-
-            <h2 id="ownership-outside-wordpress">Ownership outside WordPress</h2>
-            <p>Google Search Console exposed a second class of persistence. An unknown owner appeared during the first
-                incident while verification files were being placed on the site. Removing a Search Console user is not
-                sufficient if the corresponding HTML file, meta tag, or DNS TXT record remains public. The account can
-                prove ownership again.</p>
-            <p>We searched the webroots and database for verification material and removed unauthorized files. One
-                remaining HTML meta tag belonged to a previous service provider rather than the attacker, but it was
-                stale ownership proof and had the same security consequence. Yoast stored it in
-                <code>wpseo.googleverify</code>:</p>
-            <pre><code>wp option get wpseo --format=json
-wp option patch delete wpseo googleverify</code></pre>
-            <p>The database was now clean. The public homepage was not.</p>
-            <p>A normal request still contained the old tag and returned <code>x-proxy-cache: HIT</code>. The same URL
-                with a cache-busting query was clean and returned a miss. WordPress had stopped emitting the proof;
-                InMotion's Nginx cache was replaying an older page that still contained it.</p>
-            <pre><code>curl -I https://giving.example.edu/
-# x-proxy-cache: HIT
-
-curl -I 'https://giving.example.edu/?verification-check=1'
-# x-proxy-cache: MISS</code></pre>
-            <p>The public purge route returned 403, while invoking the purge locally over SSH succeeded. After the purge,
-                the first ordinary request was a clean miss and the next was a clean hit. We repeated the request with a
-                Googlebot user agent. Both views were clean.</p>
-            <p>DNS verification was a separate control plane again. The zone was hosted in Azure DNS, not cPanel, so its
-                TXT records required review by the Azure DNS administrator. “The website” was really WordPress, cPanel,
-                Nginx, Search Console, and Azure DNS. Recovery had to follow ownership across all five.</p>
-
-            <h2 id="proving-recovery">Proving recovery</h2>
-            <p>No single scanner could prove the account was clean, so we built a verification matrix. Each result
-                answered one narrow question:</p>
-            <ul>
-                <li>WordPress core 7.0.2 matched official checksums.</li>
-                <li>Fifteen of twenty plugins verified against public checksums; five commercial or custom plugins
-                    without public checksums were reviewed separately.</li>
-                <li>ClamAV scanned 15,704 directories, 82,728 files, and 8,033.56 MB in 26 minutes 54 seconds with zero
-                    detections.</li>
-                <li>The cPanel API-token inventory was empty.</li>
-                <li>Known malicious database markers, WordPress application passwords, unauthorized administrators,
-                    unexpected processes, and user cron entries were absent.</li>
-                <li>Only expected FTP users remained. The temporary response SSH key was revoked after the work.</li>
-                <li>The homepage, donation route, login, and active Yoast sitemap returned 200. Known malicious paths
-                    returned 404.</li>
-                <li>Normal browsers and Googlebot received the legitimate page, including a clean cached hit.</li>
-            </ul>
-            <p>Zero antivirus detections is a useful signal, not a proof. A checksum proves a file matches a release; it
-                says nothing about a token. A 404 proves a path is gone; it says nothing about a database administrator.
-                Confidence came from independent checks agreeing across code, identity, process, database, network, and
-                control-plane state.</p>
-            <p>There are still institutional follow-ups. cPanel two-factor authentication was disabled at the time of
-                review. The hosting provider should terminate residual sessions and preserve its control-plane logs.
-                Production and non-production sites should not share one account. DNS ownership and formal data-impact
-                review belong with the teams that administer those systems.</p>
-
-            <h2 id="where-codex-fit">Where Codex fit</h2>
-            <p>Codex accelerated the mechanical work: enumerating the account, correlating files with logs, generating
-                reversible commands, and repeating the same tests before and after each change. The human work remained
-                scope, authorization, account legitimacy, evidence judgment, and approval of destructive actions.</p>
-            <p>The operating rule was simple: no important conclusion rested on an AI answer. It rested on an artifact,
-                a command result, a hash, or a second independent test.</p>
-
-            <h2 id="the-actual-fix">The actual fix</h2>
-            <pre><code>patch         closes the exploit
-eviction      removes persistence
-revocation    kills capabilities
-verification  proves recovery</code></pre>
-            <p>We found no evidence in the material available to us that donor or payment data had been exported. Shell
-                access means absence of evidence is not proof of absence; formal impact assessment remains the
-                institution's security and privacy responsibility.</p>
-            <p>The casino page was the loudest artifact, not the incident. The incident was an attacker retaining the
-                ability to write files, create identities, and assert ownership after the vulnerable code had been
-                replaced.</p>
-            <p>The page disappeared on the first day. Recovery took longer because recovery meant closing every known
-                path back.</p>
+            <p>It was an ordinary workday until I got a call: the school’s foundation website had been hacked. I opened it and found a casino.</p>
+            <p>The Indian River State College Foundation’s giving site had become a gambling page. The main college site was fine. Even the WordPress login looked normal. The institution had acquired a new line of business without consulting anyone.</p>
+            <p>I helped get the site back. The interesting part was finding out why it wouldn’t stay fixed.</p>
+            <p>The entry point was a WordPress core vulnerability. There was an AI connection too: <a href="https://www.slcyber.io/blog/wp2shell-discovering-one-of-2026s-biggest-zero-days-and-the-future-of-exposure-management">the researchers who discovered wp2shell reported using a frontier model to find the exploit chain</a>. That explains how the flaw was discovered; we don’t know what tools this particular attacker used.</p>
+            <p>WordPress had <a href="https://wordpress.org/news/2026/07/wordpress-7-0-2-release/">released a security fix</a>. The attacker got into our site before that update was installed. By the time the casino appeared, the site was patched, but the attacker had already created other ways back in.</p>
+            <p>Several WordPress installations shared the same hosting account. Production, staging, and development looked separate in a browser. Underneath, they shared filesystem permissions. We found webshells, counterfeit plugins, unauthorized administrators, an SSH key, an FTP account, and processes still running as the hosting user.</p>
+            <p>There was plenty to clean up. We preserved suspicious files, compared them with logs and known-good code, removed the confirmed implants, rotated credentials, and restored WordPress from official files. The homepage came back. The checksums matched.</p>
+            <p>Then the site broke again.</p>
+            <p>The clean <code>index.php</code> had been renamed, and a fresh casino payload had appeared. The patch hadn’t disappeared. The accounts and keys we had removed hadn’t returned. Something else could still write to the site.</p>
+            <p>That something was a <strong>full-access cPanel API token</strong>, created during the original compromise. It had no expiration or IP restriction. Changing the hosting password had left it valid.</p>
+            <p>The attacker no longer needed the WordPress vulnerability. They had a working credential to the system that controlled the files. We revoked the token, checked that the inventory was empty, and restored the clean files again.</p>
+            <p>The lesson was sitting right there in the sequence of events. We had changed a password and assumed too much about what that accomplished. An inventory of active tokens gave us the answer the password rotation couldn’t.</p>
+            <p>Google Search Console added another wrinkle. Verification files and tags could let someone prove ownership again after their account was removed. We cleared the unauthorized material and a stale tag belonging to a previous provider.</p>
+            <p>The tag was gone from WordPress. It was still on the public page.</p>
+            <p>Nginx had cached it. A fresh request looked clean while an ordinary request kept returning the old proof of ownership. We purged the cache and checked both responses, including requests using a Googlebot user agent.</p>
+            <p>I used Codex to help inventory files, compare evidence, and repeat checks. People still had to decide which accounts belonged, which files were malicious, and which changes were authorized. The evidence had to support each decision.</p>
+            <p>By the end, we had checked the donation route, login, file checksums, accounts, processes, and tokens. A malware scan covered more than 82,000 files. A clean scan was reassuring, but the surviving token had already shown why no single check was enough.</p>
+            <p>We found no evidence of donor or payment data being exported in the material available to us. That did not establish that no data had been accessed; formal impact review remained with the institution.</p>
+            <p>The casino was the part everyone could see. Following the evidence after the page looked normal was the work.</p>
         </article>
 
         <hr class="end-rule" />

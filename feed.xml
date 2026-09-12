@@ -7,30 +7,30 @@
         <language>en-us</language>
         <atom:link href="https://joelcook.github.io/feed.xml" rel="self" type="application/rss+xml" />
         <item>
-            <title>$600k saved with a document classifier</title>
+            <title>The $600k proposal and the filing problem</title>
             <link>https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</link>
-            <description>A million-document migration. Python rules, careful redaction, and an index the destination system could actually use.</description>
+            <description>Years of documents, inconsistent filing, and a move from Workday to Banner. I built the classifier in-house.</description>
             <pubDate>Sat, 12 Sep 2026 12:00:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</guid>
         </item>
         <item>
-            <title>250k monthly visitors. 84% lower hosting costs.</title>
+            <title>84% cheaper, and I still want the bill lower</title>
             <link>https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/</link>
-            <description>A hosting bill cut from $50k to $8k, and why I still wanted to go further.</description>
+            <description>$50k became $8k for a site serving 250k monthly visitors. I wanted to go further.</description>
             <pubDate>Sat, 12 Sep 2026 11:00:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/</guid>
         </item>
         <item>
-            <title>The Patch That Came Too Late</title>
+            <title>The morning our giving site became a casino</title>
             <link>https://joelcook.github.io/blog/the-patch-that-came-too-late/</link>
-            <description>A patched WordPress site, a surviving hosting token, and the checks that exposed the way back in.</description>
+            <description>A phone call, a hijacked giving site, and an attacker who could still get in after the patch.</description>
             <pubDate>Thu, 23 Jul 2026 21:15:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/the-patch-that-came-too-late/</guid>
         </item>
         <item>
-            <title>$47k saved. Then I worked on the answers.</title>
+            <title>Apparently, students do want a chatbot</title>
             <link>https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/</link>
-            <description>Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers.</description>
+            <description>$47k saved per year. More than 9,000 weekly chats. It started with a bot that needed the question worded just right.</description>
             <pubDate>Tue, 23 Jun 2026 13:56:00 +0000</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/</guid>
         </item>

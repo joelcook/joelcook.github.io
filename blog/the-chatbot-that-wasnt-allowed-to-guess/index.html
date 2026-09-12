@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>$47k saved. Then I worked on the answers. — Joel Cook</title>
-    <meta name="description" content="Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers." />
+    <title>Apparently, students do want a chatbot — Joel Cook</title>
+    <meta name="description" content="$47k saved per year. More than 9,000 weekly chats. It started with a bot that needed the question worded just right." />
     <meta name="author" content="Joel Cook" />
     <link rel="canonical" href="https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/" />
     <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Joel Cook" />
-    <meta property="og:title" content="$47k saved. Then I worked on the answers." />
-    <meta property="og:description" content="Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers." />
+    <meta property="og:title" content="Apparently, students do want a chatbot" />
+    <meta property="og:description" content="$47k saved per year. More than 9,000 weekly chats. It started with a bot that needed the question worded just right." />
     <meta property="og:url" content="https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/" />
     <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
     <meta property="article:published_time" content="2026-06-23" />
     <meta property="article:modified_time" content="2026-09-12" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="$47k saved. Then I worked on the answers." />
-    <meta name="twitter:description" content="Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers." />
+    <meta name="twitter:title" content="Apparently, students do want a chatbot" />
+    <meta name="twitter:description" content="$47k saved per year. More than 9,000 weekly chats. It started with a bot that needed the question worded just right." />
     <meta name="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "$47k saved. Then I worked on the answers.", "description": "Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers.", "url": "https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/", "datePublished": "2026-06-23", "dateModified": "2026-09-12", "author": {"@type": "Person", "name": "Joel Cook", "url": "https://joelcook.github.io/"}}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Apparently, students do want a chatbot", "description": "$47k saved per year. More than 9,000 weekly chats. It started with a bot that needed the question worded just right.", "url": "https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/", "datePublished": "2026-06-23", "dateModified": "2026-09-12", "author": {"@type": "Person", "name": "Joel Cook", "url": "https://joelcook.github.io/"}}</script>
     <style>
         :root {
             --text: #333333;
@@ -216,24 +216,27 @@
         <a class="backlink" href="/">← Joel Cook</a>
         <hr class="top-rule" />
         <article>
-            <h1>$47k saved. Then I worked on the answers.</h1>
-            <p class="standfirst">Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers.</p>
+            <h1>Apparently, students do want a chatbot</h1>
+            <p class="standfirst">$47k saved per year. More than 9,000 weekly chats. It started with a bot that needed the question worded just right.</p>
             <p class="byline"><time datetime="2026-06-23">23 Jun, 2026</time> · updated <time datetime="2026-09-12">12 Sep, 2026</time></p>
-            <p>I replaced a legacy chatbot at Indian River State College with an AI assistant. <strong>$47,000 saved. More than 9,000 chats a week.</strong></p>
-<p>A lower bill is a useful start. Students still need the right answers.</p>
-<p>A question about tuition or a drop deadline looks simple. The answer changes by term, and an old page can sound just as authoritative as a current one. Giving a model more text doesn’t settle which source it should trust.</p>
-<p>I built the knowledge layer around a split: changing facts in SQLite, explanations in a source-cited wiki.</p>
-<p>Tuition, deadlines, contacts, and course information come from database tools. “How do I apply?” gets guidance from the wiki. The assistant can explain the process while looking up the details that change.</p>
-<p>The data starts with official sources. Scrapers capture those pages, a build projects structured facts into SQLite, and the wiki holds compiled explanations with source lineage. The refresh job rebuilds the data. Wiki rewrites and Azure deployments are separate steps, so a successful scrape doesn’t silently publish everything else.</p>
-<p>The serving interface is <strong>12 read-only MCP tools</strong> on Azure Container Apps, connected to Microsoft Copilot Studio. That gives the assistant named operations such as <code>get_deadline</code>, <code>get_tuition</code>, and <code>search_wiki</code>.</p>
-<p>The wiki search is small enough to run inside the Python process. It scores curated pages using words, headings, and domain synonyms. I kept the default path free of a separate search-model download and a subprocess on every request. A small corpus lets you make those choices.</p>
-<p>Call the pattern agentic RAG or an LLM wiki. The part worth explaining is what happens when the assistant gets something wrong.</p>
-<p>The evaluation set now has <strong>53 cases</strong>. It checks answers, required tool calls, source conflicts, and questions about private student records that the public assistant should refuse. An answer with the right tuition figure still fails if the required lookup never happened.</p>
-<p>There’s an optional LLM judge for narrative answers. Deterministic checks run first. A second model’s opinion doesn’t replace an assertion I can check directly.</p>
-<p>That distinction showed up in a Copilot Studio evaluation. Its general-quality judge marked correct privacy refusals as incomplete answers. The review also found a deployment problem: a new Azure revision had failed to start, leaving the old one serving traffic. Those failures needed different fixes.</p>
-<p>The local tools gate checks the database and tool behavior without paying for inference. Testing the production model is a separate job. A green local check cannot tell me that a hosted model followed the instructions.</p>
-<p>I can test the retrieval path, inspect the sources, and catch known regressions. I cannot promise that a language model will never invent an answer. The value of this architecture is that a wrong answer gives me specific things to investigate.</p>
-<p>The replacement saved $47k. The engineering work is keeping the system worth using after the information changes.</p>
+
+            <p>The college already had a chatbot. To get a useful answer, you had to phrase the question the way it expected. A student could ask about something it knew and still get nowhere because they used different words.</p>
+            <p>It was 2026. Surely we could do better than making people guess the wording of our FAQs.</p>
+            <p>I also thought people hated chatbots. The usage gave me a reason to reconsider: the replacement now handles more than <strong>9,000 chats a week</strong>. There is clearly an audience for opening a chat, asking a question, and getting on with your day.</p>
+            <p>I understand the appeal. A student trying to register for a class has a task to finish. They shouldn’t need to learn which department owns a page or how we organized the website. Just give them the freaking answer.</p>
+            <p>I built the replacement at Indian River State College, saving <strong>$47,000 a year</strong>. Then came the part that makes an institutional assistant harder than a chat box: deciding where its answers should come from.</p>
+            <p>Andrej Karpathy deserves a thank-you here. His <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki gist</a> describes compiling source material into a persistent, interlinked wiki that an agent can maintain and consult. I used that idea as the starting point for the knowledge layer.</p>
+            <p>The school’s information needed one extra distinction. Explanations could live in the wiki, with links back to their sources. Changing facts belonged in SQLite. A question about tuition or a drop deadline should trigger a lookup of the relevant record.</p>
+            <p>The model could explain the process. It also needed a reliable way to find which date applied to which term. A plausible answer was going to be easy; a useful one needed the right source.</p>
+            <p>That means I have somewhere specific to look when an answer is wrong. I can inspect the source, the database projection, the retrieved page, and the tool call. Telling the model to be more careful gives me considerably less to work with.</p>
+            <p>The interface is 12 read-only MCP tools served through Azure Container Apps and connected to Copilot Studio. Official sources feed the database and wiki. Refreshing the sources, rewriting explanations, and deploying the serving app remain separate operations.</p>
+            <p>But the most revealing part of the work came from evaluating the answers.</p>
+            <p>In one Copilot Studio review, the general-quality judge marked correct privacy refusals as incomplete. The assistant had declined to provide private student information. The judge wanted a more complete answer.</p>
+            <p>That is a good reason to read the failures before celebrating or despairing over a score.</p>
+            <p>The evaluation set now has 53 cases covering answers, required tool calls, conflicting sources, and refusals. If the model supplies the right tuition figure without making the required lookup, the case fails. I want the behavior to survive the next tuition change.</p>
+            <p>There is an optional LLM judge for narrative answers, after deterministic checks. The local tools gate runs without paid inference; checking the production model is a separate job. Keeping those results distinct makes them useful.</p>
+            <p>I can’t promise that the assistant will never invent an answer. I can give it better sources, test its behavior, and investigate failures with evidence. At 9,000 chats a week, that work matters more to me than another impressive demo.</p>
+            <p>The replacement costs $47k less per year, and students can ask questions in their own words. That is the experience I wanted: open the chat, ask the question, get a useful answer.</p>
         </article>
         <hr class="end-rule" />
         <footer class="colophon">
