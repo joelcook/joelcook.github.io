@@ -1,52 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>The Chatbot That Wasn’t Allowed to Guess — Joel Cook</title>
-    <meta name="title" content="The Chatbot That Wasn’t Allowed to Guess" />
-    <meta name="description"
-        content="How I built and shipped a public AI agent for a college website — live to ~250,000 visitors a month — by making “don’t make things up” a system constraint instead of a prompt." />
+    <title>$47k saved. Then I worked on the answers. — Joel Cook</title>
+    <meta name="description" content="Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers." />
     <meta name="author" content="Joel Cook" />
     <link rel="canonical" href="https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/" />
     <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
-
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Joel Cook" />
+    <meta property="og:title" content="$47k saved. Then I worked on the answers." />
+    <meta property="og:description" content="Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers." />
     <meta property="og:url" content="https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/" />
-    <meta property="og:title" content="The Chatbot That Wasn’t Allowed to Guess" />
-    <meta property="og:description"
-        content="How I built and shipped a public AI agent for a college website — live to ~250,000 visitors a month — by making “don’t make things up” a system constraint instead of a prompt." />
     <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
     <meta property="article:published_time" content="2026-06-23" />
-    <meta property="article:author" content="Joel Cook" />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/" />
-    <meta property="twitter:title" content="The Chatbot That Wasn’t Allowed to Guess" />
-    <meta property="twitter:description"
-        content="How I built and shipped a public AI agent for a college website — live to ~250,000 visitors a month — by making “don’t make things up” a system constraint instead of a prompt." />
-    <meta property="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "The Chatbot That Wasn’t Allowed to Guess",
-        "description": "How I built and shipped a public AI agent for a college website — live to ~250,000 visitors a month — by making “don’t make things up” a system constraint instead of a prompt.",
-        "url": "https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/",
-        "datePublished": "2026-06-23",
-        "image": "https://joelcook.github.io/images/me.jpeg",
-        "author": {
-            "@type": "Person",
-            "name": "Joel Cook",
-            "url": "https://joelcook.github.io/"
-        }
-    }
-    </script>
-
+    <meta property="article:modified_time" content="2026-09-12" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="$47k saved. Then I worked on the answers." />
+    <meta name="twitter:description" content="Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers." />
+    <meta name="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "$47k saved. Then I worked on the answers.", "description": "Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers.", "url": "https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/", "datePublished": "2026-06-23", "dateModified": "2026-09-12", "author": {"@type": "Person", "name": "Joel Cook", "url": "https://joelcook.github.io/"}}</script>
     <style>
         :root {
             --text: #333333;
@@ -232,328 +206,39 @@
                 padding: 14px 15px;
             }
         }
-    </style>
-</head>
 
+        .byline { color: #707070; font-weight: 400; }
+        .standfirst { font-style: normal; }
+</style>
+</head>
 <body>
-    <div class="wrap">
+    <main class="wrap">
         <a class="backlink" href="/">← Joel Cook</a>
         <hr class="top-rule" />
-
         <article>
-            <h1>The Chatbot That Wasn’t Allowed to Guess</h1>
-            <p class="standfirst">How I built and shipped a public AI agent for a college website — live on a site that
-                sees ~250,000 visitors a month — by making “don’t make things up” a system constraint instead of a
-                prompt.</p>
-            <p class="byline"><time datetime="2026-06-23">23 Jun, 2026</time></p>
-
-            <p>River Guide is live right now on the website of <a href="https://irsc.edu/" target="_blank"
-                    rel="noopener noreferrer">Indian River State College</a>, a site that sees around 250,000 unique
-                visitors a month. It’s a public AI assistant — no login, anyone can use it — and it answers roughly 500
-                students a week. I designed, built, and shipped it solo.</p>
-            <p>Its most important feature isn’t a feature. It’s a rule: the assistant is not allowed to make things up.
-            </p>
-            <p>That sounds like a prompt. It isn’t. It’s a system design constraint, and it ended up being the entire
-                project.</p>
-            <p>so, I thought I was building a chatbot...</p>
-            <p>This seemed reasonable at the time. The River has a website. Students have questions. LLMs are good at
-                text. So the obvious thing to build is a little chat bubble where a student can ask:</p>
-            <ul>
-                <li>When is the drop deadline?</li>
-                <li>How much is tuition?</li>
-                <li>How do I register?</li>
-                <li>Why can’t I add this class?</li>
-                <li>Who should I contact?</li>
-            </ul>
-            <p>That’s the intuitive product: a chatbot.</p>
-            <p>But after building and launching River Guide for the college students know as The River, I no longer
-                think of the chatbot as the main thing. The chatbot is just the surface. It’s the UI over a more
-                important object underneath.</p>
-            <p>The important object is the truth layer.</p>
-            <p>I ended up pulling that pattern into a separate open-source project called <a
-                    href="https://github.com/joelcook/groundtruth" target="_blank"
-                    rel="noopener noreferrer">GroundTruth</a> — a small, runnable blueprint for building AI assistants
-                in a stricter way:</p>
-            <blockquote>
-                <p>The assistant is useful, but it is not allowed to make things up.</p>
-            </blockquote>
-            <p>Again: this is not a prompt. It’s an architecture.</p>
-
-            <h2 id="the-failure-mode">The failure mode</h2>
-            <p>The default way to build one of these things is roughly:</p>
-            <ol>
-                <li>scrape the website</li>
-                <li>put the pages in a vector database</li>
-                <li>connect an LLM</li>
-                <li>ask questions</li>
-                <li>hope retrieval found the right chunk</li>
-            </ol>
-            <p>This is fine for a demo. It is not fine for a student asking about a deadline in front of a quarter of a
-                million other people a month.</p>
-            <p>The problem is that organizations are full of facts that age badly:</p>
-            <ul>
-                <li>dates</li>
-                <li>prices</li>
-                <li>office hours</li>
-                <li>phone numbers</li>
-                <li>term boundaries</li>
-                <li>course requirements</li>
-                <li>program requirements</li>
-                <li>portal instructions</li>
-                <li>names of systems currently mid-migration</li>
-            </ul>
-            <p>The model can answer all of these. That is not reassuring. The model can answer them even when it
-                shouldn’t.</p>
-            <p>This is the slightly cursed property of LLMs in production: the answer can be fluent, helpful, and wrong.
-                More subtly, it can be correct today for the wrong reason — which means it becomes wrong later.</p>
-            <p>If River Guide answers the drop deadline from memory and happens to be right, that’s still a bug. It
-                learned the wrong behavior. Next semester that same behavior fails, quietly, in public.</p>
-            <p>So the problem isn’t “get the answer right.”</p>
-            <p>The problem is “get the answer right by a path that will still be right after the facts change.”</p>
-
-            <h2 id="the-split">The split</h2>
-            <p>The key move was to split the knowledge base into two different things.</p>
-            <p>First, a database for hard facts.</p>
-            <p>Second, a wiki for explanations.</p>
-            <p>Hard facts are the things you can be harmed by getting wrong:</p>
-            <ul>
-                <li>a deadline</li>
-                <li>a tuition amount</li>
-                <li>a fixed fee</li>
-                <li>a phone number</li>
-                <li>an email address</li>
-                <li>a course code</li>
-                <li>a prerequisite</li>
-                <li>a term start date</li>
-            </ul>
-            <p>These go into SQLite. The assistant cannot answer them from memory. It has to call a tool.</p>
-            <p>Explanations go into a small, source-cited wiki:</p>
-            <ul>
-                <li>how to apply</li>
-                <li>what financial aid verification means</li>
-                <li>what to do if a class is full</li>
-                <li>why a registration hold might appear</li>
-                <li>how the River Portal fits into the student workflow</li>
-            </ul>
-            <p>The wiki is allowed to explain. The database is allowed to be exact.</p>
-            <p>This feels obvious after the fact. But most AI projects don’t make the distinction cleanly. They throw
-                facts and explanations into one retrieval soup and ask the model to be wise.</p>
-            <p>GroundTruth does the opposite. It’s intentionally a little rigid. If a date or a dollar sign shows up in
-                public wiki prose, a linter fails the build — not because dates and dollars are bad, but because they
-                belong in the fact layer. The assistant can still say them. It just has to look them up first.</p>
-            <p>In practice, that one rule changes the whole shape of the system.</p>
-
-            <h2 id="the-runtime">The runtime</h2>
-            <p>At runtime, the model does not read files.</p>
-            <p>It talks to tools.</p>
-            <p>The tools expose two things:</p>
-            <ol>
-                <li>database lookups for volatile facts</li>
-                <li>wiki search/read operations for explanatory content</li>
-            </ol>
-            <p>So the behavior becomes:</p>
-            <ul>
-                <li><em>“When is the drop deadline?”</em> — the assistant calls <code>get_deadline</code>, then answers.
-                </li>
-                <li><em>“How much is tuition?”</em> — it calls <code>get_tuition</code>, then answers.</li>
-                <li><em>“Who do I contact?”</em> — it calls <code>get_contact</code>, then answers.</li>
-                <li><em>“What do I do if I have a hold?”</em> — it searches the wiki, reads the relevant page, then
-                    explains the workflow.</li>
-            </ul>
-            <p>This makes the model more useful, not less. It can still summarize, translate, reason through the student
-                journey, and turn institutional language into something a human can actually follow. It just no longer
-                has permission to improvise the fragile parts.</p>
-            <p>The model is good at language.</p>
-            <p>The tools are good at facts.</p>
-            <p>The system should never confuse the two.</p>
-
-            <h2 id="the-shape-of-the-thing">The shape of the thing</h2>
-            <p>The architecture is small enough to hold in one mental model:</p>
-            <pre><code>sources/
-  captured data: scraped pages, exports, hand-authored YAML
-        |
-        | project
-        v
-db/groundtruth.db
-  dates, dollars, hours, contacts, course facts
-
-sources/
-        |
-        | compile
-        v
-wiki/
-  source-cited explanations, no loose facts
-
-wiki/ + db
-        |
-        v
-MCP server
-  read-only tools
-        |
-        v
-LLM / chat platform
-</code></pre>
-            <p>The important detail: the database is not hand-edited. It’s a projection from evidence. If a fact is
-                wrong, you fix the source or the projection logic and rebuild — which gives you lineage.</p>
-            <p>The wiki is also compiled from sources, but it’s never the authority on volatile facts. It exists to make
-                the institution legible.</p>
-            <p>When the wiki and the database disagree, the database wins and the page gets flagged.</p>
-            <p>That gives the assistant a simple worldview:</p>
-            <ul>
-                <li>facts are looked up</li>
-                <li>explanations are retrieved</li>
-                <li>conflicts are surfaced</li>
-                <li>guesses are not acceptable</li>
-            </ul>
-
-            <h2 id="evals-are-the-product">Evals are the product</h2>
-            <p>The most important part of River Guide is probably not the prompt or the UI.</p>
-            <p>It’s the eval set.</p>
-            <p>I built a Golden 50: a fixed set of questions River Guide has to pass before it’s allowed to ship. These
-                aren’t generic AI-benchmark questions. They’re the actual shapes of questions that matter for this
-                domain:</p>
-            <ul>
-                <li>deadline questions</li>
-                <li>tuition questions</li>
-                <li>financial aid questions</li>
-                <li>course and program questions</li>
-                <li>contact questions</li>
-                <li>personal-record questions the assistant must refuse</li>
-                <li>policy/process questions where it has to retrieve the right page</li>
-            </ul>
-            <p>And here’s the part most people skip: the eval doesn’t only check whether the final answer sounds good.
-                It checks whether the correct tool was used.</p>
-            <p>That’s the difference between testing prose and testing behavior. A model that produces the right tuition
-                number <em>without</em> calling the tuition tool fails the eval. That answer isn’t trustworthy, because
-                the behavior isn’t trustworthy — it just got lucky, and luck doesn’t survive a fact change.</p>
-            <p>This is maybe the most underappreciated part of shipping AI. Everyone wants the assistant to be accurate.
-                Far fewer people build the mechanism that notices when it’s accurate for the wrong reason.</p>
-
-            <h2 id="what-it-cant-do">What it can’t do</h2>
-            <p>The reason I trust River Guide in front of the public isn’t that it runs on a good model. It’s that the
-                architecture removes whole categories of failure. Some things aren’t unlikely here — they’re
-                structurally impossible:</p>
-            <ul>
-                <li><strong>It can’t state a deadline, price, fee, or contact it didn’t look up.</strong> There is no
-                    path from the model’s memory to a student. Volatile facts only reach an answer through a tool call
-                    against the database.</li>
-                <li><strong>It can’t quietly go out of date.</strong> Every fact is a projection from a source. When the
-                    registrar moves a date, you fix the source and rebuild, and every answer that touches that date
-                    updates at once — with no prompt changes and nothing to re-teach the model.</li>
-                <li><strong>It can’t invent when it’s stumped.</strong> If a fact isn’t in the database and the wiki
-                    doesn’t cover it, it says it doesn’t have that instead of filling the gap with a plausible-sounding
-                    guess. A “no” is more useful than a confident wrong answer.</li>
-                <li><strong>It can’t answer questions about a specific student’s record.</strong> That’s a hard refusal,
-                    and it’s one of the cases the Golden 50 checks on every single build.</li>
-            </ul>
-            <p>“Reliable” is a weak word for this. The point isn’t that it usually gets things right. It’s that the
-                specific ways it could be wrong have been designed out of the system.</p>
-
-            <h2 id="shipping-it">Shipping it to a quarter of a million people a month</h2>
-            <p>Here’s where I think a lot of companies are misreading the AI opportunity. They’re hunting for magic in
-                the model. But the model is one component. The value comes from the system you wrap around it — and most
-                of that system is the unglamorous part.</p>
-            <p>Putting River Guide in front of the public meant it had to:</p>
-            <ul>
-                <li>connect through Microsoft Copilot Studio with a custom connector</li>
-                <li>ship as a WordPress plugin that renders on the actual site</li>
-                <li>work on mobile, in a chat widget, without breaking</li>
-                <li>have file upload removed (a public, anonymous upload box is a liability, not a feature)</li>
-                <li>render tables without horizontal scroll</li>
-                <li>have a refresh button that actually restarts the conversation</li>
-            </ul>
-            <p>And then there was the morning the bot was simply down: a stale Direct Line token had cached overnight
-                and quietly broken everything. None of that is the exciting AI part. It’s also the job.</p>
-            <p>But scale and a public audience change the stakes in a way worth saying out loud, because this is exactly
-                where the “don’t guess” rule earns its keep.</p>
-            <p>A public institutional channel cannot invent facts. When it’s just you and a demo, a hallucinated
-                deadline is an embarrassing screenshot. When it’s a college’s official website answering hundreds of
-                students a week, a hallucinated deadline is a real person who misses a drop date and eats a tuition
-                bill. The refusal to guess isn’t a nicety here — it’s a safety property. The eval gate exists so that
-                property is verified <em>before</em> the thing goes live, not discovered afterward in a support ticket.
-            </p>
-            <p>The whole thing runs as an Azure Container App hosting the MCP server that exposes those read-only tools.
-                Its auth model is deliberately minimal — a design decision, not a shortcut. Copilot Studio and the
-                Azure-hosted MCP server authenticate to each other with a bearer token, service to service, and that is
-                the only authentication the agent has.</p>
-            <p>There’s no user login, on purpose. Every fact the bot can reach is already public, so putting it behind a
-                student account would be security theater — nothing it can say is anything a student couldn’t already
-                read on the site. Once you’ve made that call, the control that actually matters for a public endpoint
-                isn’t auth, it’s rate limiting: so nobody can slam the bot, run up cost, or knock it over.</p>
-            <p>And it has to be watched. You need to know when it breaks (see: the token), when it starts refusing
-                things it shouldn’t, or when a source has drifted and a page needs re-flagging.</p>
-            <p>So the real list of what an organization is buying looks like this:</p>
-            <ul>
-                <li>source ingestion</li>
-                <li>fact projection</li>
-                <li>retrieval boundaries</li>
-                <li>tool contracts</li>
-                <li>evals</li>
-                <li>release gates</li>
-                <li>monitoring</li>
-                <li>human review</li>
-                <li>deployment surfaces</li>
-                <li>rollback plans</li>
-            </ul>
-            <p>That is not a chatbot project.</p>
-            <p>That is AI infrastructure.</p>
-
-            <h2 id="groundtruth">GroundTruth</h2>
-            <p>GroundTruth is the reusable version of the pattern.</p>
-            <p>It’s intentionally small. The sample domain is a tiny public library, because the library isn’t the
-                point. The point is the loop:</p>
-            <ol>
-                <li>capture evidence</li>
-                <li>project hard facts into a database</li>
-                <li>compile explanations into a wiki</li>
-                <li>expose both through tools</li>
-                <li>force the assistant to use the tools</li>
-                <li>run evals that catch bad paths</li>
-                <li>refresh the system through reviewable diffs</li>
-            </ol>
-            <p>In my current mental model, this is what a lot of enterprise AI systems are quietly trying to become.</p>
-            <p>Not a giant prompt.</p>
-            <p>Not a pile of embeddings.</p>
-            <p>Not a chatbot bolted onto the website.</p>
-            <p>A maintained truth layer with an assistant on top.</p>
-
-            <h2 id="the-job-shape">The job shape</h2>
-            <p>This is also why I think there’s an emerging role here that most companies haven’t named well yet.</p>
-            <p>It’s not exactly prompt engineering.</p>
-            <p>It’s not exactly data engineering.</p>
-            <p>It’s not exactly full-stack engineering.</p>
-            <p>It’s not exactly product management.</p>
-            <p>It’s somewhere in the middle.</p>
-            <p>Someone has to understand the messy domain well enough to know which facts are dangerous. Someone has to
-                build the data projection. Someone has to decide what the model may explain and what it must look up.
-                Someone has to write the tool contract. Someone has to build the evals. Someone has to ship the UI.
-                Someone has to debug the weird platform issues at 8am. Someone has to keep the system correct after
-                launch — in public, at scale.</p>
-            <p>That’s the missing layer in enterprise AI: the person who can turn an organization’s scattered knowledge
-                into an operating AI system that ships and stays right after the facts change.</p>
-
-            <h2 id="why-im-writing-this">Why I’m writing this</h2>
-            <p>I built River Guide because students shouldn’t have to excavate a college website to answer basic
-                questions about their next step.</p>
-            <p>But the pattern isn’t specific to higher ed. It applies anywhere the source of truth is scattered and the
-                cost of a wrong answer is high: healthcare, government, insurance, finance, legal services, internal
-                support, customer operations, compliance-heavy products, enterprise software.</p>
-            <p>Most organizations already have the knowledge. They already have the policies, pages, spreadsheets, PDFs,
-                portals, people, and workflows. What they don’t have yet is the layer that makes that knowledge usable
-                by an AI system without letting the AI invent the institution as it goes.</p>
-            <p>That’s the part I know how to build — and I’ve now done it end to end, in production, for a real
-                institution.</p>
+            <h1>$47k saved. Then I worked on the answers.</h1>
+            <p class="standfirst">Replacing a legacy chatbot, handling 9,000+ weekly chats, and building the knowledge layer behind the answers.</p>
+            <p class="byline"><time datetime="2026-06-23">23 Jun, 2026</time> · updated <time datetime="2026-09-12">12 Sep, 2026</time></p>
+            <p>I replaced a legacy chatbot at Indian River State College with an AI assistant. <strong>$47,000 saved. More than 9,000 chats a week.</strong></p>
+<p>A lower bill is a useful start. Students still need the right answers.</p>
+<p>A question about tuition or a drop deadline looks simple. The answer changes by term, and an old page can sound just as authoritative as a current one. Giving a model more text doesn’t settle which source it should trust.</p>
+<p>I built the knowledge layer around a split: changing facts in SQLite, explanations in a source-cited wiki.</p>
+<p>Tuition, deadlines, contacts, and course information come from database tools. “How do I apply?” gets guidance from the wiki. The assistant can explain the process while looking up the details that change.</p>
+<p>The data starts with official sources. Scrapers capture those pages, a build projects structured facts into SQLite, and the wiki holds compiled explanations with source lineage. The refresh job rebuilds the data. Wiki rewrites and Azure deployments are separate steps, so a successful scrape doesn’t silently publish everything else.</p>
+<p>The serving interface is <strong>12 read-only MCP tools</strong> on Azure Container Apps, connected to Microsoft Copilot Studio. That gives the assistant named operations such as <code>get_deadline</code>, <code>get_tuition</code>, and <code>search_wiki</code>.</p>
+<p>The wiki search is small enough to run inside the Python process. It scores curated pages using words, headings, and domain synonyms. I kept the default path free of a separate search-model download and a subprocess on every request. A small corpus lets you make those choices.</p>
+<p>Call the pattern agentic RAG or an LLM wiki. The part worth explaining is what happens when the assistant gets something wrong.</p>
+<p>The evaluation set now has <strong>53 cases</strong>. It checks answers, required tool calls, source conflicts, and questions about private student records that the public assistant should refuse. An answer with the right tuition figure still fails if the required lookup never happened.</p>
+<p>There’s an optional LLM judge for narrative answers. Deterministic checks run first. A second model’s opinion doesn’t replace an assertion I can check directly.</p>
+<p>That distinction showed up in a Copilot Studio evaluation. Its general-quality judge marked correct privacy refusals as incomplete answers. The review also found a deployment problem: a new Azure revision had failed to start, leaving the old one serving traffic. Those failures needed different fixes.</p>
+<p>The local tools gate checks the database and tool behavior without paying for inference. Testing the production model is a separate job. A green local check cannot tell me that a hosted model followed the instructions.</p>
+<p>I can test the retrieval path, inspect the sources, and catch known regressions. I cannot promise that a language model will never invent an answer. The value of this architecture is that a wrong answer gives me specific things to investigate.</p>
+<p>The replacement saved $47k. The engineering work is keeping the system worth using after the information changes.</p>
         </article>
-
         <hr class="end-rule" />
-
-        <section class="colophon">
-            <p class="contact-links">
-                <a href="mailto:joeltcook93@gmail.com">joeltcook93@gmail.com</a> ·
-                <a href="https://github.com/joelcook" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </p>
-        </section>
-    </div>
+        <footer class="colophon">
+            <p><a href="/blog/">More writing</a> · <a href="/feed.xml">RSS</a> · <a href="https://github.com/joelcook">GitHub</a></p>
+        </footer>
+    </main>
 </body>
-
 </html>

@@ -7,8 +7,8 @@
 
     <title>Joel Cook</title>
     <meta name="title" content="Joel Cook" />
-    <meta name="description" content="Full-stack software engineer specializing in frontend, backend, mobile, and infrastructure." />
-    <meta name="keywords" content="Joel Cook, Software Engineer, Full-Stack Developer, Mobile Developer, React Native, Flutter, Web Infrastructure" />
+    <meta name="description" content="I build AI and software that cut operating costs." />
+    <meta name="keywords" content="Joel Cook, AI Architect, Software Engineer, Python, RAG, MCP, Cost Savings" />
     <meta name="author" content="Joel Cook" />
     <link rel="canonical" href="https://joelcook.github.io/" />
     <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
@@ -16,13 +16,13 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://joelcook.github.io/" />
     <meta property="og:title" content="Joel Cook" />
-    <meta property="og:description" content="Full-stack software engineer specializing in frontend, backend, mobile, and infrastructure." />
+    <meta property="og:description" content="I build AI and software that cut operating costs." />
     <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://joelcook.github.io/" />
     <meta property="twitter:title" content="Joel Cook" />
-    <meta property="twitter:description" content="Full-stack software engineer specializing in frontend, backend, mobile, and infrastructure." />
+    <meta property="twitter:description" content="I build AI and software that cut operating costs." />
     <meta property="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
 
     <style>
@@ -92,13 +92,13 @@
         }
 
         .tagline {
-            color: #999999;
+            color: #555555;
             font-size: 18px;
-            font-style: italic;
+            font-style: normal;
             font-weight: 400;
             line-height: 1.3;
             margin: 0 0 10px;
-            max-width: 300px;
+            max-width: 420px;
         }
 
         .socials {
@@ -577,6 +577,9 @@
                 padding-left: 24px;
             }
         }
+        .wins { margin-top: 32px; margin-bottom: 36px; font-size: 20px; line-height: 1.5; }
+        .wins p { margin-bottom: 22px; }
+        @media (max-width: 720px) { .wins { font-size: 18px; } }
     </style>
 </head>
 
@@ -586,7 +589,7 @@
 
         <div class="intro">
             <h1>Joel Cook</h1>
-            <p class="tagline">Building Applied AI systems</p>
+            <p class="tagline">I build AI and software that cut operating costs.</p>
 
             <nav class="socials" aria-label="Social links">
                 <a href="https://github.com/joelcook" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -608,17 +611,17 @@
     <hr class="top-rule" />
 
     <main>
+        <section class="featured-projects wins" aria-label="Selected results">
+            <p><strong>$600k saved.</strong> Built classification software for a million-document Workday-to-Banner migration. <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">How it works →</a></p>
+            <p><strong>$47k saved.</strong> Replaced a legacy chatbot with an AI assistant handling 9,000+ weekly chats. <a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">Inside the knowledge layer →</a></p>
+            <p><strong>84% lower hosting costs.</strong> A website serving 250k monthly visitors. <a href="/blog/eighty-four-percent-less-on-hosting/">The numbers →</a></p>
+        </section>
+
         <section class="featured-post" aria-label="Latest writing">
             <h2 class="section-heading"><a href="/blog/">writing</a></h2>
-            <p class="featured-label">
-                <time datetime="2026-07-23">23 Jul, 2026</time>
-            </p>
-            <p class="featured-title">
-                <a href="/blog/the-patch-that-came-too-late/">The Patch That Came Too Late <span class="arrow" aria-hidden="true">&rarr;</span></a>
-            </p>
-            <p class="featured-blurb">
-                A technical incident report on a WordPress RCE, account-level persistence, a surviving cPanel token, and the verification steps that finally closed the paths back.
-            </p>
+            <p class="featured-label"><time datetime="2026-09-12">12 Sep, 2026</time></p>
+            <p class="featured-title"><a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">$600k saved with a document classifier <span class="arrow" aria-hidden="true">→</span></a></p>
+            <p class="featured-blurb">A million-document migration. Python rules, careful redaction, and an index the destination system could actually use.</p>
         </section>
 
         <hr class="section-rule" />
@@ -636,24 +639,7 @@
                     </a>
                 </div>
                 <div class="body">
-                    <p>
-                        I am currently a Senior Applied AI Architect at
-                        <a href="https://www.irsc.edu/" target="_blank" rel="noopener noreferrer">Indian River State College</a>,
-                        building applied AI systems for students, advisors, staff, and faculty.
-                    </p>
-                    <p>
-                        My first project was
-                        <a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">River Guide</a>.
-                        I thought I was building a chatbot, but the real product became a truth layer:
-                    </p>
-                    <ol class="timeline-list">
-                        <li>hard facts in a database</li>
-                        <li>explanations in a small wiki</li>
-                        <li>tools and evals that keep the model from guessing</li>
-                    </ol>
-                    <p>
-                        It is now used by hundreds of students, advisors, staff, and faculty daily.
-                    </p>
+                    <p><strong>AI Architect · <a href="https://www.irsc.edu/">Indian River State College</a></strong></p><p>I build AI assistants, document-migration tools, and the systems behind them.</p>
                 </div>
             </article>
 
@@ -664,20 +650,7 @@
                     <div class="logo-tile text-mark" aria-hidden="true">JC</div>
                 </div>
                 <div class="body">
-                    <p>
-                        I started doing freelance work and quickly learned what it feels like to be brought in on day one and trusted with the whole stack.
-                        Some of the work was frontend, but a lot of it was backend and infrastructure: AWS, deployments, integrations, and whatever else had to exist for the site to launch.
-                    </p>
-                    <p>
-                        The surreal version was showcase work for
-                        <a href="https://www.stellantis.com/en" target="_blank" rel="noopener noreferrer">Stellantis</a>,
-                        <a href="https://www.jeep.com/" target="_blank" rel="noopener noreferrer">Jeep</a>,
-                        <a href="https://www.dodge.com/" target="_blank" rel="noopener noreferrer">Dodge</a>,
-                        <a href="https://www.chrysler.com/" target="_blank" rel="noopener noreferrer">Chrysler</a>,
-                        and <a href="https://www.fiatusa.com/models/500e-giorgio-armani" target="_blank"
-                            rel="noopener noreferrer">Fiat</a>:
-                        a new vehicle, a new collaboration, and a website that had to make it real.
-                    </p>
+                    <p><strong>Independent software engineer</strong></p><p>Built launch websites and infrastructure for automotive work spanning Stellantis, Jeep, Dodge, Chrysler, and Fiat.</p>
                 </div>
             </article>
 
@@ -691,14 +664,7 @@
                     </a>
                 </div>
                 <div class="body">
-                    <p>
-                        At <a href="https://www.modea.com/" target="_blank" rel="noopener noreferrer">Modea</a>, I owned the patient-facing mobile app work for
-                        <a href="https://www.balladhealth.org/" target="_blank" rel="noopener noreferrer">Ballad Health</a>.
-                    </p>
-                    <p>
-                        Healthcare software was quieter than startup work, but harder in a different way: the app had to fit Epic/MyChart constraints, patient expectations, client expectations, and the release process of a real health system.
-                        This chapter taught me that the technical answer is only half the job; the other half is turning expectation and reality into something shippable.
-                    </p>
+                    <p><strong>Software Engineer · <a href="https://www.modea.com/">Modea</a></strong></p><p>Built patient-facing mobile applications for <a href="https://www.balladhealth.org/">Ballad Health</a>.</p>
                 </div>
             </article>
 
@@ -712,13 +678,7 @@
                     </a>
                 </div>
                 <div class="body">
-                    <p>
-                        At <a href="https://www.flosports.tv/" target="_blank" rel="noopener noreferrer">FloSports</a>, I worked on the data platform behind its live sports streaming products.
-                    </p>
-                    <p>
-                        I built backend services that moved sports data from live events into stats, rankings, team pages, and player profiles across multiple sport verticals.
-                        This work ran in production and was seen by millions of fans.
-                    </p>
+                    <p><strong>Software Engineer · <a href="https://www.flosports.tv/">FloSports</a></strong></p><p>Built real-time stats and broadcast graphics software reaching millions of sports fans.</p>
                 </div>
             </article>
 
@@ -732,49 +692,14 @@
                     </a>
                 </div>
                 <div class="body">
-                    <p>
-                        <a href="https://fanhero.com/" target="_blank" rel="noopener noreferrer">FanHero</a> was a small startup, and it was where my engineering skills got sharpened by pressure.
-                        There were plenty of 3am nights, and a few nights where the office beanbag chair became the bed.
-                    </p>
-                    <p>
-                        In the end, I helped build the mobile app for
-                        <a href="https://www.orlandocitysc.com/" target="_blank" rel="noopener noreferrer">Orlando City SC</a>,
-                        used by thousands of fans to follow the club, watch video, and stay connected.
-                    </p>
+                    <p><strong>Mobile Application Developer · <a href="https://fanhero.com/">FanHero</a></strong></p><p>Launched Orlando City SC’s official LionNation app to 15k+ downloads.</p>
                 </div>
             </article>
 
         </section>
 
-        <h2 class="bio-heading">bio</h2>
-        <section class="bio-copy" aria-label="bio">
-            <p>
-                Joel Cook is a software engineer and applied AI architect. He has built production systems across
-                startups, sports media, healthcare, automotive, and higher education, from mobile apps used by
-                Orlando City SC fans to sports data infrastructure seen by millions at FloSports. He is currently a
-                Senior Applied AI Architect at Indian River State College, where he builds grounded AI systems like
-                River Guide: assistants that use tools, evals, and a truth layer instead of guessing.
-            </p>
-        </section>
-
-        <section class="featured-projects" aria-label="featured projects">
-            <h2>featured projects</h2>
-            <p>
-                I write about applied AI work on my
-                <a href="/blog/">blog</a>.
-            </p>
-            <ul>
-                <li>
-                    <a href="/blog/the-patch-that-came-too-late/">The Patch That Came Too Late</a>
-                </li>
-                <li>
-                    <a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">The Chatbot That Wasn't Allowed to Guess</a>
-                </li>
-            </ul>
-        </section>
-
         <section class="logo-jacket" aria-label="companies and brands">
-            <h2>nascar jacket</h2>
+            <h2>some familiar names</h2>
             <div class="jacket-grid">
                 <a href="https://www.irsc.edu/" target="_blank" rel="noopener noreferrer">
                     <img class="square-logo" src="images/irsc-icon.png" alt="Indian River State College" />

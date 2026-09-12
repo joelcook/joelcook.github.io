@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://joelcook.github.io/</loc>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
+        <lastmod>2026-09-12</lastmod>
     </url>
     <url>
         <loc>https://joelcook.github.io/blog/</loc>
-        <lastmod>2026-07-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <lastmod>2026-09-12</lastmod>
     </url>
     <url>
-        <loc>https://joelcook.github.io/blog/the-patch-that-came-too-late/</loc>
-        <lastmod>2026-07-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <loc>https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</loc>
+        <lastmod>2026-09-12</lastmod>
+    </url>
+    <url>
+        <loc>https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/</loc>
+        <lastmod>2026-09-12</lastmod>
     </url>
     <url>
         <loc>https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/</loc>
-        <lastmod>2026-06-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <lastmod>2026-09-12</lastmod>
+    </url>
+    <url>
+        <loc>https://joelcook.github.io/blog/the-patch-that-came-too-late/</loc>
+        <lastmod>2026-09-12</lastmod>
     </url>
 </urlset>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>$600k saved with a document classifier — Joel Cook</title>
+    <meta name="description" content="A million-document migration. Python rules, careful redaction, and an index the destination system could actually use." />
+    <meta name="author" content="Joel Cook" />
+    <link rel="canonical" href="https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/" />
+    <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Joel Cook" />
+    <meta property="og:title" content="$600k saved with a document classifier" />
+    <meta property="og:description" content="A million-document migration. Python rules, careful redaction, and an index the destination system could actually use." />
+    <meta property="og:url" content="https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/" />
+    <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
+    <meta property="article:published_time" content="2026-09-12" />
+    <meta property="article:modified_time" content="2026-09-12" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="$600k saved with a document classifier" />
+    <meta name="twitter:description" content="A million-document migration. Python rules, careful redaction, and an index the destination system could actually use." />
+    <meta name="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "$600k saved with a document classifier", "description": "A million-document migration. Python rules, careful redaction, and an index the destination system could actually use.", "url": "https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/", "datePublished": "2026-09-12", "dateModified": "2026-09-12", "author": {"@type": "Person", "name": "Joel Cook", "url": "https://joelcook.github.io/"}}</script>
+    <style>
+        :root {
+            --text: #333333;
+            --muted: #9a9a9a;
+            --rule: #b5b5b5;
+            --link: #0000ee;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            color-scheme: light;
+        }
+
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: var(--text);
+            font-family: sans-serif;
+            font-size: 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+        }
+
+        .wrap {
+            margin: 0 auto;
+            max-width: 760px;
+            padding: 0 28px;
+        }
+
+        .backlink {
+            display: block;
+            font-size: 17px;
+            padding: 30px 0 0;
+        }
+
+        .top-rule {
+            border: 0;
+            border-top: 1px solid var(--rule);
+            margin: 26px 0 0;
+        }
+
+        article {
+            padding: 34px 0 0;
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.08;
+            margin: 0 0 16px;
+        }
+
+        .standfirst {
+            color: #6f6f6f;
+            font-size: 21px;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.35;
+            margin: 0 0 16px;
+        }
+
+        .byline {
+            color: #b8b8b8;
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0 0 34px;
+        }
+
+        article h2 {
+            color: #333333;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 1.15;
+            margin: 46px 0 16px;
+        }
+
+        article p {
+            margin: 0 0 18px;
+        }
+
+        article ul,
+        article ol {
+            margin: 0 0 18px;
+            padding-left: 28px;
+        }
+
+        article li {
+            margin: 6px 0;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--rule);
+            color: #555555;
+            font-style: italic;
+            margin: 0 0 18px;
+            padding: 2px 0 2px 20px;
+        }
+
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        code {
+            background: #f2f2f2;
+            border-radius: 3px;
+            font-size: 0.87em;
+            padding: 2px 5px;
+        }
+
+        pre {
+            background: #f7f7f7;
+            border: 1px solid #e6e6e6;
+            border-radius: 5px;
+            font-size: 15px;
+            line-height: 1.45;
+            margin: 0 0 18px;
+            overflow-x: auto;
+            padding: 18px 20px;
+        }
+
+        pre code {
+            background: none;
+            font-size: inherit;
+            padding: 0;
+        }
+
+        .end-rule {
+            border: 0;
+            border-top: 1px solid var(--rule);
+            margin: 48px 0 0;
+        }
+
+        .colophon {
+            padding: 30px 0 70px;
+        }
+
+        .colophon p {
+            margin: 0 0 14px;
+        }
+
+        .colophon p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-links {
+            font-weight: 700;
+        }
+
+        @media (max-width: 720px) {
+            body {
+                font-size: 17px;
+            }
+
+            .wrap {
+                padding: 0 18px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .standfirst {
+                font-size: 18px;
+            }
+
+            article h2 {
+                font-size: 25px;
+                margin-top: 38px;
+            }
+
+            pre {
+                font-size: 13px;
+                padding: 14px 15px;
+            }
+        }
+
+        .byline { color: #707070; font-weight: 400; }
+        .standfirst { font-style: normal; }
+</style>
+</head>
+<body>
+    <main class="wrap">
+        <a class="backlink" href="/">← Joel Cook</a>
+        <hr class="top-rule" />
+        <article>
+            <h1>$600k saved with a document classifier</h1>
+            <p class="standfirst">A million-document migration. Python rules, careful redaction, and an index the destination system could actually use.</p>
+            <p class="byline"><time datetime="2026-09-12">12 Sep, 2026</time></p>
+            <p>I built classification software for a million-document Workday-to-Banner migration at Indian River State College. The saving: <strong>$600,000.</strong></p>
+<p>The useful part of the story is how much of the job ordinary Python could do.</p>
+<p>Workday exported documents under broad categories. Banner’s document-management system needed more specific types. A bucket called “Admission Documents” didn’t tell the destination system where each record belonged.</p>
+<p>The job was to turn the information already in the export into an index the importer could use.</p>
+<p>Those index files had a <code>.txt</code> extension, CSV contents, and property cells that looked almost like JSON. Almost is where parsers get interesting. The code finds properties by their keys, so moving <code>DOCUMENT-TYPE</code> to another column doesn’t silently change what the program reads.</p>
+<p>Then come the classification rules: approved phrases, normalized separators, explicit destinations. When the filename supports a decision, Python makes it. Conflicting evidence goes to an approved fallback.</p>
+<p>One small detail mattered: <code>DE</code> could mean Dual Enrollment, while “De” could be part of somebody’s name. A loose substring match would turn a person’s name into a filing decision. The pipeline masks known names and IDs before matching, including names collected across the input corpus.</p>
+<p>The documented validation run covered <strong>1,887 index rows</strong>. It assigned 1,396 to specific document types and 491 to an approved Legacy Document destination. That is sample coverage, not a million-document accuracy benchmark. The default run made no LLM calls.</p>
+<p>I added an optional model path for unresolved rows. It can use Ollama locally or an explicitly enabled cloud backend. Both require redacted inputs. Model suggestions go into a review queue; a human has to approve them before they become mappings.</p>
+<p>The part I cared about just as much was the output. Correct classification is useless if the importer rejects the file.</p>
+<p>The writer preserves each source index’s formatting while changing the document-type value. Tests cover line endings, quoting, reordered properties, and merged files with different columns. Every run also produces an audit trail, a configuration snapshot, and review files. Reviewer decisions are matched by stable record hashes.</p>
+<p>This is the kind of software I like building. A specific operational problem, a narrow tool, and a result someone can use. The interesting question was how little machinery the job actually needed.</p>
+        </article>
+        <hr class="end-rule" />
+        <footer class="colophon">
+            <p><a href="/blog/">More writing</a> · <a href="/feed.xml">RSS</a> · <a href="https://github.com/joelcook">GitHub</a></p>
+        </footer>
+    </main>
+</body>
+</html>
