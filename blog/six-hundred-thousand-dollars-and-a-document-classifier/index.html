@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The $600k proposal and the filing problem — Joel Cook</title>
-    <meta name="description" content="Years of documents, inconsistent filing, and a move from Workday to Banner. I built the classifier in-house." />
+    <title>Consultants wanted $600,000 to sort our files — Joel Cook</title>
+    <meta name="description" content="Years of misfiled documents, a move from Workday to Banner, and a quote with a lot of zeros. We passed, and I built the classifier myself." />
     <meta name="author" content="Joel Cook" />
     <link rel="canonical" href="https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/" />
     <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Joel Cook" />
-    <meta property="og:title" content="The $600k proposal and the filing problem" />
-    <meta property="og:description" content="Years of documents, inconsistent filing, and a move from Workday to Banner. I built the classifier in-house." />
+    <meta property="og:title" content="Consultants wanted $600,000 to sort our files" />
+    <meta property="og:description" content="Years of misfiled documents, a move from Workday to Banner, and a quote with a lot of zeros. We passed, and I built the classifier myself." />
     <meta property="og:url" content="https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/" />
     <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
     <meta property="article:published_time" content="2026-09-12" />
-    <meta property="article:modified_time" content="2026-09-12" />
+    <meta property="article:modified_time" content="2026-10-06" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="The $600k proposal and the filing problem" />
-    <meta name="twitter:description" content="Years of documents, inconsistent filing, and a move from Workday to Banner. I built the classifier in-house." />
+    <meta name="twitter:title" content="Consultants wanted $600,000 to sort our files" />
+    <meta name="twitter:description" content="Years of misfiled documents, a move from Workday to Banner, and a quote with a lot of zeros. We passed, and I built the classifier myself." />
     <meta name="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The $600k proposal and the filing problem", "description": "Years of documents, inconsistent filing, and a move from Workday to Banner. I built the classifier in-house.", "url": "https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/", "datePublished": "2026-09-12", "dateModified": "2026-09-12", "author": {"@type": "Person", "name": "Joel Cook", "url": "https://joelcook.github.io/"}}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Consultants wanted $600,000 to sort our files", "description": "Years of misfiled documents, a move from Workday to Banner, and a quote with a lot of zeros. We passed, and I built the classifier myself.", "url": "https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/", "datePublished": "2026-09-12", "dateModified": "2026-10-06", "author": {"@type": "Person", "name": "Joel Cook", "url": "https://joelcook.github.io/"}}</script>
     <style>
         :root {
             --text: #333333;
@@ -216,27 +216,23 @@
         <a class="backlink" href="/">← Joel Cook</a>
         <hr class="top-rule" />
         <article>
-            <h1>The $600k proposal and the filing problem</h1>
-            <p class="standfirst">Years of documents, inconsistent filing, and a move from Workday to Banner. I built the classifier in-house.</p>
+            <h1>Consultants wanted $600,000 to sort our files</h1>
+            <p class="standfirst">Years of misfiled documents, a move from Workday to Banner, and a quote with a lot of zeros. We passed, and I built the classifier myself.</p>
             <p class="byline"><time datetime="2026-09-12">12 Sep, 2026</time></p>
 
-            <p>The president of Indian River State College decided we were moving from Workday to Banner. New system, fresh start.</p>
-            <p>Except we had years of documents that had to come with us.</p>
-            <p>The filing hadn’t kept up with the volume. Documents had piled up in broad categories that said nothing about where they belonged in Banner. Changing systems meant dealing with all of that history.</p>
-            <p>One outside company’s proposal put the work at <strong>$600,000</strong>.</p>
-            <p>I built the classification software in-house instead. It prepares the document indexes, and that $600k proposal is the spending we avoided, which is where the savings number comes from. The job was to take a filing mess too big to look at and turn it into rules a person can read and an output the new system can actually use.</p>
-            <p>My favorite problem was two letters long.</p>
-            <p><code>DE</code> can mean Dual Enrollment. It also shows up as “De” in people’s names. Get a little too eager with text matching and a student’s name turns into evidence about what kind of document they submitted.</p>
-            <p>Tiny bug. Now repeat it across an entire migration.</p>
-            <p>The good news: the evidence was already in the export. Filenames, paths, existing categories. I wrote Python rules around approved phrases and destinations, normalized the separators, and masked known names and IDs before any matching happened, including names that turned up elsewhere in the input. A filename had to say something about the document itself before it earned a placement.</p>
-            <p>When the evidence conflicted, the file went to an approved fallback. It’s tempting to keep pushing the specific-classification number up, because a bigger percentage makes a nicer dashboard. The person looking in the wrong folder later doesn’t care about the dashboard.</p>
-            <p>The documented sample run covered 1,887 index rows. 1,396 got a specific document type. 491 went to the approved Legacy Document destination. That’s a sample, not a claim that every document was inspected or that accuracy is 100%. <strong>And the run made zero LLM calls.</strong></p>
-            <p>There is a model-assisted path. It can use a local model through Ollama, or a cloud backend if someone explicitly turns it on. Either way, the model sees redacted inputs and its suggestions wait for a human to approve them. The rules don’t wait on any of that.</p>
-            <p>Then there was the file we actually had to hand over.</p>
-            <p>Workday’s exports were <code>.txt</code> files with CSV inside and property values that looked almost, but not quite, like JSON. The destination needed a corrected index. Getting the categories right was worthless if that index didn’t survive the importer.</p>
-            <p>So the writer keeps the source formatting and swaps only the document-type value. The parser finds that property by its key, so it doesn’t care if the columns move. Tests cover line endings, quoting, reordered properties, and mismatched headers in the merged output. Reviewer changes get stable record hashes and an audit trail.</p>
-            <p>This is the part of the job I enjoy most. You get close enough to a scary-sized problem that it stops being scary and turns into a list of specific things to fix. Here, that list included a filing rule, somebody’s name, and the exact shape of a text file.</p>
-            <p>Leaving Workday was decided at the top. Getting years of documents into Banner in usable shape came down to the details in an export. I’m glad we looked closely enough to build it ourselves.</p>
+            <p>When the president of Indian River State College decided we were moving from Workday to Banner, it sounded like a fresh start. New system, clean slate! Except nothing about a migration is ever clean, because you have to drag the past along with you. And our past was years of documents, filed in broad categories that said nothing about where any of it belonged in Banner.</p>
+            <p>This is exactly the kind of problem that makes consultants’ eyes light up. It’s big, it’s scary, it smells like risk, and so naturally the price tag follows suit. One outside company put the classification work alone at <strong>$600,000</strong>. Six hundred thousand dollars! To sort files!</p>
+            <p>We passed. I built the classifier in-house instead, and that $600k is the spending we avoided. (That’s where the savings number comes from, before anyone asks.)</p>
+            <p>Here’s what the scary-problem pricing never accounts for: most of the evidence was already sitting right there in the export. Filenames, paths, existing categories. You don’t need a team of analysts to read a filename. You need rules a person can actually read, and an output the new system will actually accept.</p>
+            <p>So that’s what I built. Python rules around approved phrases and destinations. Normalized separators. And, crucially, known names and IDs masked before any matching happens, including names that turn up elsewhere in the input.</p>
+            <p>Why does that matter so much? Because my favorite bug in the whole project was two letters long. <code>DE</code> can mean Dual Enrollment. It can also be the “De” in somebody’s name. Let a matcher get a little too enthusiastic, and a student’s name becomes evidence about what kind of document they submitted. Tiny bug. Now repeat it across an entire migration! So the rule is simple: a filename has to say something about the document itself before it earns a placement.</p>
+            <p>When the evidence conflicted, the file went to an approved fallback. Yes, that makes the percentage look worse. I don’t care. It’s so tempting to juice the specific-classification number because it makes for a prettier dashboard, but the person digging through the wrong folder later isn’t going to be consoled by your dashboard.</p>
+            <p>The documented sample run covered 1,887 index rows. 1,396 got a specific document type, and 491 went to the approved Legacy Document destination. That’s a sample, not a claim that every document got inspected or that accuracy is 100%. But here’s the kicker: <strong>the run made zero LLM calls.</strong> Zero!</p>
+            <p>Now, there is a model-assisted path. It can use a local model through Ollama, or a cloud backend if someone explicitly flips it on. Either way, the model only ever sees redacted inputs, and its suggestions sit and wait for a human to approve them. But the rules don’t need any of that machinery to do their job. Which is exactly how it should be.</p>
+            <p>Then there was the file we actually had to hand over. Workday’s exports turned out to be <code>.txt</code> files with CSV inside and property values that looked almost, but not quite, like JSON. Lovely! And getting the categories right was worth precisely nothing if the corrected index choked the importer.</p>
+            <p>So the writer keeps the source formatting and swaps only the document-type value. The parser finds that property by its key, so it couldn’t care less if the columns move around. There are tests for line endings, quoting, reordered properties, and mismatched headers in the merged output. Every reviewer change gets a stable record hash and lands in an audit trail.</p>
+            <p>That’s the whole trick, really. Get close enough to an intimidating problem and it stops being intimidating. It turns into a list: a filing rule, somebody’s name, the exact shape of a text file. Not one item on that list needed a $600,000 proposal.</p>
+            <p>So the next time someone hands you a scary quote for a scary problem, open the export first. Read some filenames. You might just find you can build the thing yourself.</p>
         </article>
         <hr class="end-rule" />
         <footer class="colophon">

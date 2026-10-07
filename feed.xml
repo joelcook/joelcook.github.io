@@ -3,34 +3,34 @@
     <channel>
         <title>Joel Cook</title>
         <link>https://joelcook.github.io/</link>
-        <description>What I built, how it works, and what it saved.</description>
+        <description>What I built, what it saved, and what broke along the way.</description>
         <language>en-us</language>
         <atom:link href="https://joelcook.github.io/feed.xml" rel="self" type="application/rss+xml" />
         <item>
-            <title>The $600k proposal and the filing problem</title>
+            <title>Consultants wanted $600,000 to sort our files</title>
             <link>https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</link>
-            <description>Years of documents, inconsistent filing, and a move from Workday to Banner. I built the classifier in-house.</description>
+            <description>Years of misfiled documents, a move from Workday to Banner, and a quote with a lot of zeros. We passed, and I built the classifier myself.</description>
             <pubDate>Sat, 12 Sep 2026 12:00:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</guid>
         </item>
         <item>
-            <title>84% cheaper, and I still want the bill lower</title>
+            <title>84% off the hosting bill, and it’s still too much</title>
             <link>https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/</link>
-            <description>$50k became $8k for a site serving 250k monthly visitors. I wanted to go further.</description>
+            <description>$50k became $8k for a site serving 250k visitors a month. Most people would take the win. I wanted to go further!</description>
             <pubDate>Sat, 12 Sep 2026 11:00:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/</guid>
         </item>
         <item>
             <title>The morning our giving site became a casino</title>
             <link>https://joelcook.github.io/blog/the-patch-that-came-too-late/</link>
-            <description>A phone call, a hijacked giving site, and an attacker who could still get in after the patch.</description>
+            <description>A phone call, a giving site turned casino, and an attacker who could still walk right back in after the patch.</description>
             <pubDate>Thu, 23 Jul 2026 21:15:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/the-patch-that-came-too-late/</guid>
         </item>
         <item>
             <title>Apparently, students do want a chatbot</title>
             <link>https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/</link>
-            <description>$47k saved per year. More than 9,000 weekly chats. It started with a bot that needed the question worded just right.</description>
+            <description>$47k a year cheaper. More than 9,000 chats a week. And it all started with a bot that made students guess the magic words.</description>
             <pubDate>Tue, 23 Jun 2026 13:56:00 +0000</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/</guid>
         </item>

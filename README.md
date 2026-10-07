@@ -1,6 +1,6 @@
 # Joel Cook
 
-Personal site: **I build AI and software that cut operating costs.**
+Personal site: **I build AI and software that make vendor bills disappear.**
 
 Static HTML on GitHub Pages. No build step or JavaScript dependency.
 
@@ -11,28 +11,19 @@ From this directory, run `python3 -m http.server 8080`, then visit
 
 ## Writing
 
-Start with something that happened: a surprising result, a broken page, a
-decision, or a small detail with large consequences. Make the financial win
-easy to find when there is one. Explain the engineering through the story.
-End when the story is done.
+Write it so it sounds like DHH wrote it.
 
-Write in Joel's own voice: curious, direct, technically specific, and willing
-to say what he thinks. Use connected paragraphs, varied sentence lengths,
-and concrete examples. Keep uncertainty beside the claim it qualifies.
-Avoid invented scenes, dialogue, timelines, outrage, and financial figures.
-An incident recovery can stand on its own without a dollar estimate.
+Open with a strong claim, not a throat-clear. Pick a fight with the bad
+default: the $600k consultant, the rented SaaS, the bill nobody questions.
+Talk to the reader and ask the question they're already thinking. Let
+sentences run long, then land a short one. Use contractions, exclamation
+points, parenthetical asides, and jokes. Celebrate wins out loud. Brush past
+caveats with "Now, ..." and come back swinging with "But ...". End on a punch
+or a call to action.
 
-The site documents work; it does not sell consulting packages. Keep the
-homepage wins to one sentence each. Articles should usually fit in 300–600
-words, with shorter notes when there is less to explain.
-
-Keep savings periods explicit once confirmed. Separate realized savings,
-avoided spending, and estimates. Never turn sample coverage into a full-scale
-accuracy claim, website visitors into chatbot users, or eval gates into a
-guarantee that a model cannot hallucinate.
+The numbers stay real. No invented figures, events, or quotes, and a sample
+is never a full-scale claim.
 
 When adding or changing an article, update its metadata, the homepage feature
-if appropriate, `blog/index.html`, `feed.xml`, and `sitemap.xml`. Preserve an
-existing article URL and original publication date; mark substantive revisions
-with an updated date. Keep private evidence and editorial working notes out of
-this public site.
+if appropriate, `blog/index.html`, `feed.xml`, and `sitemap.xml`. Keep
+existing article URLs and original publication dates.
