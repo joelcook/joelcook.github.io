@@ -220,23 +220,23 @@
             <p class="standfirst">$47k saved per year. More than 9,000 weekly chats. It started with a bot that needed the question worded just right.</p>
             <p class="byline"><time datetime="2026-06-23">23 Jun, 2026</time> · updated <time datetime="2026-09-12">12 Sep, 2026</time></p>
 
-            <p>The college already had a chatbot. To get a useful answer, you had to phrase the question the way it expected. A student could ask about something it knew and still get nowhere because they used different words.</p>
-            <p>It was 2026. Surely we could do better than making people guess the wording of our FAQs.</p>
-            <p>I also thought people hated chatbots. The usage gave me a reason to reconsider: the replacement now handles more than <strong>9,000 chats a week</strong>. There is clearly an audience for opening a chat, asking a question, and getting on with your day.</p>
-            <p>I understand the appeal. A student trying to register for a class has a task to finish. They shouldn’t need to learn which department owns a page or how we organized the website. Just give them the freaking answer.</p>
-            <p>I built the replacement at Indian River State College, saving <strong>$47,000 a year</strong>. Then came the part that makes an institutional assistant harder than a chat box: deciding where its answers should come from.</p>
-            <p>Andrej Karpathy deserves a thank-you here. His <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki gist</a> describes compiling source material into a persistent, interlinked wiki that an agent can maintain and consult. I used that idea as the starting point for the knowledge layer.</p>
-            <p>The school’s information needed one extra distinction. Explanations could live in the wiki, with links back to their sources. Changing facts belonged in SQLite. A question about tuition or a drop deadline should trigger a lookup of the relevant record.</p>
-            <p>The model could explain the process. It also needed a reliable way to find which date applied to which term. A plausible answer was going to be easy; a useful one needed the right source.</p>
-            <p>That means I have somewhere specific to look when an answer is wrong. I can inspect the source, the database projection, the retrieved page, and the tool call. Telling the model to be more careful gives me considerably less to work with.</p>
-            <p>The interface is 12 read-only MCP tools served through Azure Container Apps and connected to Copilot Studio. Official sources feed the database and wiki. Refreshing the sources, rewriting explanations, and deploying the serving app remain separate operations.</p>
-            <p>But the most revealing part of the work came from evaluating the answers.</p>
-            <p>In one Copilot Studio review, the general-quality judge marked correct privacy refusals as incomplete. The assistant had declined to provide private student information. The judge wanted a more complete answer.</p>
-            <p>That is a good reason to read the failures before celebrating or despairing over a score.</p>
-            <p>The evaluation set now has 53 cases covering answers, required tool calls, conflicting sources, and refusals. If the model supplies the right tuition figure without making the required lookup, the case fails. I want the behavior to survive the next tuition change.</p>
-            <p>There is an optional LLM judge for narrative answers, after deterministic checks. The local tools gate runs without paid inference; checking the production model is a separate job. Keeping those results distinct makes them useful.</p>
-            <p>I can’t promise that the assistant will never invent an answer. I can give it better sources, test its behavior, and investigate failures with evidence. At 9,000 chats a week, that work matters more to me than another impressive demo.</p>
-            <p>The replacement costs $47k less per year, and students can ask questions in their own words. That is the experience I wanted: open the chat, ask the question, get a useful answer.</p>
+            <p>The college already had a chatbot. It worked, as long as you phrased the question the way it expected. A student could ask about something it knew, use different words, and get nowhere.</p>
+            <p>It was 2026. Surely we could do better than making people guess how we worded our FAQs.</p>
+            <p>Honestly, I thought people hated chatbots. The numbers made me reconsider: the replacement now handles more than <strong>9,000 chats a week</strong>. Plenty of people want to open a chat, ask a question, and get on with their day.</p>
+            <p>I get the appeal. A student trying to register for a class has something to get done. They shouldn’t have to learn which department owns which page, or how we organized the website. Just give them the freaking answer.</p>
+            <p>I built the replacement at Indian River State College, and it saves <strong>$47,000 a year</strong>. Then came the part that makes an institutional assistant harder than a chat box: deciding where the answers come from.</p>
+            <p>Andrej Karpathy deserves a thank-you here. His <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki gist</a> describes compiling source material into a persistent, interlinked wiki that an agent can maintain and consult. That idea was my starting point for the knowledge layer.</p>
+            <p>Our information needed one more split. Explanations can live in the wiki, linked back to their sources. Facts that change belong in SQLite. Ask about tuition or a drop deadline and the assistant should look up the record, not wing it.</p>
+            <p>The model can explain a process just fine. What it needed was a reliable way to know which date goes with which term. A plausible answer was always going to be easy. A useful one needs the right source.</p>
+            <p>It also means that when an answer is wrong, I know where to look: the source, the database projection, the retrieved page, the tool call. “Tell the model to be more careful” gives me a lot less to work with.</p>
+            <p>Under the hood it’s 12 read-only MCP tools, served from Azure Container Apps and connected to Copilot Studio. Official sources feed both the database and the wiki. Refreshing sources, rewriting explanations, and deploying the app are separate jobs.</p>
+            <p>The most revealing part, though, came from grading the answers.</p>
+            <p>In one Copilot Studio review, the general-quality judge marked correct privacy refusals as incomplete. The assistant had declined to hand out private student information, which is exactly what it should do. The judge wanted a more complete answer.</p>
+            <p>So read the failures before you celebrate a score, or panic over one.</p>
+            <p>The eval set has 53 cases now, covering answers, required tool calls, conflicting sources, and refusals. If the model gives the right tuition figure without making the required lookup, the case still fails. I don’t want a lucky answer. I want behavior that survives the next tuition change.</p>
+            <p>There’s an optional LLM judge for narrative answers, and it runs after the deterministic checks. The local tools gate runs without paid inference. Checking the production model is its own job. Keeping those results separate is what makes them worth reading.</p>
+            <p>I can’t promise the assistant will never make something up. What I can do is give it better sources, test how it behaves, and chase down failures with evidence. At 9,000 chats a week, that matters more to me than another slick demo.</p>
+            <p>It costs $47k a year less than the old bot, and students get to ask in their own words. That’s what I was after: open the chat, ask the question, get an answer that actually helps.</p>
         </article>
         <hr class="end-rule" />
         <footer class="colophon">

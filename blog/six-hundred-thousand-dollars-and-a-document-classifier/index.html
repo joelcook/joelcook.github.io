@@ -220,23 +220,23 @@
             <p class="standfirst">Years of documents, inconsistent filing, and a move from Workday to Banner. I built the classifier in-house.</p>
             <p class="byline"><time datetime="2026-09-12">12 Sep, 2026</time></p>
 
-            <p>The president of Indian River State College decided the school was moving from Workday to Banner. A new system, a fresh start.</p>
-            <p>Except we had years of documents to bring with us.</p>
-            <p>The filing habits hadn’t kept up with the volume. Documents had accumulated in broad categories that didn’t tell us where they belonged in Banner. Changing systems meant dealing with all that history.</p>
+            <p>The president of Indian River State College decided we were moving from Workday to Banner. New system, fresh start.</p>
+            <p>Except we had years of documents that had to come with us.</p>
+            <p>The filing hadn’t kept up with the volume. Documents had piled up in broad categories that said nothing about where they belonged in Banner. Changing systems meant dealing with all of that history.</p>
             <p>One outside company’s proposal put the work at <strong>$600,000</strong>.</p>
-            <p>I built classification software to prepare the document indexes in-house. That $600k is the competing proposal we avoided, which is the basis for the savings figure. The work was to turn an enormous filing problem into rules we could inspect and an output the new system could use.</p>
-            <p>One of the more interesting problems was two letters long.</p>
-            <p><code>DE</code> could mean Dual Enrollment. It could also appear as “De” in somebody’s name. A classifier that was a little too enthusiastic about matching text could take a student’s name as evidence of what kind of document they had submitted.</p>
-            <p>That is a very small bug to repeat across a very large migration.</p>
-            <p>The useful evidence was already in the export: filenames, paths, and existing categories. I built Python rules around approved phrases and destinations, normalized the separators, and masked known names and IDs before matching. The masking included names found elsewhere in the input corpus. A filename needed to say something about the document itself before it could justify a placement.</p>
-            <p>When the evidence conflicted, the pipeline used an approved fallback. There is a temptation to keep increasing the number of specific classifications because a higher percentage looks better. But an impressive percentage is little comfort to the person looking in the wrong folder later.</p>
-            <p>The documented sample run covered 1,887 index rows. Of those, 1,396 received specific document types and 491 went to an approved Legacy Document destination. That was a sample of the migration, not a claim that every document had been inspected or that classification accuracy was 100%. <strong>The run made no LLM calls.</strong></p>
-            <p>I added a model-assisted path too. It can use a local model through Ollama or an explicitly enabled cloud backend. Both receive redacted inputs, and their suggestions wait for a human’s approval. The rules can do their work without waiting for that machinery.</p>
+            <p>I built the classification software in-house instead. It prepares the document indexes, and that $600k proposal is the spending we avoided, which is where the savings number comes from. The job was to take a filing mess too big to look at and turn it into rules a person can read and an output the new system can actually use.</p>
+            <p>My favorite problem was two letters long.</p>
+            <p><code>DE</code> can mean Dual Enrollment. It also shows up as “De” in people’s names. Get a little too eager with text matching and a student’s name turns into evidence about what kind of document they submitted.</p>
+            <p>Tiny bug. Now repeat it across an entire migration.</p>
+            <p>The good news: the evidence was already in the export. Filenames, paths, existing categories. I wrote Python rules around approved phrases and destinations, normalized the separators, and masked known names and IDs before any matching happened, including names that turned up elsewhere in the input. A filename had to say something about the document itself before it earned a placement.</p>
+            <p>When the evidence conflicted, the file went to an approved fallback. It’s tempting to keep pushing the specific-classification number up, because a bigger percentage makes a nicer dashboard. The person looking in the wrong folder later doesn’t care about the dashboard.</p>
+            <p>The documented sample run covered 1,887 index rows. 1,396 got a specific document type. 491 went to the approved Legacy Document destination. That’s a sample, not a claim that every document was inspected or that accuracy is 100%. <strong>And the run made zero LLM calls.</strong></p>
+            <p>There is a model-assisted path. It can use a local model through Ollama, or a cloud backend if someone explicitly turns it on. Either way, the model sees redacted inputs and its suggestions wait for a human to approve them. The rules don’t wait on any of that.</p>
             <p>Then there was the file we actually had to hand over.</p>
-            <p>Workday’s exports had a <code>.txt</code> extension, CSV contents, and property values that looked almost like JSON. The destination needed a corrected index. Getting the categories right was only useful if that index survived the importer.</p>
-            <p>So the writer preserves the source formatting while replacing the document-type value. The parser finds that property by its key, even if the columns move. Tests cover line endings, quoting, reordered properties, and differing headers in the merged output. Reviewer changes have stable record hashes and an audit trail.</p>
-            <p>I enjoy this part of engineering: getting close enough to a problem that its intimidating size gives way to specific things you can fix. In this case, those things included a filing rule, a person’s name, and the exact shape of a text file.</p>
-            <p>The decision to leave Workday was made at the top. Making those years of documents usable in Banner came down to the details in the export. I’m glad we looked closely enough to build the tool ourselves.</p>
+            <p>Workday’s exports were <code>.txt</code> files with CSV inside and property values that looked almost, but not quite, like JSON. The destination needed a corrected index. Getting the categories right was worthless if that index didn’t survive the importer.</p>
+            <p>So the writer keeps the source formatting and swaps only the document-type value. The parser finds that property by its key, so it doesn’t care if the columns move. Tests cover line endings, quoting, reordered properties, and mismatched headers in the merged output. Reviewer changes get stable record hashes and an audit trail.</p>
+            <p>This is the part of the job I enjoy most. You get close enough to a scary-sized problem that it stops being scary and turns into a list of specific things to fix. Here, that list included a filing rule, somebody’s name, and the exact shape of a text file.</p>
+            <p>Leaving Workday was decided at the top. Getting years of documents into Banner in usable shape came down to the details in an export. I’m glad we looked closely enough to build it ourselves.</p>
         </article>
         <hr class="end-rule" />
         <footer class="colophon">
