@@ -612,22 +612,6 @@
             max-width: 830px;
         }
 
-        .misc-label {
-            font-size: 17px;
-            margin: 22px 0 6px;
-        }
-
-        .misc {
-            font-size: 17px;
-            margin: 0;
-            max-width: 830px;
-            padding-left: 24px;
-        }
-
-        .misc li {
-            margin: 4px 0;
-        }
-
         .band {
             background: #eeeeee;
             margin: 36px 0 56px;
@@ -685,8 +669,6 @@
 
         @media (max-width: 720px) {
             .project p,
-            .misc,
-            .misc-label,
             .writing ul {
                 font-size: 16px;
             }
@@ -838,14 +820,10 @@
                 <p><a href="https://riverboard.org">RiverBoard</a> is our team’s task board, built with no dependencies: Python’s standard library, SQLite, and plain JavaScript. Teammates connect Claude to it over MCP, and every project carries an estimated-savings figure.</p>
             </div>
 
-            <p class="misc-label">Also at IRSC:</p>
-            <ul class="misc">
-                <li><a href="https://forms.riverboard.org">IRSC Forms</a>, course evaluations wired to Banner class lists, replacing Watermark CES.</li>
-                <li>Prospect Discovery, foundation research from public IRS 990-PF filings with a local model, instead of an iWave subscription.</li>
-                <li>Zibili, a Libby-style reader for free OpenStax textbooks.</li>
-                <li>irsc-brand, a shared design system that fails the build if any color pairing misses WCAG 2.1 AA.</li>
-                <li>Production moved onto an encrypted on-prem Linux GPU box, with nightly verified backups.</li>
-            </ul>
+            <div class="project">
+                <a href="https://stellantisdrivefordesign.com/"><img src="images/thumb-drive-for-design.jpg" width="240" height="240" alt="" /></a>
+                <p><a href="https://stellantisdrivefordesign.com/">Drive for Design</a> is Stellantis’s student design contest, one of the launch sites I built as a freelancer for Stellantis brands including Jeep, Dodge, Chrysler, and Fiat. I handled the cloud infrastructure on AWS, with EC2 for the servers, S3 for assets, and Auth0 for sign-in.</p>
+            </div>
         </section>
 
         <section class="band" aria-labelledby="pet-projects-title">
