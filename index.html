@@ -392,29 +392,22 @@
 
         .jacket-grid {
             align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 22px 32px;
-            max-width: 900px;
+            display: grid;
+            gap: 30px 24px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            justify-items: center;
+            max-width: 940px;
         }
 
         .jacket-grid a {
-            align-items: center;
-            display: inline-flex;
-            min-height: 50px;
+            display: block;
             text-decoration: none;
         }
 
         .jacket-grid img {
             display: block;
-            max-height: 48px;
-            max-width: 126px;
-            object-fit: contain;
-        }
-
-        .jacket-grid img.square-logo {
-            max-height: 54px;
-            max-width: 54px;
+            height: auto;
+            max-width: 100%;
         }
 
         @media (max-width: 720px) {
@@ -547,17 +540,8 @@
             }
 
             .jacket-grid {
-                gap: 18px 24px;
-            }
-
-            .jacket-grid img {
-                max-height: 40px;
-                max-width: 104px;
-            }
-
-            .jacket-grid img.square-logo {
-                max-height: 44px;
-                max-width: 44px;
+                gap: 24px 16px;
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
         }
 
@@ -872,58 +856,58 @@
                 <h2>Nascar Jacket</h2>
                 <div class="jacket-grid">
                     <a href="https://www.irsc.edu/" target="_blank" rel="noopener noreferrer">
-                        <img class="square-logo" src="images/irsc-icon.png" alt="Indian River State College" />
+                        <img src="images/logos/irsc.png" width="54" height="54" alt="Indian River State College" />
                     </a>
                     <a href="https://www.stellantis.com/en" target="_blank" rel="noopener noreferrer">
-                        <img src="images/stellantis.png" alt="Stellantis" />
+                        <img src="images/logos/stellantis.png" width="125" height="26" alt="Stellantis" />
                     </a>
                     <a href="https://www.jeep.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/jeep.png" alt="Jeep" />
+                        <img src="images/logos/jeep.png" width="89" height="37" alt="Jeep" />
                     </a>
                     <a href="https://www.dodge.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/dodge.png" alt="Dodge" />
+                        <img src="images/logos/dodge.svg" width="150" height="22" alt="Dodge" />
                     </a>
                     <a href="https://www.chrysler.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/c.png" alt="Chrysler" />
+                        <img src="images/logos/chrysler.png" width="134" height="25" alt="Chrysler" />
                     </a>
                     <a href="https://www.fiatusa.com/models/500e-giorgio-armani" target="_blank" rel="noopener noreferrer">
-                        <img src="images/fiat.png" alt="Fiat" />
+                        <img src="images/logos/fiat.png" width="73" height="45" alt="Fiat" />
                     </a>
                     <a href="https://www.fiatusa.com/models/500e-giorgio-armani" target="_blank" rel="noopener noreferrer">
-                        <img src="images/o.png" alt="Giorgio Armani" />
+                        <img src="images/logos/armani.png" width="82" height="40" alt="Giorgio Armani" />
                     </a>
                     <a href="https://www.modea.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/modea.png" alt="Modea" />
+                        <img src="images/logos/modea.png" width="77" height="43" alt="Modea" />
                     </a>
                     <a href="https://www.balladhealth.org/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/ballad.png" alt="Ballad Health" />
+                        <img src="images/logos/ballad.png" width="114" height="29" alt="Ballad Health" />
                     </a>
                     <a href="https://www.flosports.tv/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/flo.png" alt="FloSports" />
+                        <img src="images/logos/flosports.png" width="150" height="19" alt="FloSports" />
                     </a>
                     <a href="https://www.nascar.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/nascar.webp" alt="NASCAR" />
+                        <img src="images/logos/nascar.png" width="134" height="25" alt="NASCAR" />
                     </a>
                     <a href="https://www.ncaa.com/" target="_blank" rel="noopener noreferrer">
-                        <img class="square-logo" src="images/ncaa.webp" alt="NCAA" />
+                        <img src="images/logos/ncaa.png" width="54" height="54" alt="NCAA" />
                     </a>
                     <a href="https://www.themat.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/usaw-300x91.webp" alt="USA Wrestling" />
+                        <img src="images/logos/usa-wrestling.png" width="104" height="32" alt="USA Wrestling" />
                     </a>
                     <a href="https://fanhero.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/fanhero.webp" alt="FanHero" />
+                        <img src="images/logos/fanhero.png" width="110" height="30" alt="FanHero" />
                     </a>
                     <a href="https://www.orlandocitysc.com/" target="_blank" rel="noopener noreferrer">
-                        <img class="square-logo" src="images/ORL.svg" width="54" height="54" alt="Orlando City SC" />
+                        <img src="images/logos/orlando-city.svg" width="60" height="60" alt="Orlando City SC" />
                     </a>
                     <a href="https://acedfitnessco.com" target="_blank" rel="noopener noreferrer">
-                        <img src="images/aces_fitnessco_web_logo.svg" alt="Aced Fitness Co" />
+                        <img src="images/logos/aced.svg" width="99" height="33" alt="Aced Fitness Co" />
                     </a>
                     <a href="https://harps-lingerie.com/" target="_blank" rel="noopener noreferrer">
-                        <img class="square-logo" src="images/harplogo.png" alt="Harps Lingerie" />
+                        <img src="images/logos/harps.png" width="77" height="43" alt="Harps Lingerie" />
                     </a>
                     <a href="https://mangmachine.com/" target="_blank" rel="noopener noreferrer">
-                        <img class="square-logo" src="images/manglogoi.webp" alt="MangMachine" />
+                        <img src="images/logos/mangmachine.png" width="46" height="46" alt="MangMachine" />
                     </a>
                 </div>
             </section>
