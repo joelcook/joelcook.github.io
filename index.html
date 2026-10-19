@@ -728,7 +728,6 @@
                     <ol class="timeline-list">
                         <li><a href="https://chat.riverboard.org">RiverGuide</a>, the college’s AI advisor. Version one handled 9,000+ student chats a week and costs $47k a year less than the vendor bot it replaced.</li>
                         <li>A document classifier for our Workday-to-Banner migration, built instead of paying for a <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">$600k consulting proposal</a>.</li>
-                        <li>An MCP server that answers plain-English questions from Banner through a read-only gate that refuses student records.</li>
                         <li><a href="https://riverboard.org">RiverBoard</a>, the AI team’s task board, with Claude connected over MCP.</li>
                     </ol>
                     <p>I also cut hosting for a site with 250k monthly visitors <a href="/blog/eighty-four-percent-less-on-hosting/">by 84%</a>, and got the foundation’s giving site back <a href="/blog/the-patch-that-came-too-late/">after attackers turned it into a casino</a>.</p>
@@ -811,13 +810,13 @@
             </div>
 
             <div class="project">
-                <img src="images/thumb-banner-mcp.jpg" width="240" height="240" alt="" />
-                <p>The Banner MCP server lets staff ask the college’s ERP questions in plain English. A local model writes the GraphQL, and a gate checks it against an allowlist before it runs: read-only, no student records, and the model never holds the API key. It also works as a connector in Claude.</p>
+                <a href="https://riverboard.org"><img src="images/thumb-riverboard.jpg" width="240" height="240" alt="" /></a>
+                <p><a href="https://riverboard.org">RiverBoard</a> is our team’s task board, built with no dependencies: Python’s standard library, SQLite, and plain JavaScript. Teammates connect Claude to it over MCP, and every project carries an estimated-savings figure.</p>
             </div>
 
             <div class="project">
-                <a href="https://riverboard.org"><img src="images/thumb-riverboard.jpg" width="240" height="240" alt="" /></a>
-                <p><a href="https://riverboard.org">RiverBoard</a> is our team’s task board, built with no dependencies: Python’s standard library, SQLite, and plain JavaScript. Teammates connect Claude to it over MCP, and every project carries an estimated-savings figure.</p>
+                <a href="https://apps.apple.com/us/app/ballad-health/id1192749804"><img src="images/thumb-ballad-health.jpg" width="240" height="240" alt="" /></a>
+                <p>The <a href="https://apps.apple.com/us/app/ballad-health/id1192749804">Ballad Health app</a> is the patient app for Ballad Health, built in React Native for iOS and Android. Epic’s MyChart SDK is embedded natively and bridged into React Native, so patients can book appointments, pay bills, and see lab results in one app. Built at Modea, under HIPAA.</p>
             </div>
 
             <div class="project">
