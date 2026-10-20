@@ -1,0 +1,36 @@
+# Joel Cook
+
+> Joel Cook is an AI architect at Indian River State College, a public college in Florida. Joel builds the software a public college would usually rent, with personal data kept out of the AI models: an AI student advisor, a document classifier that moved 946,091 records from Workday into Banner without a $600,000 consultant, and the college's main website, which serves about 250,000 visitors a month.
+
+Joel's AI work follows a few rules: answers come from official sources, quoted and linked; models get read-only access to systems of record and never hold the keys; logs record outcomes, not what people type; personal information is caught in the browser before anything is sent; and a test set gates every prompt, tool, or model change.
+
+Earlier, Joel shipped Ballad Health's HIPAA-compliant patient app on Epic's MyChart SDK (rated 4.6 stars on the App Store), built the real-time stats and broadcast graphics software behind FloSports, launched Orlando City SC's official LionNation app, and built and ran AWS infrastructure for Stellantis launch sites with Iconix Inc.
+
+## Work
+
+- [AI Architect, Indian River State College](https://www.irsc.edu/) (2025–present): Built the college's main website and AI advisor, and cut over $600k in vendor costs.
+- [Independent software engineer, with Iconix Inc.](https://www.iconixinc.com/work.php) (2023–present): Engineered launch sites and AWS infrastructure (Elastic Beanstalk, EC2, load balancing, databases, S3, Auth0) for Jeep, Ram, Dodge, and Fiat.
+- [Software Engineer, Modea](https://www.modea.com/) (2022–2024): Shipped Ballad Health's HIPAA-compliant patient app on Epic's MyChart SDK for iOS and Android.
+- [Software Engineer, FloSports](https://www.flosports.tv/) (2019–2022): Built real-time stats and broadcast graphics software reaching millions of sports fans.
+- [Mobile Application Developer, FanHero](https://fanhero.com/) (2018–2019): Launched Orlando City SC's official LionNation app to 15k+ downloads.
+
+## Projects
+
+- [RiverGuide](https://chat.riverboard.org): The college's AI advisor. It searches about 2,400 official college pages, links every answer to its source, blocks personal information in the browser, runs on a local model, and is gated by a 53-question test set. Version one handled 9,000+ student chats a week and cost $47,000 a year less than the vendor bot it replaced.
+- [Workday-to-Banner classifier](https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/): Moved 946,091 document records into Banner with names and IDs masked before matching, uncertain records sent to an approved fallback, and every reviewer change audited.
+- [irsc.edu](https://www.irsc.edu/): The college's main website, built from scratch on WordPress and PHP with custom plugins for emergency alerts, events, the course catalog, and AI-converted accessible PDFs. Hosting costs were cut by 84%.
+- [RiverBoard](https://riverboard.org): A dependency-free team task board with Claude connected over MCP.
+- [Bento](https://github.com/joelcook/bento): A small native text editor in C, with a raylib GUI and a terminal build.
+
+## Writing
+
+- [Consultants wanted $600,000 to sort our files](https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/)
+- [84% off the hosting bill, and it's still too much](https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/)
+- [The morning our giving site became a casino](https://joelcook.github.io/blog/the-patch-that-came-too-late/)
+- [Apparently, students do want a chatbot](https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/)
+
+## Contact
+
+- [Email](mailto:joeltcook93@gmail.com)
+- [GitHub](https://github.com/joelcook)
+- [X](https://x.com/JoelCook441928)
