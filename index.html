@@ -608,12 +608,11 @@
 
         .band {
             background: #eeeeee;
-            margin: 36px 0 56px;
-            padding: 34px 0 40px;
+            padding: 40px 0 48px;
         }
 
-        .band:last-child {
-            margin-bottom: 0;
+        .band-white {
+            background: transparent;
         }
 
         .band-inner,
@@ -647,6 +646,22 @@
 
         .band .writing {
             margin-bottom: 0;
+        }
+
+        .writing ul {
+            font-size: 17px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .writing li {
+            margin: 4px 0;
+        }
+
+        .writing time {
+            display: inline-block;
+            min-width: 76px;
         }
 
         .freelance-intro {
@@ -855,53 +870,55 @@
 
         </section>
 
-        <section class="band" aria-labelledby="bio-title">
+        <section aria-labelledby="bio-title">
             <h2 class="bio-heading" id="bio-title">bio</h2>
             <div class="bio-copy">
                 <p>Joel Cook is an AI architect at Indian River State College in Florida, building in-house the software a public college would usually rent. That includes an AI advisor that has handled 9,000+ student chats a week, a classifier that moved 946,091 records into Banner without a $600,000 consultant, and the college’s main website, which serves 250,000 visitors a month. Joel’s AI work is built for private data: answers grounded in official sources, read-only access to systems of record, and personal information kept out of the models. Before IRSC, Joel shipped Ballad Health’s HIPAA-compliant patient app on Epic’s MyChart SDK, built the live stats engine behind FloSports broadcasts, and ran the AWS infrastructure behind Stellantis launch sites for Jeep, Ram, Dodge, and Fiat.</p>
             </div>
         </section>
 
-        <section class="projects" aria-labelledby="projects-title">
-            <h2 class="section-heading" id="projects-title">projects</h2>
+        <section class="band" aria-labelledby="projects-title">
+            <div class="band-inner">
+                <h2 class="section-heading" id="projects-title">projects</h2>
 
-            <div class="project">
-                <a href="https://chat.riverboard.org"><img src="images/thumb-riverguide.jpg" width="240" height="240" alt="" /></a>
-                <p><a href="https://chat.riverboard.org">RiverGuide</a> answers students’ questions from the college’s own website. It searches about 2,400 official pages, links every answer to its source, and catches names, addresses, and ID numbers in the browser before anything is sent. It runs on a local model on our own GPU, and a 53-question test set gates every change. Version two is modeled on how America.gov works; <a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">version one</a> ran on Copilot Studio.</p>
-            </div>
+                <div class="project">
+                    <a href="https://chat.riverboard.org"><img src="images/thumb-riverguide.jpg" width="240" height="240" alt="" /></a>
+                    <p><a href="https://chat.riverboard.org">RiverGuide</a> answers students’ questions from the college’s own website. It searches about 2,400 official pages, links every answer to its source, and catches names, addresses, and ID numbers in the browser before anything is sent. It runs on a local model on our own GPU, and a 53-question test set gates every change. Version two is modeled on how America.gov works; <a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">version one</a> ran on Copilot Studio.</p>
+                </div>
 
-            <div class="project">
-                <a href="https://www.irsc.edu/"><img src="images/thumb-irsc-edu.jpg" width="240" height="240" alt="" /></a>
-                <p>I built <a href="https://www.irsc.edu/">irsc.edu</a> from scratch: WordPress and PHP on Pantheon, with custom plugins that connect the college’s other systems. Emergency alerts from Everbridge post straight to a sitewide banner, events flow in from Element451 and RiverLife, degree requirements come from the official catalog, and an AI plugin turns PDFs into accessible web pages. It serves about 250,000 visitors a month, and I cut its hosting bill by <a href="/blog/eighty-four-percent-less-on-hosting/">84%</a>.</p>
-            </div>
+                <div class="project">
+                    <a href="https://www.irsc.edu/"><img src="images/thumb-irsc-edu.jpg" width="240" height="240" alt="" /></a>
+                    <p>I built <a href="https://www.irsc.edu/">irsc.edu</a> from scratch: WordPress and PHP on Pantheon, with custom plugins that connect the college’s other systems. Emergency alerts from Everbridge post straight to a sitewide banner, events flow in from Element451 and RiverLife, degree requirements come from the official catalog, and an AI plugin turns PDFs into accessible web pages. It serves about 250,000 visitors a month, and I cut its hosting bill by <a href="/blog/eighty-four-percent-less-on-hosting/">84%</a>.</p>
+                </div>
 
-            <div class="project">
-                <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/"><img src="images/thumb-classifier.jpg" width="240" height="240" alt="" /></a>
-                <p>The <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">Workday-to-Banner classifier</a> migrated nearly 1 million undocumented or mislabeled document records (946,091) into Banner, saving the college over $600,000 compared with an outside consultant’s quote. Names and IDs are masked before matching, uncertain files go to an approved fallback instead of a guess, and an optional local model only ever sees redacted input.</p>
-            </div>
+                <div class="project">
+                    <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/"><img src="images/thumb-classifier.jpg" width="240" height="240" alt="" /></a>
+                    <p>The <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">Workday-to-Banner classifier</a> migrated nearly 1 million undocumented or mislabeled document records (946,091) into Banner, saving the college over $600,000 compared with an outside consultant’s quote. Names and IDs are masked before matching, uncertain files go to an approved fallback instead of a guess, and an optional local model only ever sees redacted input.</p>
+                </div>
 
-            <div class="project">
-                <a href="https://riverboard.org"><img src="images/thumb-riverboard.jpg" width="240" height="240" alt="" /></a>
-                <p><a href="https://riverboard.org">RiverBoard</a> is our team’s task board, built with no dependencies: Python’s standard library, SQLite, and plain JavaScript. Teammates connect Claude to it over MCP, and every project carries an estimated-savings figure.</p>
-            </div>
+                <div class="project">
+                    <a href="https://riverboard.org"><img src="images/thumb-riverboard.jpg" width="240" height="240" alt="" /></a>
+                    <p><a href="https://riverboard.org">RiverBoard</a> is our team’s task board, built with no dependencies: Python’s standard library, SQLite, and plain JavaScript. Teammates connect Claude to it over MCP, and every project carries an estimated-savings figure.</p>
+                </div>
 
-            <div class="project">
-                <a href="https://apps.apple.com/us/app/ballad-health/id1192749804"><img src="images/thumb-ballad-health.jpg" width="240" height="240" alt="" /></a>
-                <p>The <a href="https://apps.apple.com/us/app/ballad-health/id1192749804">Ballad Health app</a> is the patient app for Ballad Health, built in React Native for iOS and Android. Epic’s MyChart SDK is embedded natively and bridged into React Native, so patients can book appointments, pay bills, and see lab results in one app. Built at Modea, under HIPAA.</p>
-            </div>
+                <div class="project">
+                    <a href="https://apps.apple.com/us/app/ballad-health/id1192749804"><img src="images/thumb-ballad-health.jpg" width="240" height="240" alt="" /></a>
+                    <p>The <a href="https://apps.apple.com/us/app/ballad-health/id1192749804">Ballad Health app</a> is the patient app for Ballad Health, built in React Native for iOS and Android. Epic’s MyChart SDK is embedded natively and bridged into React Native, so patients can book appointments, pay bills, and see lab results in one app. Built at Modea, under HIPAA.</p>
+                </div>
 
-            <div class="project">
-                <a href="https://www.flosports.tv/"><img src="images/thumb-flosports.jpg" width="240" height="240" alt="" /></a>
-                <p>At <a href="https://www.flosports.tv/">FloSports</a> I was on the sports data team, building the live stats engine behind the broadcasts: the on-screen scoreboard, game clock, and in-game graphics. Every update was written to Google Cloud, where the web and mobile apps pulled their live scores and stats from. It powered thousands of games, watched by millions of fans.</p>
-            </div>
+                <div class="project">
+                    <a href="https://www.flosports.tv/"><img src="images/thumb-flosports.jpg" width="240" height="240" alt="" /></a>
+                    <p>At <a href="https://www.flosports.tv/">FloSports</a> I was on the sports data team, building the live stats engine behind the broadcasts: the on-screen scoreboard, game clock, and in-game graphics. Every update was written to Google Cloud, where the web and mobile apps pulled their live scores and stats from. It powered thousands of games, watched by millions of fans.</p>
+                </div>
 
-            <div class="project">
-                <a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US"><img src="images/thumb-lionnation.jpg" width="240" height="240" alt="" /></a>
-                <p>At <a href="https://fanhero.com/">FanHero</a> I went from intern to mobile developer and helped launch <a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US">LionNation</a>, Orlando City SC’s official app, to 15k+ downloads on iOS and Android. Built in Flutter with an Elixir backend, it let fans read team news, buy tickets, and watch games live.</p>
+                <div class="project">
+                    <a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US"><img src="images/thumb-lionnation.jpg" width="240" height="240" alt="" /></a>
+                    <p>At <a href="https://fanhero.com/">FanHero</a> I went from intern to mobile developer and helped launch <a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US">LionNation</a>, Orlando City SC’s official app, to 15k+ downloads on iOS and Android. Built in Flutter with an Elixir backend, it let fans read team news, buy tickets, and watch games live.</p>
+                </div>
             </div>
         </section>
 
-        <section class="band" aria-labelledby="freelance-title">
+        <section class="band band-white" aria-labelledby="freelance-title">
             <div class="band-inner">
                 <h2 class="section-heading" id="freelance-title">freelance</h2>
                 <p class="freelance-intro">Launch sites I built as a freelancer with <a href="https://www.iconixinc.com/">Iconix Inc.</a>, a creative agency in Auburn Hills, Michigan, mostly for Stellantis brands. I owned the backend, infrastructure, and DevOps on AWS (Elastic Beanstalk, EC2, load balancing, databases, S3, and Auth0 sign-in) and built front end alongside Iconix’s designer and front-end developer. Tile art by Iconix.</p>
@@ -955,8 +972,8 @@
             </div>
         </section>
 
-        <section class="projects" aria-labelledby="pet-projects-title">
-            <div>
+        <section class="band" aria-labelledby="pet-projects-title">
+            <div class="band-inner">
                 <h2 class="section-heading" id="pet-projects-title">pet projects</h2>
                 <div class="project">
                     <a href="https://github.com/joelcook/swellsign"><img src="images/thumb-swell-sign.jpg" width="240" height="240" alt="" /></a>
@@ -977,7 +994,7 @@
             </div>
         </section>
 
-        <section class="band" aria-labelledby="writing-title">
+        <section class="band band-white" aria-labelledby="writing-title">
             <div class="writing">
             <h2 class="section-heading" id="writing-title"><a href="/blog/">writing</a></h2>
             <ul>
@@ -989,64 +1006,66 @@
             </div>
         </section>
 
-        <section class="logo-jacket" aria-label="companies and brands">
-                <h2>Nascar Jacket</h2>
-                <div class="jacket-grid">
-                    <a href="https://www.irsc.edu/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/irsc.png" width="54" height="54" alt="Indian River State College" />
-                    </a>
-                    <a href="https://www.stellantis.com/en" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/stellantis.png" width="125" height="26" alt="Stellantis" />
-                    </a>
-                    <a href="https://www.jeep.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/jeep.png" width="89" height="37" alt="Jeep" />
-                    </a>
-                    <a href="https://www.dodge.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/dodge.svg" width="150" height="22" alt="Dodge" />
-                    </a>
-                    <a href="https://www.chrysler.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/chrysler.png" width="134" height="25" alt="Chrysler" />
-                    </a>
-                    <a href="https://www.fiatusa.com/models/500e-giorgio-armani" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/fiat.png" width="73" height="45" alt="Fiat" />
-                    </a>
-                    <a href="https://www.fiatusa.com/models/500e-giorgio-armani" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/armani.png" width="82" height="40" alt="Giorgio Armani" />
-                    </a>
-                    <a href="https://www.modea.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/modea.png" width="77" height="43" alt="Modea" />
-                    </a>
-                    <a href="https://www.balladhealth.org/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/ballad.png" width="114" height="29" alt="Ballad Health" />
-                    </a>
-                    <a href="https://www.flosports.tv/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/flosports.png" width="150" height="19" alt="FloSports" />
-                    </a>
-                    <a href="https://www.nascar.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/nascar.png" width="134" height="25" alt="NASCAR" />
-                    </a>
-                    <a href="https://www.ncaa.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/ncaa.png" width="54" height="54" alt="NCAA" />
-                    </a>
-                    <a href="https://www.themat.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/usa-wrestling.png" width="104" height="32" alt="USA Wrestling" />
-                    </a>
-                    <a href="https://fanhero.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/fanhero.png" width="110" height="30" alt="FanHero" />
-                    </a>
-                    <a href="https://www.orlandocitysc.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/orlando-city.svg" width="60" height="60" alt="Orlando City SC" />
-                    </a>
-                    <a href="https://acedfitnessco.com" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/aced.svg" width="99" height="33" alt="Aced Fitness Co" />
-                    </a>
-                    <a href="https://harps-lingerie.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/harps.png" width="77" height="43" alt="Harps Lingerie" />
-                    </a>
-                    <a href="https://mangmachine.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="images/logos/mangmachine.png" width="46" height="46" alt="MangMachine" />
-                    </a>
-                </div>
+        <section class="band" aria-label="companies and brands">
+            <div class="logo-jacket">
+                    <h2>Nascar Jacket</h2>
+                    <div class="jacket-grid">
+                        <a href="https://www.irsc.edu/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/irsc.png" width="54" height="54" alt="Indian River State College" />
+                        </a>
+                        <a href="https://www.stellantis.com/en" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/stellantis.png" width="125" height="26" alt="Stellantis" />
+                        </a>
+                        <a href="https://www.jeep.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/jeep.png" width="89" height="37" alt="Jeep" />
+                        </a>
+                        <a href="https://www.dodge.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/dodge.svg" width="150" height="22" alt="Dodge" />
+                        </a>
+                        <a href="https://www.chrysler.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/chrysler.png" width="134" height="25" alt="Chrysler" />
+                        </a>
+                        <a href="https://www.fiatusa.com/models/500e-giorgio-armani" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/fiat.png" width="73" height="45" alt="Fiat" />
+                        </a>
+                        <a href="https://www.fiatusa.com/models/500e-giorgio-armani" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/armani.png" width="82" height="40" alt="Giorgio Armani" />
+                        </a>
+                        <a href="https://www.modea.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/modea.png" width="77" height="43" alt="Modea" />
+                        </a>
+                        <a href="https://www.balladhealth.org/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/ballad.png" width="114" height="29" alt="Ballad Health" />
+                        </a>
+                        <a href="https://www.flosports.tv/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/flosports.png" width="150" height="19" alt="FloSports" />
+                        </a>
+                        <a href="https://www.nascar.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/nascar.png" width="134" height="25" alt="NASCAR" />
+                        </a>
+                        <a href="https://www.ncaa.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/ncaa.png" width="54" height="54" alt="NCAA" />
+                        </a>
+                        <a href="https://www.themat.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/usa-wrestling.png" width="104" height="32" alt="USA Wrestling" />
+                        </a>
+                        <a href="https://fanhero.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/fanhero.png" width="110" height="30" alt="FanHero" />
+                        </a>
+                        <a href="https://www.orlandocitysc.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/orlando-city.svg" width="60" height="60" alt="Orlando City SC" />
+                        </a>
+                        <a href="https://acedfitnessco.com" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/aced.svg" width="99" height="33" alt="Aced Fitness Co" />
+                        </a>
+                        <a href="https://harps-lingerie.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/harps.png" width="77" height="43" alt="Harps Lingerie" />
+                        </a>
+                        <a href="https://mangmachine.com/" target="_blank" rel="noopener noreferrer">
+                            <img src="images/logos/mangmachine.png" width="46" height="46" alt="MangMachine" />
+                        </a>
+                    </div>
+            </div>
         </section>
     </main>
 </body>
