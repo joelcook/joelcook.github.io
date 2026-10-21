@@ -606,8 +606,20 @@
             max-width: 830px;
         }
 
-        .project-text p + p {
+        .project-text p + p,
+        .project-text ul + p {
             margin-top: 12px;
+        }
+
+        .project-text ul {
+            font-size: 17px;
+            margin: 10px 0 0;
+            max-width: 830px;
+            padding-left: 20px;
+        }
+
+        .project-text li + li {
+            margin-top: 2px;
         }
 
         .band {
@@ -740,6 +752,7 @@
 
         @media (max-width: 720px) {
             .project p,
+            .project-text ul,
             .writing ul,
             .freelance-intro {
                 font-size: 16px;
@@ -888,8 +901,15 @@
                 <div class="project">
                     <a href="https://chat.riverboard.org"><img src="images/thumb-riverguide.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
-                    <p><a href="https://chat.riverboard.org">RiverGuide</a> is the college’s agentic RAG advisor, rebuilt on the architecture behind <a href="https://america.gov">America.gov</a>: no vector database and no compiled knowledge base, just a model that plans its own searches and reads the college’s 2,400 official pages over up to eight tool-calling steps, against a field-weighted BM25 index on Cloudflare D1 that a crawler refreshes nightly. Personal data never leaves the student’s device: National Design Studio’s <a href="https://github.com/nationaldesignstudio/rampart">Rampart Edge</a> runs an on-device ONNX model and checksum validators in a Web Worker, blocking names, addresses, and ID numbers before a request is ever built. Answers stream from a Cloudflare Worker through a link guard that holds every URL until it checks out against the college’s own pages or that turn’s search results, with HMAC-signed chat history, a 15 ms answer cache, and no logging of what students type. The model is one config setting (a 27B Qwen on our own RTX 4090 with no per-token bill, or Grok or Claude), and every prompt, tool, or model change is graded against a 53-question golden set.</p>
-                    <p><a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">Version one</a> handled 9,000+ student chats a week on Microsoft Copilot Studio and cost $47,000 a year less than the vendor bot it replaced. It was built on Andrej Karpathy’s <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki</a> idea: a nightly pipeline scraped the official pages into immutable evidence, then compiled two layers from it, a 73-page source-cited wiki for explanations and an 11-table SQLite projection of every fact a student could be hurt by getting wrong (1,175 courses, 228 programs, 124 dated deadlines, tuition, fees, and aid). A linter failed the build if a date or dollar amount slipped into the wiki prose, so hard facts could only come from a database lookup. Copilot Studio reached it all through an MCP server of 12 read-only tools on Azure Container Apps, which hot-loaded fresh data within ten minutes of each refresh, and a 53-case eval failed any answer that got the tuition right without making the required lookup.</p>
+                    <p><a href="https://chat.riverboard.org">RiverGuide</a> is the college’s AI advisor, rebuilt on the architecture behind <a href="https://america.gov">America.gov</a>. There’s no vector database: the model plans its own searches over a BM25 index of the college’s 2,400 official pages, refreshed nightly, and reads what it finds before it answers.</p>
+                    <ul>
+                        <li><a href="https://github.com/nationaldesignstudio/rampart">Rampart Edge</a> blocks names and ID numbers on the student’s device, before anything is sent.</li>
+                        <li>Every link is checked against the college’s own pages before a student sees it.</li>
+                        <li>Nothing students type is logged.</li>
+                        <li>The model is one setting: a 27B Qwen on our own RTX 4090, Grok, or Claude.</li>
+                        <li>Every prompt, tool, or model change is graded against a 53-question golden set.</li>
+                    </ul>
+                    <p><a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">Version one</a> handled 9,000+ student chats a week on Microsoft Copilot Studio and cost $47,000 a year less than the vendor bot it replaced. It followed Andrej Karpathy’s <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki</a> idea: a source-cited wiki for explanations, and a SQLite database for dates and dollar amounts, so hard facts came only from a lookup.</p>
                     </div>
                 </div>
 
