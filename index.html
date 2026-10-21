@@ -622,6 +622,10 @@
             margin-top: 2px;
         }
 
+        .project-text .project-name + p {
+            margin-top: 4px;
+        }
+
         .band {
             background: #eeeeee;
             padding: 40px 0 48px;
@@ -901,7 +905,8 @@
                 <div class="project">
                     <a href="https://chat.riverboard.org"><img src="images/thumb-riverguide.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
-                    <p><a href="https://chat.riverboard.org">RiverGuide</a> is the college’s AI advisor, rebuilt on the architecture behind <a href="https://america.gov">America.gov</a>. There’s no vector database: the model plans its own searches over a BM25 index of the college’s 2,400 official pages, refreshed nightly, and reads what it finds before it answers.</p>
+                    <p class="project-name"><strong><a href="https://chat.riverboard.org">RiverGuide</a></strong></p>
+                    <p>Answers students’ questions from the college’s 2,400 official pages. Rebuilt on the architecture behind <a href="https://america.gov">America.gov</a>, it uses no vector database: the model plans its own searches over a BM25 index refreshed nightly, and reads what it finds before it answers.</p>
                     <ul>
                         <li><a href="https://github.com/nationaldesignstudio/rampart">Rampart Edge</a> blocks names and ID numbers on the student’s device, before anything is sent.</li>
                         <li>Every link is checked against the college’s own pages before a student sees it.</li>
@@ -915,32 +920,50 @@
 
                 <div class="project">
                     <a href="https://www.irsc.edu/"><img src="images/thumb-irsc-edu.jpg" width="240" height="240" alt="" /></a>
-                    <p>I built <a href="https://www.irsc.edu/">irsc.edu</a> from scratch: WordPress and PHP on Pantheon, with custom plugins that connect the college’s other systems. Emergency alerts from Everbridge post straight to a sitewide banner, events flow in from Element451 and RiverLife, degree requirements come from the official catalog, and an AI plugin turns PDFs into accessible web pages. It serves about 250,000 visitors a month, and I cut its hosting bill by <a href="/blog/eighty-four-percent-less-on-hosting/">84%</a>.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://www.irsc.edu/">irsc.edu</a></strong></p>
+                    <p>Built from scratch in WordPress and PHP on Pantheon, with custom plugins that connect the college’s other systems. Emergency alerts from Everbridge post straight to a sitewide banner, events flow in from Element451 and RiverLife, degree requirements come from the official catalog, and an AI plugin turns PDFs into accessible web pages. It serves about 250,000 visitors a month, and I cut its hosting bill by <a href="/blog/eighty-four-percent-less-on-hosting/">84%</a>.</p>
+                    </div>
                 </div>
 
                 <div class="project">
                     <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/"><img src="images/thumb-classifier.jpg" width="240" height="240" alt="" /></a>
-                    <p>The <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">Workday-to-Banner classifier</a> migrated nearly 1 million undocumented or mislabeled document records (946,091) into Banner, saving the college over $600,000 compared with an outside consultant’s quote. Names and IDs are masked before matching, uncertain files go to an approved fallback instead of a guess, and an optional local model only ever sees redacted input.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">Workday-to-Banner classifier</a></strong></p>
+                    <p>Migrated nearly 1 million undocumented or mislabeled document records (946,091) into Banner, saving the college over $600,000 compared with an outside consultant’s quote. Names and IDs are masked before matching, uncertain files go to an approved fallback instead of a guess, and an optional local model only ever sees redacted input.</p>
+                    </div>
                 </div>
 
                 <div class="project">
                     <a href="https://riverboard.org"><img src="images/thumb-riverboard.jpg" width="240" height="240" alt="" /></a>
-                    <p><a href="https://riverboard.org">RiverBoard</a> is our team’s task board, built with no dependencies: Python’s standard library, SQLite, and plain JavaScript. Teammates connect Claude to it over MCP, and every project carries an estimated-savings figure.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://riverboard.org">RiverBoard</a></strong></p>
+                    <p>Tracks our team’s work with no dependencies: just Python’s standard library, SQLite, and plain JavaScript. Teammates connect Claude to it over MCP, and every project carries an estimated-savings figure.</p>
+                    </div>
                 </div>
 
                 <div class="project">
                     <a href="https://apps.apple.com/us/app/ballad-health/id1192749804"><img src="images/thumb-ballad-health.jpg" width="240" height="240" alt="" /></a>
-                    <p>The <a href="https://apps.apple.com/us/app/ballad-health/id1192749804">Ballad Health app</a> is the patient app for Ballad Health, built in React Native for iOS and Android. Epic’s MyChart SDK is embedded natively and bridged into React Native, so patients can book appointments, pay bills, and see lab results in one app. Built at Modea, under HIPAA.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://apps.apple.com/us/app/ballad-health/id1192749804">Ballad Health app</a></strong></p>
+                    <p>Built Ballad Health’s patient app in React Native for iOS and Android, at Modea and under HIPAA. Epic’s MyChart SDK is embedded natively and bridged into React Native, so patients can book appointments, pay bills, and see lab results in one app.</p>
+                    </div>
                 </div>
 
                 <div class="project">
                     <a href="https://www.flosports.tv/"><img src="images/thumb-flosports.jpg" width="240" height="240" alt="" /></a>
-                    <p>At <a href="https://www.flosports.tv/">FloSports</a> I was on the sports data team, building the live stats engine behind the broadcasts: the on-screen scoreboard, game clock, and in-game graphics. Every update was written to Google Cloud, where the web and mobile apps pulled their live scores and stats from. It powered thousands of games, watched by millions of fans.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://www.flosports.tv/">FloSports live stats</a></strong></p>
+                    <p>Built the live stats engine behind FloSports broadcasts on the sports data team: the on-screen scoreboard, game clock, and in-game graphics. Every update was written to Google Cloud, where the web and mobile apps pulled their live scores and stats from. It powered thousands of games, watched by millions of fans.</p>
+                    </div>
                 </div>
 
                 <div class="project">
                     <a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US"><img src="images/thumb-lionnation.jpg" width="240" height="240" alt="" /></a>
-                    <p>At <a href="https://fanhero.com/">FanHero</a> I went from intern to mobile developer and helped launch <a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US">LionNation</a>, Orlando City SC’s official app, to 15k+ downloads on iOS and Android. Built in Flutter with an Elixir backend, it let fans read team news, buy tickets, and watch games live.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US">LionNation</a></strong></p>
+                    <p>Helped launch Orlando City SC’s official app to 15k+ downloads on iOS and Android, after going from intern to mobile developer at <a href="https://fanhero.com/">FanHero</a>. Built in Flutter with an Elixir backend, it let fans read team news, buy tickets, and watch games live.</p>
+                    </div>
                 </div>
             </div>
         </section>
