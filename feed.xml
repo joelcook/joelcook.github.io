@@ -7,6 +7,13 @@
         <language>en-us</language>
         <atom:link href="https://joelcook.github.io/feed.xml" rel="self" type="application/rss+xml" />
         <item>
+            <title>Search the site, don’t copy it</title>
+            <link>https://joelcook.github.io/blog/search-the-site-dont-copy-it/</link>
+            <description>RiverGuide 2 searches the college’s own pages. Embeddings found more abbreviations and still lost. And Cloudflare’s free plan was throwing the answers away.</description>
+            <pubDate>Wed, 21 Oct 2026 12:00:00 -0400</pubDate>
+            <guid isPermaLink="true">https://joelcook.github.io/blog/search-the-site-dont-copy-it/</guid>
+        </item>
+        <item>
             <title>Consultants wanted $600,000 to sort our files</title>
             <link>https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</link>
             <description>Nearly a million document records, a move from Workday to Banner, and a quote with a lot of zeros. We passed, and I built the classifier myself.</description>

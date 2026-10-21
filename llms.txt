@@ -16,7 +16,7 @@ Earlier, Joel shipped Ballad Health's HIPAA-compliant patient app on Epic's MyCh
 
 ## Projects
 
-- [RiverGuide](https://chat.riverboard.org): The college's AI advisor. It searches about 2,400 official college pages, links every answer to its source, blocks personal information in the browser, runs on a local model, and is gated by a 53-question test set. Version one handled 9,000+ student chats a week and cost $47,000 a year less than the vendor bot it replaced.
+- [RiverGuide](https://chat.riverboard.org): The college's AI advisor. It searches about 2,400 official college pages, links every answer to its source, blocks personal information in the browser, runs on a local model, and is gated by a 54-question test set. The rebuild is written up in [Search the site, don’t copy it](https://joelcook.github.io/blog/search-the-site-dont-copy-it/). Version one handled 9,000+ student chats a week and cost $47,000 a year less than the vendor bot it replaced.
 - [Workday-to-Banner classifier](https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/): Moved 946,091 document records into Banner with names and IDs masked before matching, uncertain records sent to an approved fallback, and every reviewer change audited.
 - [irsc.edu](https://www.irsc.edu/): The college's main website, built from scratch on WordPress and PHP with custom plugins for emergency alerts, events, the course catalog, and AI-converted accessible PDFs. Hosting costs were cut by 84%.
 - [RiverBoard](https://riverboard.org): A dependency-free team task board with Claude connected over MCP.
@@ -24,6 +24,7 @@ Earlier, Joel shipped Ballad Health's HIPAA-compliant patient app on Epic's MyCh
 
 ## Writing
 
+- [Search the site, don’t copy it](https://joelcook.github.io/blog/search-the-site-dont-copy-it/)
 - [Consultants wanted $600,000 to sort our files](https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/)
 - [84% off the hosting bill, and it's still too much](https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/)
 - [The morning our giving site became a casino](https://joelcook.github.io/blog/the-patch-that-came-too-late/)

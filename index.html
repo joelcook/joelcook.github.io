@@ -906,13 +906,13 @@
                     <a href="https://chat.riverboard.org"><img src="images/thumb-riverguide.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="https://chat.riverboard.org">RiverGuide</a></strong></p>
-                    <p>Answers students’ questions from the college’s 2,400 official pages. Rebuilt on the architecture behind <a href="https://america.gov">America.gov</a>, it uses no vector database: the model plans its own searches over a BM25 index refreshed nightly, and reads what it finds before it answers.</p>
+                    <p>Answers students’ questions from the college’s 2,400 official pages. <a href="/blog/search-the-site-dont-copy-it/">Rebuilt</a> on the architecture behind <a href="https://america.gov">America.gov</a>, it uses no vector database: the model plans its own searches over a BM25 index refreshed nightly, and reads what it finds before it answers.</p>
                     <ul>
                         <li><a href="https://github.com/nationaldesignstudio/rampart">Rampart Edge</a> blocks names and ID numbers on the student’s device, before anything is sent.</li>
                         <li>Every link is checked against the college’s own pages before a student sees it.</li>
                         <li>Nothing students type is logged.</li>
                         <li>The model is one setting: a 27B Qwen on our own RTX 4090, Grok, or Claude.</li>
-                        <li>Every prompt, tool, or model change is graded against a 53-question golden set.</li>
+                        <li>Every prompt, tool, or model change is graded against a 54-question golden set.</li>
                     </ul>
                     <p><a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">Version one</a> handled 9,000+ student chats a week on Microsoft Copilot Studio and cost $47,000 a year less than the vendor bot it replaced. It followed Andrej Karpathy’s <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki</a> idea: a source-cited wiki for explanations, and a SQLite database for dates and dollar amounts, so hard facts came only from a lookup.</p>
                     </div>
@@ -1048,6 +1048,7 @@
             <div class="writing">
             <h2 class="section-heading" id="writing-title"><a href="/blog/">writing</a></h2>
             <ul>
+                <li><time datetime="2026-10-21">Oct 2026</time> <a href="/blog/search-the-site-dont-copy-it/">Search the site, don’t copy it</a></li>
                 <li><time datetime="2026-09-12">Sep 2026</time> <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">Consultants wanted $600,000 to sort our files</a></li>
                 <li><time datetime="2026-09-12">Sep 2026</time> <a href="/blog/eighty-four-percent-less-on-hosting/">84% off the hosting bill, and it’s still too much</a></li>
                 <li><time datetime="2026-07-23">Jul 2026</time> <a href="/blog/the-patch-that-came-too-late/">The morning our giving site became a casino</a></li>

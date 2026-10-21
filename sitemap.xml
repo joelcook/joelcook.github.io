@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://joelcook.github.io/</loc>
-        <lastmod>2026-10-20</lastmod>
+        <lastmod>2026-10-21</lastmod>
     </url>
     <url>
         <loc>https://joelcook.github.io/blog/</loc>
-        <lastmod>2026-10-06</lastmod>
+        <lastmod>2026-10-21</lastmod>
+    </url>
+    <url>
+        <loc>https://joelcook.github.io/blog/search-the-site-dont-copy-it/</loc>
+        <lastmod>2026-10-21</lastmod>
     </url>
     <url>
         <loc>https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</loc>
