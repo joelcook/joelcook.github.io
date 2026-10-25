@@ -10,49 +10,49 @@
         <atom:link href="https://joelcook.github.io/feed.xml" rel="self" type="application/rss+xml" />
         <atom:link href="https://www.linkedin.com/in/joelcook1/" rel="me" />
         <item>
-            <title>Embeddings lost, so I trained one</title>
+            <title>Search: 48% more accurate, 26% faster, 29% cheaper</title>
             <link>https://joelcook.github.io/blog/embeddings-lost-so-i-trained-one/</link>
-            <description>A stock embedding model tied keyword search and was twice as slow. So I trained my own on one RTX 4090. It finds answers for half again as many real student questions, and RiverGuide answers with a third fewer model calls.</description>
+            <description>I trained a search model for RiverGuide and measured it against the keyword search it replaced, on 523 real student questions and RiverGuide’s 54-question test.</description>
             <author>joeltcook93@gmail.com (Joel Cook)</author>
             <pubDate>Sat, 24 Oct 2026 12:00:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/embeddings-lost-so-i-trained-one/</guid>
         </item>
         <item>
-            <title>Search the site, don’t copy it</title>
+            <title>RiverGuide 2 searches the college’s own 2,389 pages</title>
             <link>https://joelcook.github.io/blog/search-the-site-dont-copy-it/</link>
-            <description>RiverGuide 2 searches the college’s own pages. Embeddings found more abbreviations and still lost. And Cloudflare’s free plan was throwing the answers away.</description>
+            <description>One copy of the facts instead of a wiki. A $5 Cloudflare plan took the first live score from 14 to 41 of 54, and off-the-shelf embeddings tied keyword search.</description>
             <author>joeltcook93@gmail.com (Joel Cook)</author>
             <pubDate>Wed, 21 Oct 2026 12:00:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/search-the-site-dont-copy-it/</guid>
         </item>
         <item>
-            <title>Consultants wanted $600,000 to sort our files</title>
+            <title>946,091 document records sorted in-house, not by a $600,000 contract</title>
             <link>https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</link>
-            <description>Nearly a million document records, a move from Workday to Banner, and a quote with a lot of zeros. We passed, and I built the classifier myself.</description>
+            <description>Every document record moved from Workday to Banner by rules the record owners signed off on. When the evidence conflicted, the record went to Legacy instead of a guess.</description>
             <author>joeltcook93@gmail.com (Joel Cook)</author>
             <pubDate>Sat, 12 Sep 2026 12:00:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/six-hundred-thousand-dollars-and-a-document-classifier/</guid>
         </item>
         <item>
-            <title>84% off the hosting bill, and it’s still too much</title>
+            <title>Hosting: $50,000 down to $8,000</title>
             <link>https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/</link>
-            <description>$50k became $8k for a site serving 250k visitors a month. Most people would take the win. I wanted to go further!</description>
+            <description>84% off the bill for a website with 250,000 visitors a month. The next step, moving it on premises, isn’t approved yet.</description>
             <author>joeltcook93@gmail.com (Joel Cook)</author>
             <pubDate>Sat, 12 Sep 2026 11:00:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/eighty-four-percent-less-on-hosting/</guid>
         </item>
         <item>
-            <title>The morning our giving site became a casino</title>
+            <title>Our giving site was hacked. A leftover API token kept the attacker in.</title>
             <link>https://joelcook.github.io/blog/the-patch-that-came-too-late/</link>
-            <description>A phone call, a giving site turned casino, and an attacker who could still walk right back in after the patch.</description>
+            <description>The patch and a new hosting password didn’t lock the attacker out. Revoking one full-access API token did.</description>
             <author>joeltcook93@gmail.com (Joel Cook)</author>
             <pubDate>Thu, 23 Jul 2026 21:15:00 -0400</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/the-patch-that-came-too-late/</guid>
         </item>
         <item>
-            <title>Apparently, students do want a chatbot</title>
+            <title>RiverGuide: 9,000+ chats a week, $47,000 a year less</title>
             <link>https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/</link>
-            <description>$47k a year cheaper. More than 9,000 chats a week. And it all started with a bot that made students guess the magic words.</description>
+            <description>The college’s student assistant answers in students’ own words, looks up every fact that changes, and is graded on 53 test cases.</description>
             <author>joeltcook93@gmail.com (Joel Cook)</author>
             <pubDate>Tue, 23 Jun 2026 13:56:00 +0000</pubDate>
             <guid isPermaLink="true">https://joelcook.github.io/blog/the-chatbot-that-wasnt-allowed-to-guess/</guid>

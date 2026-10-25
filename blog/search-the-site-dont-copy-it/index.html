@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search the site, don’t copy it — Joel Cook</title>
-    <meta name="description" content="RiverGuide 2 searches the college’s own pages. Embeddings found more abbreviations and still lost. And Cloudflare’s free plan was throwing the answers away." />
+    <title>RiverGuide 2 searches the college’s own 2,389 pages — Joel Cook</title>
+    <meta name="description" content="One copy of the facts instead of a wiki. A $5 Cloudflare plan took the first live score from 14 to 41 of 54, and off-the-shelf embeddings tied keyword search." />
     <meta name="author" content="Joel Cook" />
     <link rel="canonical" href="https://joelcook.github.io/blog/search-the-site-dont-copy-it/" />
     <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
@@ -12,17 +12,17 @@
     <link rel="me" href="mailto:joeltcook93@gmail.com" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Joel Cook" />
-    <meta property="og:title" content="Search the site, don’t copy it" />
-    <meta property="og:description" content="RiverGuide 2 searches the college’s own pages. Embeddings found more abbreviations and still lost. And Cloudflare’s free plan was throwing the answers away." />
+    <meta property="og:title" content="RiverGuide 2 searches the college’s own 2,389 pages" />
+    <meta property="og:description" content="One copy of the facts instead of a wiki. A $5 Cloudflare plan took the first live score from 14 to 41 of 54, and off-the-shelf embeddings tied keyword search." />
     <meta property="og:url" content="https://joelcook.github.io/blog/search-the-site-dont-copy-it/" />
     <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
     <meta property="article:published_time" content="2026-10-21" />
     <meta property="article:author" content="https://www.linkedin.com/in/joelcook1/" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Search the site, don’t copy it" />
-    <meta name="twitter:description" content="RiverGuide 2 searches the college’s own pages. Embeddings found more abbreviations and still lost. And Cloudflare’s free plan was throwing the answers away." />
+    <meta name="twitter:title" content="RiverGuide 2 searches the college’s own 2,389 pages" />
+    <meta name="twitter:description" content="One copy of the facts instead of a wiki. A $5 Cloudflare plan took the first live score from 14 to 41 of 54, and off-the-shelf embeddings tied keyword search." />
     <meta name="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Search the site, don’t copy it", "description": "RiverGuide 2 searches the college’s own pages. Embeddings found more abbreviations and still lost. And Cloudflare’s free plan was throwing the answers away.", "url": "https://joelcook.github.io/blog/search-the-site-dont-copy-it/", "datePublished": "2026-10-21", "author": {"@type": "Person", "@id": "https://joelcook.github.io/#person", "name": "Joel Cook", "url": "https://joelcook.github.io/", "email": "joeltcook93@gmail.com", "sameAs": ["https://www.linkedin.com/in/joelcook1/", "https://github.com/joelcook", "https://x.com/JoelCook441928"]}}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "RiverGuide 2 searches the college’s own 2,389 pages", "description": "One copy of the facts instead of a wiki. A $5 Cloudflare plan took the first live score from 14 to 41 of 54, and off-the-shelf embeddings tied keyword search.", "url": "https://joelcook.github.io/blog/search-the-site-dont-copy-it/", "datePublished": "2026-10-21", "author": {"@type": "Person", "@id": "https://joelcook.github.io/#person", "name": "Joel Cook", "url": "https://joelcook.github.io/", "email": "joeltcook93@gmail.com", "sameAs": ["https://www.linkedin.com/in/joelcook1/", "https://github.com/joelcook", "https://x.com/JoelCook441928"]}}</script>
     <style>
         :root {
             --text: #333333;
@@ -211,6 +211,19 @@
 
         .byline { color: #707070; font-weight: 400; }
         .standfirst { font-style: normal; }
+        .kpis { display: flex; gap: 16px; margin: 28px 0 8px; flex-wrap: wrap; }
+        .kpi { flex: 1 1 180px; border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; }
+        .kpi p { margin: 0; }
+        .kpi-value { font-size: 40px; font-weight: 700; line-height: 1.1; color: #2a78d6; }
+        .kpi-label { font-size: 20px; font-weight: 700; }
+        .kpi-detail { font-size: 15px; color: #6b6b6b; margin-top: 4px; }
+        .chart-title { font-size: 16px; color: #6b6b6b; margin: 0 0 6px; }
+        .chart { width: 100%; height: auto; display: block; margin: 0 0 8px; }
+        .chart-label, .chart-value { font-family: sans-serif; font-size: 17px; fill: #333333; }
+        .compare { width: 100%; border-collapse: collapse; font-size: 17px; margin: 8px 0 12px; }
+        .compare th, .compare td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
+        .compare th { font-size: 15px; color: #6b6b6b; font-weight: 700; }
+        .method { font-size: 15px; color: #6b6b6b; }
     </style>
 </head>
 <body>
@@ -218,25 +231,29 @@
         <a class="backlink" href="/">← Joel Cook</a>
         <hr class="top-rule" />
         <article>
-            <h1>Search the site, don’t copy it</h1>
-            <p class="standfirst">RiverGuide 2 searches the college’s own pages. Embeddings found more abbreviations and still lost. And Cloudflare’s free plan was throwing the answers away.</p>
-            <p class="byline"><time datetime="2026-10-21">21 Oct, 2026</time></p>
+            <h1>RiverGuide 2 searches the college’s own 2,389 pages</h1>
+            <p class="standfirst">One copy of the facts instead of a wiki. A $5 Cloudflare plan took the first live score from 14 to 41 of 54, and off-the-shelf embeddings tied keyword search.</p>
+            <p class="byline"><time datetime="2026-10-21">21 Oct, 2026</time> · updated <time datetime="2026-10-24">24 Oct, 2026</time></p>
 
-            <p><a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">Version one</a> of RiverGuide keeps a copy. A wiki for the explanations, a database for the dates and the dollar amounts, and a rule that a right answer still fails if the bot never looked it up. That one handles more than <strong>9,000 chats a week</strong>, and it costs <strong>$47,000 a year</strong> less than the vendor bot it replaced. Those numbers belong to that system. This post is about the next one.</p>
-            <p>The wiki was the right fight, and then it became a second website. Every time the college changed a page, the copy had to change too. Andrej Karpathy’s <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki</a> is a wonderful way to keep a pile of notes. A college already has a website. <a href="https://america.gov">America.gov</a> does not compile 29,000 government sites into a private encyclopedia. It searches them.</p>
-            <p><a href="https://x.com/as400495">@as400495</a> showed me the way. Scrape the site. Index the pages. Block personal information on the device before anything is sent.</p>
-            <p>So RiverGuide 2 keeps one copy of the facts: the college’s own pages. The 21 October crawl held <strong>2,389</strong> of them. The index is ordinary keyword search, BM25, the same family of index America.gov uses. No vector database. The model gets three tools. It can search, read a page, and look up a course section. It writes its own searches, reads what comes back, and the answer links the page. If a page is wrong, the fix is on irsc.edu, and the next crawl picks it up. I don’t keep a second copy of the truth.</p>
-            <p>Two checks sit in front of that. <a href="https://github.com/nationaldesignstudio/rampart">Rampart Edge</a>, from the National Design Studio, runs in the student’s browser and blocks names, street addresses, and ID numbers before a request is built. The college’s own phone numbers and addresses are allowed through. A link reaches the student only if it is a real college page, or it came back from a search on that turn. The server does not keep the conversation, and the logs do not keep what students type.</p>
-            <p>It is up at <a href="https://chat.riverboard.org">chat.riverboard.org</a>. It has not replaced version one. I am not going to hang 9,000 chats a week on a system that has not taken them over.</p>
-            <p>The test grew by one question, to <strong>54</strong>. Twenty-five are hard facts, eighteen are explanations, six are things the college should refuse, and five are cases where the sources disagree. Forty-six of them fail if the answer did not come from a tool. I don’t publish the questions. A model that has memorized the test is not a model that passed it.</p>
-            <p>The first time I graded the live preview, it passed <strong>14 of 54</strong>. Most of the misses were empty. No error, no tool call, just silence. Cloudflare’s free plan stops a Worker after 10 milliseconds of CPU. Reading a model’s stream and checking the links takes a few hundred milliseconds, sometimes two seconds. The model had answered. The Worker was killed while it was still reading.</p>
-            <p>The paid plan is five dollars a month, and it allows 30 seconds. The next full run passed <strong>41 of 54</strong>. Eight of the misses were still blank. The Worker already online had been uploaded under the old rules, and it was still dying at 50 milliseconds. Changing the plan does not rewrite a Worker that is already deployed. I set the limit to 30 seconds, deployed again, and those blank questions came back with answers.</p>
-            <p>Then I tried the upgrade everyone reaches for. A small embedding model, Qwen’s 0.6B, on the same RTX 4090, with the same 27B Qwen writing the answers. Only the search changed.</p>
-            <p>On our own machine, one question at a time, they tied. Keyword search passed <strong>45 of 54</strong>, with a median of 6.8 seconds. Embeddings passed <strong>44 of 54</strong>, at 14.8 seconds. Three questions flipped, on grading details. That’s noise. The live preview’s 41 of 54 is a different run, with the blanks above still in it.</p>
-            <p>Abbreviations are where the small model looks smarter. Students type RN, BSN, IT. The pages often don’t spell those out, and a keyword index can’t guess. Across 75 abbreviations, keyword search had the right page in the top five for <strong>51</strong>. The embedding model had <strong>65</strong>. It already knows what the letters mean.</p>
-            <p>That was not enough to ship. The test questions are written out in full, so keyword search already finds them. Part of the time gap is the test harness doing the math in plain Python. A real vector index would be faster. The answers still tied. America.gov doesn’t use embeddings either. A strong model writes a better query, and a plain index is enough. The 27B on our own machine doesn’t always do that. It searched “IT support” when the page says “information technology.” A line in the prompt tells it to spell the acronym out. A bigger hosted model may not need the line. I’ll grade that when it is the model in front of students. I am not going to keep a second search system because the first one lost a tie.</p>
-            <p>Version one taught me to make the model look things up. This one taught me to stop keeping another copy of the website, and to read a score before I believe it. Fourteen out of fifty-four was not a bad model. It was a 10 millisecond budget.</p>
-            <p>The preview is at <a href="https://chat.riverboard.org">chat.riverboard.org</a>. <a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">Version one</a>, the one with the traffic, is the other post.</p>
+<div class="kpis"><div class="kpi"><p class="kpi-value">2,389</p><p class="kpi-label">college pages</p><p class="kpi-detail">searched directly, crawled nightly</p></div><div class="kpi"><p class="kpi-value">3</p><p class="kpi-label">tools</p><p class="kpi-detail">search, read a page, look up a class</p></div><div class="kpi"><p class="kpi-value">54</p><p class="kpi-label">test questions</p><p class="kpi-detail">46 fail without a lookup</p></div></div>
+<h2>What changed</h2>
+<ul><li>Version one keeps a wiki copy of the college’s site. Every page change had to be copied.</li><li>RiverGuide 2 searches the college’s own pages. If a page is wrong, it’s fixed on irsc.edu and the next crawl picks it up.</li><li>Keyword search (BM25), the same kind America.gov uses. No vector database.</li><li>Every answer links the page it came from.</li></ul>
+<h2>Privacy</h2>
+<ul><li>Rampart Edge, from the National Design Studio, blocks names, street addresses, and ID numbers in the student’s browser.</li><li>A link reaches the student only if it’s a real college page.</li><li>No conversation is kept, and the logs don’t keep what students type.</li></ul>
+<h2>The first live score</h2>
+<p class="chart-title">Test questions passed, of 54</p><svg class="chart" viewBox="0 0 700 96" role="img" aria-label="Test questions passed: 14 of 54 on the free plan, 41 of 54 on the $5 plan"><g><title>Free plan: 14 of 54</title><text x="0" y="27" class="chart-label" font-weight="400">Free plan</text><rect x="210" y="8" width="95.9" height="28" rx="4" fill="#a3a29b" /><text x="315.9" y="28" class="chart-value" font-weight="400">14 of 54</text></g><g><title>$5 plan: 41 of 54</title><text x="0" y="71" class="chart-label" font-weight="700">$5 plan</text><rect x="210" y="52" width="280.9" height="28" rx="4" fill="#2a78d6" /><text x="500.9" y="72" class="chart-value" font-weight="700">41 of 54</text></g></svg><ul><li>Cloudflare’s free plan stops a Worker after 10 ms of CPU. Checking an answer takes up to 2 seconds, so answers were thrown away.</li><li>The $5 plan allows 30 seconds: 41 of 54.</li><li>8 answers were still blank: the deployed Worker kept the old limit. Setting it to 30 seconds and redeploying fixed them.</li></ul>
+<h2>Keyword search vs. off-the-shelf embeddings</h2>
+<table class="compare">
+<thead><tr><th></th><th>Keyword search</th><th>Embeddings (Qwen 0.6B)</th></tr></thead>
+<tbody>
+<tr><td>Test questions passed</td><td>45 of 54</td><td>44 of 54</td></tr>
+<tr><td>Median answer time</td><td>6.8 s</td><td>14.8 s</td></tr>
+<tr><td>Abbreviations, right page in the top 5</td><td>51 of 75</td><td>65 of 75</td></tr>
+</tbody></table>
+<p>A tie on the test, slower, and better on abbreviations. Not enough to ship. <strong>Update, 24 October:</strong> a model trained on the college’s own pages <a href="/blog/embeddings-lost-so-i-trained-one/">did ship</a>.</p>
+<h2>Status</h2>
+<p>Live at <a href="https://chat.riverboard.org">chat.riverboard.org</a>. Version one still carries the traffic.</p>
+<p class="method"><strong>Notes.</strong> The test has 54 questions: 25 hard facts, 18 explanations, 6 refusals, and 5 conflicting sources. The questions aren’t published. The comparison ran on our own RTX 4090, one question at a time, with the same 27B Qwen writing every answer.</p>
         </article>
         <hr class="end-rule" />
         <footer class="colophon">
