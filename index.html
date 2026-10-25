@@ -703,6 +703,10 @@
             min-width: 76px;
         }
 
+        ul.freelance-intro {
+            padding-left: 22px;
+        }
+
         .freelance-intro {
             font-size: 17px;
             margin: 0 0 20px;
@@ -925,7 +929,12 @@
         <section aria-labelledby="bio-title">
             <h2 class="bio-heading" id="bio-title">bio</h2>
             <div class="bio-copy">
-                <p>Joel Cook is an AI architect at Indian River State College in Florida, building in-house the software a public college would usually rent. Joel’s AI work is built for private data: answers grounded in official sources, read-only access to systems of record, and personal information kept out of the models. Before IRSC, Joel built HIPAA-compliant patient software on Epic for Ballad Health.</p>
+                <p class="project-stats"><strong>$600k+</strong> in vendor costs cut</p>
+                <p>Joel Cook is an AI architect at Indian River State College in Florida. He builds in-house the software a public college would usually rent.</p>
+                <ul>
+                    <li><strong>Built for private data:</strong> answers come from official sources, access to systems of record is read-only, and personal information stays out of the models.</li>
+                    <li><strong>Before IRSC:</strong> HIPAA-compliant patient software on Epic for Ballad Health.</li>
+                </ul>
             </div>
         </section>
 
@@ -1036,7 +1045,13 @@
         <section class="band band-white" aria-labelledby="freelance-title">
             <div class="band-inner">
                 <h2 class="section-heading" id="freelance-title">freelance</h2>
-                <p class="freelance-intro">Launch sites I built as a freelancer with <a href="https://www.iconixinc.com/">Iconix Inc.</a>, a creative agency in Auburn Hills, Michigan, mostly for Stellantis brands. I owned the backend, infrastructure, and DevOps on AWS (Elastic Beanstalk, EC2, load balancing, databases, S3, and Auth0 sign-in) and built front end alongside Iconix’s designer and front-end developer. Tile art by Iconix.</p>
+                <p class="project-stats freelance-intro"><strong>15</strong> launch sites, mostly for Stellantis brands</p>
+                <p class="freelance-intro">Built as a freelancer with <a href="https://www.iconixinc.com/">Iconix Inc.</a>, a creative agency in Auburn Hills, Michigan.</p>
+                <ul class="freelance-intro">
+                    <li><strong>Backend and DevOps:</strong> mine, on AWS: Elastic Beanstalk, EC2, load balancing, databases, S3, and Auth0 sign-in.</li>
+                    <li><strong>Front end:</strong> built alongside Iconix’s designer and front-end developer.</li>
+                    <li><strong>Tile art:</strong> Iconix.</li>
+                </ul>
             </div>
             <div class="mosaic">
                 <div class="tile">
@@ -1092,19 +1107,43 @@
                 <h2 class="section-heading" id="pet-projects-title">pet projects</h2>
                 <div class="project">
                     <a href="https://github.com/joelcook/riverguide-retriever"><img src="images/thumb-retriever.jpg" width="240" height="240" alt="" /></a>
-                    <p><a href="https://github.com/joelcook/riverguide-retriever">RiverGuide Retriever</a> is Qwen3-Embedding-0.6B fine-tuned to find the college page a student means by RN, BSN, or rad tech. On 942 pages it never trained on, the right page is in the top 5 for 902 of them, against 631 for the BM25 index <a href="https://chat.riverboard.org">RiverGuide</a> runs. Abbreviations it had never seen: 67 of 75, against 51. On 523 real student questions it found an answer for 88%, against 59%. It <a href="/blog/embeddings-lost-so-i-trained-one/">went live</a> in RiverGuide on 24 October, where it searches first and Qwen answers with a third fewer model calls. <a href="https://huggingface.co/joeltcook/riverguide-retriever-full">On Hugging Face</a>.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://github.com/joelcook/riverguide-retriever">RiverGuide Retriever</a></strong></p>
+                    <p class="project-stats"><strong>88%</strong> of real questions answered, not 59% · <strong>902</strong> of 942 unseen pages found, not 631</p>
+                    <p>Qwen3-Embedding-0.6B, fine-tuned to find the college page a student means by RN, BSN, or rad tech.</p>
+                    <ul>
+                        <li><strong>New abbreviations:</strong> 67 of 75 found, against 51 for keyword search.</li>
+                        <li><strong>Live:</strong> in RiverGuide since 24 October. It searches first, and Qwen answers with a third fewer model calls (<a href="/blog/embeddings-lost-so-i-trained-one/">write-up</a>).</li>
+                        <li><strong>Free:</strong> on <a href="https://huggingface.co/joeltcook/riverguide-retriever-full">Hugging Face</a>.</li>
+                    </ul>
+                    </div>
                 </div>
                 <div class="project">
                     <a href="https://github.com/joelcook/swellsign"><img src="images/thumb-swell-sign.jpg" width="240" height="240" alt="" /></a>
-                    <p><a href="https://github.com/joelcook/swellsign">Swell Sign</a> is a lo-fi LED sign that shows live NOAA buoy data.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://github.com/joelcook/swellsign">Swell Sign</a></strong></p>
+                    <p>A lo-fi LED sign that shows live NOAA buoy data.</p>
+                    </div>
                 </div>
                 <div class="project">
                     <a href="https://chromewebstore.google.com/detail/kill-news-feed-linkedin/lahgmfnafklopfjkmbogadjlbbappkfm"><img src="images/thumb-killnewsfeed.jpg" width="240" height="240" alt="" /></a>
-                    <p><a href="https://chromewebstore.google.com/detail/kill-news-feed-linkedin/lahgmfnafklopfjkmbogadjlbbappkfm">Kill News Feed for LinkedIn</a> is a Chrome extension that removes LinkedIn’s news feed, so you can check messages without getting pulled into the scroll. Inspired by Neal Wu’s original for Facebook (<a href="https://github.com/joelcook/KillNewsFeed-LinkedIn">source</a>).</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://chromewebstore.google.com/detail/kill-news-feed-linkedin/lahgmfnafklopfjkmbogadjlbbappkfm">Kill News Feed for LinkedIn</a></strong></p>
+                    <p>A Chrome extension that removes LinkedIn’s news feed, so you can check messages without the scroll. Inspired by Neal Wu’s original for Facebook (<a href="https://github.com/joelcook/KillNewsFeed-LinkedIn">source</a>).</p>
+                    </div>
                 </div>
                 <div class="project">
                     <a href="https://github.com/joelcook/bento"><img src="images/thumb-bento.jpg" width="240" height="240" alt="" /></a>
-                    <p><a href="https://github.com/joelcook/bento">Bento</a> is a small native text editor in C that grew out of antirez’s <a href="https://github.com/antirez/kilo">kilo</a>. One source file builds both a raylib GUI and a terminal editor that draws with plain VT100 escapes, with tabs, a project sidebar, quick open, a command palette, session restore, and syntax highlighting for seven languages.</p>
+                    <div class="project-text">
+                    <p class="project-name"><strong><a href="https://github.com/joelcook/bento">Bento</a></strong></p>
+                    <p class="project-stats"><strong>1</strong> source file · <strong>2</strong> editors · <strong>7</strong> languages</p>
+                    <p>A small native text editor in C, grown from antirez’s <a href="https://github.com/antirez/kilo">kilo</a>.</p>
+                    <ul>
+                        <li><strong>Two editors from one file:</strong> a raylib GUI, and a terminal editor that draws with plain VT100 escapes.</li>
+                        <li><strong>Features:</strong> tabs, a project sidebar, quick open, a command palette, and session restore.</li>
+                        <li><strong>Syntax highlighting:</strong> seven languages.</li>
+                    </ul>
+                    </div>
                 </div>
             </div>
         </section>
