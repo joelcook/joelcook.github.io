@@ -36,4 +36,5 @@ Earlier, Joel shipped Ballad Health's HIPAA-compliant patient app on Epic's MyCh
 - [Email](mailto:joeltcook93@gmail.com)
 - [LinkedIn](https://www.linkedin.com/in/joelcook1/)
 - [GitHub](https://github.com/joelcook)
+- [Hugging Face](https://huggingface.co/joeltcook)
 - [X](https://x.com/JoelCook441928)
