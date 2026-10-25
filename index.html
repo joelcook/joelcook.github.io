@@ -592,6 +592,16 @@
             padding: 0 15px;
         }
 
+        .project-stats {
+            color: #6b6b6b;
+            margin: 2px 0 6px;
+        }
+
+        .project-stats strong {
+            color: #2a78d6;
+            font-size: 1.15em;
+        }
+
         .project {
             border-bottom: 1px solid #eeeeee;
             display: grid;
@@ -927,15 +937,16 @@
                     <a href="https://chat.riverboard.org"><img src="images/thumb-riverguide.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="https://chat.riverboard.org">RiverGuide</a></strong></p>
-                    <p>Answers students’ questions from the college’s 2,400 official pages. <a href="/blog/search-the-site-dont-copy-it/">Rebuilt</a> on the architecture behind <a href="https://america.gov">America.gov</a>, it uses no vector database: it searches with a small model <a href="/blog/embeddings-lost-so-i-trained-one/">we trained in-house</a> on the college’s own pages, re-indexed nightly, with BM25 keyword search behind it as the fallback, and the model reads what it finds before it answers.</p>
+                    <p class="project-stats"><strong>9,000+</strong> chats a week · <strong>$47,000</strong> a year less · <strong>48%</strong> more accurate search</p>
+                    <p>The college’s AI advisor. It answers from the college’s 2,400 official pages and links every answer to its source.</p>
                     <ul>
-                        <li><a href="https://github.com/nationaldesignstudio/rampart">Rampart Edge</a> blocks names and ID numbers on the student’s device, before anything is sent.</li>
-                        <li>Every link is checked against the college’s own pages before a student sees it.</li>
-                        <li>Nothing students type is logged.</li>
-                        <li>The model is one setting: a 27B Qwen on our own RTX 4090, Grok, or Claude.</li>
-                        <li>Every prompt, tool, or model change is graded against a 54-question golden set.</li>
+                        <li><strong>Search:</strong> a <a href="/blog/embeddings-lost-so-i-trained-one/">model we trained in-house</a>, 48% more accurate, 26% faster, and 29% cheaper than keyword search, which stays as the fallback.</li>
+                        <li><strong>Privacy:</strong> <a href="https://github.com/nationaldesignstudio/rampart">Rampart Edge</a> blocks names and ID numbers on the student’s device, and nothing students type is logged.</li>
+                        <li><strong>Links:</strong> every one is checked against the college’s pages before a student sees it.</li>
+                        <li><strong>Testing:</strong> every prompt, tool, or model change is graded on a <a href="/blog/search-the-site-dont-copy-it/">54-question test</a>.</li>
+                        <li><strong>Model:</strong> one setting. A 27B Qwen on our own RTX 4090, Grok, or Claude.</li>
                     </ul>
-                    <p><a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">Version one</a> handled 9,000+ student chats a week on Microsoft Copilot Studio and cost $47,000 a year less than the vendor bot it replaced. It followed Andrej Karpathy’s <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">LLM wiki</a> idea: a source-cited wiki for explanations, and a SQLite database for dates and dollar amounts, so hard facts came only from a lookup.</p>
+                    <p><a href="/blog/the-chatbot-that-wasnt-allowed-to-guess/">Version one</a> carries the 9,000+ chats a week on Microsoft Copilot Studio, with a source-cited wiki for explanations and a database for dates and dollar amounts.</p>
                     </div>
                 </div>
 
@@ -943,7 +954,14 @@
                     <a href="https://www.irsc.edu/"><img src="images/thumb-irsc-edu.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="https://www.irsc.edu/">irsc.edu</a></strong></p>
-                    <p>Built from scratch in WordPress and PHP on Pantheon, with custom plugins that connect the college’s other systems. Emergency alerts from Everbridge post straight to a sitewide banner, events flow in from Element451 and RiverLife, degree requirements come from the official catalog, and an AI plugin turns PDFs into accessible web pages. It serves about 250,000 visitors a month, and I cut its hosting bill by <a href="/blog/eighty-four-percent-less-on-hosting/">84%</a>.</p>
+                    <p class="project-stats"><strong>250,000</strong> visitors a month · <strong><a href="/blog/eighty-four-percent-less-on-hosting/">84%</a></strong> less on hosting</p>
+                    <p>The college’s website, built from scratch in WordPress and PHP on Pantheon.</p>
+                    <ul>
+                        <li>Emergency alerts from Everbridge post to a sitewide banner.</li>
+                        <li>Events flow in from Element451 and RiverLife.</li>
+                        <li>Degree requirements come from the official catalog.</li>
+                        <li>An AI plugin turns PDFs into accessible web pages.</li>
+                    </ul>
                     </div>
                 </div>
 
@@ -951,7 +969,13 @@
                     <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/"><img src="images/thumb-classifier.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">Workday-to-Banner classifier</a></strong></p>
-                    <p>Migrated nearly 1 million undocumented or mislabeled document records (946,091) into Banner, saving the college over $600,000 compared with an outside consultant’s quote. Names and IDs are masked before matching, uncertain files go to an approved fallback instead of a guess, and an optional local model only ever sees redacted input.</p>
+                    <p class="project-stats"><strong>946,091</strong> records moved · <strong>$600,000</strong> not spent</p>
+                    <p>Moved every document record from Workday into Banner, sorted by rules the record owners approved, instead of paying an outside consultant’s $600,000 quote.</p>
+                    <ul>
+                        <li>Names and IDs are masked before matching.</li>
+                        <li>Uncertain files go to an approved fallback, not a guess.</li>
+                        <li>An optional local model only ever sees redacted input.</li>
+                    </ul>
                     </div>
                 </div>
 
@@ -959,7 +983,12 @@
                     <a href="https://riverboard.org"><img src="images/thumb-riverboard.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="https://riverboard.org">RiverBoard</a></strong></p>
-                    <p>Tracks our team’s work with no dependencies: just Python’s standard library, SQLite, and plain JavaScript. Teammates connect Claude to it over MCP, and every project carries an estimated-savings figure.</p>
+                    <p class="project-stats"><strong>0</strong> dependencies</p>
+                    <p>Our team’s work tracker: Python’s standard library, SQLite, and plain JavaScript.</p>
+                    <ul>
+                        <li>Teammates connect Claude to it over MCP.</li>
+                        <li>Every project carries an estimated-savings figure.</li>
+                    </ul>
                     </div>
                 </div>
 
@@ -967,7 +996,12 @@
                     <a href="https://apps.apple.com/us/app/ballad-health/id1192749804"><img src="images/thumb-ballad-health.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="https://apps.apple.com/us/app/ballad-health/id1192749804">Ballad Health app</a></strong></p>
-                    <p>Built Ballad Health’s patient app in React Native for iOS and Android, at Modea and under HIPAA. Epic’s MyChart SDK is embedded natively and bridged into React Native, so patients can book appointments, pay bills, and see lab results in one app.</p>
+                    <p class="project-stats"><strong>iOS + Android</strong> · <strong>4.6</strong> stars</p>
+                    <p>Ballad Health’s patient app, built at Modea in React Native, under HIPAA.</p>
+                    <ul>
+                        <li>Patients book appointments, pay bills, and see lab results in one app.</li>
+                        <li>Epic’s MyChart SDK is embedded natively and bridged into React Native.</li>
+                    </ul>
                     </div>
                 </div>
 
@@ -975,7 +1009,12 @@
                     <a href="https://www.flosports.tv/"><img src="images/thumb-flosports.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="https://www.flosports.tv/">FloSports live stats</a></strong></p>
-                    <p>Built the live stats engine behind FloSports broadcasts on the sports data team: the on-screen scoreboard, game clock, and in-game graphics. Every update was written to Google Cloud, where the web and mobile apps pulled their live scores and stats from. It powered thousands of games, watched by millions of fans.</p>
+                    <p class="project-stats"><strong>Thousands</strong> of games · <strong>millions</strong> of fans</p>
+                    <p>The live stats engine behind FloSports broadcasts, built on the sports data team.</p>
+                    <ul>
+                        <li>The on-screen scoreboard, game clock, and in-game graphics.</li>
+                        <li>Every update went to Google Cloud, where the web and mobile apps pulled live scores and stats.</li>
+                    </ul>
                     </div>
                 </div>
 
@@ -983,7 +1022,12 @@
                     <a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US"><img src="images/thumb-lionnation.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="https://play.google.com/store/apps/details?id=com.ocsc.lionnation&amp;hl=en_US">LionNation</a></strong></p>
-                    <p>Helped launch Orlando City SC’s official app to 15k+ downloads on iOS and Android, after going from intern to mobile developer at <a href="https://fanhero.com/">FanHero</a>. Built in Flutter with an Elixir backend, it let fans read team news, buy tickets, and watch games live.</p>
+                    <p class="project-stats"><strong>15k+</strong> downloads</p>
+                    <p>Orlando City SC’s official app for iOS and Android, built in Flutter with an Elixir backend.</p>
+                    <ul>
+                        <li>Fans read team news, buy tickets, and watch games live.</li>
+                        <li>I went from intern to mobile developer at <a href="https://fanhero.com/">FanHero</a>.</li>
+                    </ul>
                     </div>
                 </div>
             </div>
