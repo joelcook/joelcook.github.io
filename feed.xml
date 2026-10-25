@@ -10,6 +10,14 @@
         <atom:link href="https://joelcook.github.io/feed.xml" rel="self" type="application/rss+xml" />
         <atom:link href="https://www.linkedin.com/in/joelcook1/" rel="me" />
         <item>
+            <title>Embeddings lost, so I trained one</title>
+            <link>https://joelcook.github.io/blog/embeddings-lost-so-i-trained-one/</link>
+            <description>A stock embedding model tied keyword search and was twice as slow. So I trained my own on one RTX 4090. It finds answers for half again as many real student questions, and RiverGuide answers with a third fewer model calls.</description>
+            <author>joeltcook93@gmail.com (Joel Cook)</author>
+            <pubDate>Sat, 24 Oct 2026 12:00:00 -0400</pubDate>
+            <guid isPermaLink="true">https://joelcook.github.io/blog/embeddings-lost-so-i-trained-one/</guid>
+        </item>
+        <item>
             <title>Search the site, don’t copy it</title>
             <link>https://joelcook.github.io/blog/search-the-site-dont-copy-it/</link>
             <description>RiverGuide 2 searches the college’s own pages. Embeddings found more abbreviations and still lost. And Cloudflare’s free plan was throwing the answers away.</description>

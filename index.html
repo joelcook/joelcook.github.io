@@ -920,7 +920,7 @@
                     <a href="https://chat.riverboard.org"><img src="images/thumb-riverguide.jpg" width="240" height="240" alt="" /></a>
                     <div class="project-text">
                     <p class="project-name"><strong><a href="https://chat.riverboard.org">RiverGuide</a></strong></p>
-                    <p>Answers students’ questions from the college’s 2,400 official pages. <a href="/blog/search-the-site-dont-copy-it/">Rebuilt</a> on the architecture behind <a href="https://america.gov">America.gov</a>, it uses no vector database: the model plans its own searches over a BM25 index refreshed nightly, and reads what it finds before it answers.</p>
+                    <p>Answers students’ questions from the college’s 2,400 official pages. <a href="/blog/search-the-site-dont-copy-it/">Rebuilt</a> on the architecture behind <a href="https://america.gov">America.gov</a>, it uses no vector database: it searches with a small model <a href="/blog/embeddings-lost-so-i-trained-one/">we trained in-house</a> on the college’s own pages, re-indexed nightly, with BM25 keyword search behind it as the fallback, and the model reads what it finds before it answers.</p>
                     <ul>
                         <li><a href="https://github.com/nationaldesignstudio/rampart">Rampart Edge</a> blocks names and ID numbers on the student’s device, before anything is sent.</li>
                         <li>Every link is checked against the college’s own pages before a student sees it.</li>
@@ -1041,7 +1041,7 @@
                 <h2 class="section-heading" id="pet-projects-title">pet projects</h2>
                 <div class="project">
                     <a href="https://github.com/joelcook/riverguide-retriever"><img src="images/thumb-retriever.jpg" width="240" height="240" alt="" /></a>
-                    <p><a href="https://github.com/joelcook/riverguide-retriever">RiverGuide Retriever</a> is Qwen3-Embedding-0.6B fine-tuned to find the college page a student means by RN, BSN, or rad tech. On 942 pages it never trained on, the right page is in the top 5 for 902 of them, against 631 for the BM25 index <a href="https://chat.riverboard.org">RiverGuide</a> runs. Abbreviations it had never seen: 67 of 75, against 51. The golden questions only moved from 18 to 19. It didn’t ship.</p>
+                    <p><a href="https://github.com/joelcook/riverguide-retriever">RiverGuide Retriever</a> is Qwen3-Embedding-0.6B fine-tuned to find the college page a student means by RN, BSN, or rad tech. On 942 pages it never trained on, the right page is in the top 5 for 902 of them, against 631 for the BM25 index <a href="https://chat.riverboard.org">RiverGuide</a> runs. Abbreviations it had never seen: 67 of 75, against 51. On 523 real student questions it found an answer for 88%, against 59%. It <a href="/blog/embeddings-lost-so-i-trained-one/">went live</a> in RiverGuide on 24 October, where it searches first and Qwen answers with a third fewer model calls. <a href="https://huggingface.co/joeltcook/riverguide-retriever-full">On Hugging Face</a>.</p>
                 </div>
                 <div class="project">
                     <a href="https://github.com/joelcook/swellsign"><img src="images/thumb-swell-sign.jpg" width="240" height="240" alt="" /></a>
@@ -1062,6 +1062,7 @@
             <div class="writing">
             <h2 class="section-heading" id="writing-title"><a href="/blog/">writing</a></h2>
             <ul>
+                <li><time datetime="2026-10-24">Oct 2026</time> <a href="/blog/embeddings-lost-so-i-trained-one/">Embeddings lost, so I trained one</a></li>
                 <li><time datetime="2026-10-21">Oct 2026</time> <a href="/blog/search-the-site-dont-copy-it/">Search the site, don’t copy it</a></li>
                 <li><time datetime="2026-09-12">Sep 2026</time> <a href="/blog/six-hundred-thousand-dollars-and-a-document-classifier/">Consultants wanted $600,000 to sort our files</a></li>
                 <li><time datetime="2026-09-12">Sep 2026</time> <a href="/blog/eighty-four-percent-less-on-hosting/">84% off the hosting bill, and it’s still too much</a></li>

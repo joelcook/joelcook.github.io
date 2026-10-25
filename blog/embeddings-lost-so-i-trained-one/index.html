@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Embeddings lost, so I trained one — Joel Cook</title>
+    <meta name="title" content="Embeddings lost, so I trained one" />
+    <meta name="description"
+        content="A stock embedding model tied keyword search and was twice as slow. So I trained my own on one RTX 4090. It finds answers for half again as many real student questions, and RiverGuide answers with a third fewer model calls." />
+    <meta name="author" content="Joel Cook" />
+    <link rel="canonical" href="https://joelcook.github.io/blog/embeddings-lost-so-i-trained-one/" />
+    <link rel="alternate" type="application/rss+xml" title="Joel Cook" href="https://joelcook.github.io/feed.xml" />
+    <link rel="me" href="https://www.linkedin.com/in/joelcook1/" />
+    <link rel="me" href="mailto:joeltcook93@gmail.com" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Joel Cook" />
+    <meta property="og:url" content="https://joelcook.github.io/blog/embeddings-lost-so-i-trained-one/" />
+    <meta property="og:title" content="Embeddings lost, so I trained one" />
+    <meta property="og:description"
+        content="A stock embedding model tied keyword search and was twice as slow. So I trained my own on one RTX 4090. It finds answers for half again as many real student questions, and RiverGuide answers with a third fewer model calls." />
+    <meta property="og:image" content="https://joelcook.github.io/images/me.jpeg" />
+    <meta property="article:published_time" content="2026-10-24" />
+    <meta property="article:modified_time" content="2026-10-24" />
+    <meta property="article:author" content="https://www.linkedin.com/in/joelcook1/" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:url" content="https://joelcook.github.io/blog/embeddings-lost-so-i-trained-one/" />
+    <meta property="twitter:title" content="Embeddings lost, so I trained one" />
+    <meta property="twitter:description"
+        content="A stock embedding model tied keyword search and was twice as slow. So I trained my own on one RTX 4090. It finds answers for half again as many real student questions, and RiverGuide answers with a third fewer model calls." />
+    <meta property="twitter:image" content="https://joelcook.github.io/images/me.jpeg" />
+
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Embeddings lost, so I trained one", "description": "A stock embedding model tied keyword search and was twice as slow. So I trained my own on one RTX 4090. It finds answers for half again as many real student questions, and RiverGuide answers with a third fewer model calls.", "url": "https://joelcook.github.io/blog/embeddings-lost-so-i-trained-one/", "datePublished": "2026-10-24", "dateModified": "2026-10-24", "image": "https://joelcook.github.io/images/me.jpeg", "author": {"@type": "Person", "@id": "https://joelcook.github.io/#person", "name": "Joel Cook", "url": "https://joelcook.github.io/", "email": "joeltcook93@gmail.com", "sameAs": ["https://www.linkedin.com/in/joelcook1/", "https://github.com/joelcook", "https://x.com/JoelCook441928"]}}</script>
+
+    <style>
+        :root {
+            --text: #333333;
+            --muted: #9a9a9a;
+            --rule: #b5b5b5;
+            --link: #0000ee;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            color-scheme: light;
+        }
+
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: var(--text);
+            font-family: sans-serif;
+            font-size: 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+        }
+
+        .wrap {
+            margin: 0 auto;
+            max-width: 760px;
+            padding: 0 28px;
+        }
+
+        .backlink {
+            display: block;
+            font-size: 17px;
+            padding: 30px 0 0;
+        }
+
+        .top-rule {
+            border: 0;
+            border-top: 1px solid var(--rule);
+            margin: 26px 0 0;
+        }
+
+        article {
+            padding: 34px 0 0;
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.08;
+            margin: 0 0 16px;
+        }
+
+        .standfirst {
+            color: #6f6f6f;
+            font-size: 21px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.35;
+            margin: 0 0 16px;
+        }
+
+        .byline {
+            color: #707070;
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0 0 34px;
+        }
+
+        article h2 {
+            color: #333333;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 1.15;
+            margin: 46px 0 16px;
+        }
+
+        article p {
+            margin: 0 0 18px;
+        }
+
+        article ul,
+        article ol {
+            margin: 0 0 18px;
+            padding-left: 28px;
+        }
+
+        article li {
+            margin: 6px 0;
+        }
+
+        code {
+            background: #f2f2f2;
+            border-radius: 3px;
+            font-size: 0.87em;
+            padding: 2px 5px;
+        }
+
+        pre {
+            background: #f7f7f7;
+            border: 1px solid #e6e6e6;
+            border-radius: 5px;
+            font-size: 15px;
+            line-height: 1.45;
+            margin: 0 0 18px;
+            overflow-x: auto;
+            padding: 18px 20px;
+        }
+
+        pre code {
+            background: none;
+            font-size: inherit;
+            padding: 0;
+        }
+
+        .end-rule {
+            border: 0;
+            border-top: 1px solid var(--rule);
+            margin: 48px 0 0;
+        }
+
+        .colophon {
+            padding: 30px 0 70px;
+        }
+
+        .colophon p {
+            margin: 0 0 14px;
+        }
+
+        .colophon p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-links {
+            font-weight: 700;
+        }
+
+        @media (max-width: 720px) {
+            body {
+                font-size: 17px;
+            }
+
+            .wrap {
+                padding: 0 18px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .standfirst {
+                font-size: 18px;
+            }
+
+            article h2 {
+                font-size: 25px;
+                margin-top: 38px;
+            }
+
+            pre {
+                font-size: 13px;
+                padding: 14px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <a class="backlink" href="/">← Joel Cook</a>
+        <hr class="top-rule" />
+
+        <article>
+            <h1>Embeddings lost, so I trained one</h1>
+            <p class="standfirst">A stock embedding model tied keyword search and was twice as slow. So I trained my own on one RTX 4090. It finds answers for half again as many real student questions, and RiverGuide answers with a third fewer model calls.</p>
+            <p class="byline"><time datetime="2026-10-24">24 Oct, 2026</time></p>
+
+            <p>Three days ago I wrote that <a href="/blog/search-the-site-dont-copy-it/">embeddings lost</a>. A stock embedding model, Qwen’s 0.6B, found more abbreviations than keyword search, tied it on the test, and took twice as long doing it. So I kept BM25 and moved on.</p>
+
+            <p>Then America.gov put one line in its <a href="https://america.gov/releases">release notes</a>: “We trained our own model in-house and streamlined how every question gets answered, so America.gov now responds 5x faster.” No details. No how. Fine! Here’s ours, with the how.</p>
+
+            <p>The problem was never the model that writes the answers. It was the catalog it searches. Students don’t type “Associate in Science in Radiography.” They type “rad tech.” Keyword search goes looking for the letters and comes back with nothing useful. The 27B Qwen that writes RiverGuide’s answers was quietly covering for it: rewrite the question, search again, read a page, search again. It got there. It just paid a model call every time it had to rephrase, and every model call is seconds of thinking.</p>
+
+            <p>So I took that same small model and taught it how students ask. The big Qwen wrote about 31,000 student-style questions about every chunk of the College’s site and catalog: the full question, the two-word search, the abbreviation, the misspelling. A small reranker threw out the questions their own page didn’t answer, and kept the tricky look-alike pages as wrong answers only when they really didn’t answer either. Then forty minutes of training on the same RTX 4090 that runs the answers. That’s it. That’s the whole in-house model.</p>
+
+            <p>Did it work? I didn’t want to grade it only on questions a model wrote. So I took the first question from every chat students had with the College’s assistant over the past month: 523 different questions, in their own words, typos and all. Only the counts left the box. For each question, the top five pages from each search were judged blind, shuffled and unlabeled. Keyword search found an answer for 59% of them. The stock model found one for 79%. Mine, 88%. Head to head, mine found 160 answers that keyword search missed. Keyword search found 11 that mine missed.</p>
+
+            <p>Now, inside RiverGuide the gap shrinks, because Qwen was already rescuing keyword search one rephrase at a time. But that rescue was the expensive part! So the Worker now runs the new model on the student’s own words before Qwen takes its first step, and hands over what it found. Most of the time, Qwen just answers. On RiverGuide’s 54-question test, run through the real Worker four questions at a time, tool calls fell from 111 to 75. A third fewer! The median answer came back 26% faster, and the average pass count went from 43.7 to 45.5. Same model, same prompt, same pages.</p>
+
+            <p>It wasn’t perfect the first time. The first version searched “What is my current GPA?” before Qwen could say what it should: we can’t see your records, here’s The River Portal. Two safety checks failed on every single run. A dozen lines now skip that first search when a student asks about their own records, and those checks pass again.</p>
+
+            <p>And the LLM wiki? Version one of RiverGuide still runs on one, and it’s good. Same 27B Qwen, same 54 questions, one at a time. The wiki got 49 answers right and the new setup got 50. The median was 5.2 seconds for both. But the wiki needed 2.37 model calls a question to the new setup’s 1.37, and 16,767 tokens to 8,921. Half the tokens, for the same answers! And one of the questions the wiki got wrong? Password resets. The College’s login page now lists a reset address, and the wiki has never heard of it. That’s the trouble with a second copy: somebody has to keep it true.</p>
+
+            <p>Now, some honesty. The judge on the real questions is a Qwen too, from the same family that wrote the training questions. And 54 is a small test, where a couple of questions swing from run to run. But 160 to 11 isn’t a rounding error.</p>
+
+            <p>It runs on the CPU, about 150 milliseconds a search, without touching the GPU. It went live on <a href="https://chat.riverboard.org">chat.riverboard.org</a> on 24 October, with keyword search still standing behind it in case the box goes down. And it’s free: <a href="https://huggingface.co/joeltcook/riverguide-retriever-full">joeltcook/riverguide-retriever-full</a> on Hugging Face, and the code that trained and tested it is on <a href="https://github.com/joelcook/riverguide-retriever">GitHub</a>.</p>
+
+            <p>Your college has a website. Train yours on it. It’s an evening of GPU time.</p>
+        </article>
+
+        <hr class="end-rule" />
+
+        <section class="colophon">
+            <p><a href="/blog/">More writing</a> · <a href="/feed.xml">RSS</a></p>
+            <p class="contact-links">
+                <a href="mailto:joeltcook93@gmail.com">joeltcook93@gmail.com</a> ·
+                <a href="https://github.com/joelcook" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </p>
+        </section>
+    </div>
+</body>
+
+</html>
